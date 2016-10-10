@@ -1,7 +1,7 @@
-STATIC_ROOT = os.path.join("/var/www/html/")
-STATIC_URL = "/static/"
+STATIC_ROOT = ''
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-	"/home/ec2-user/limbo/limbo/static/",
+#	"/home/ec2-user/limbo/limbo/static/",
 ]
 
 STATICFILES_FINDERS = [	
@@ -21,3 +21,13 @@ TEMPLATES = [
 		},
 	},
 ]
+
+MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    # Uncomment the next line for simple clickjacking protection:
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
