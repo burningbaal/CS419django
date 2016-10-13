@@ -1,5 +1,6 @@
+from django.conf import settings
 from django.conf.urls import url
-
+from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
@@ -10,5 +11,6 @@ urlpatterns = [
 		# <string>[\w\-]+)/$',
 		views.testFormResults,
 		name='showFormResults'),
-]
+#        url(r'^static/$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT},
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
