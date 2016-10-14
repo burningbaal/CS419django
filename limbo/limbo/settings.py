@@ -23,16 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'u*!z&jyzd#5ybx+6znpktm3fjsnr5=8^4r-%!qd(j5ce(@izl@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TEMPLATES = [
-    {
-        'OPTIONS': {
-            'debug': DEBUG,
-        },
-    },
-]
+DEBUG = False
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'polls',
-	'limbo',
+    'polls',
+    'limbo',
 ]
 
 MIDDLEWARE = [
@@ -76,6 +70,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'debug': DEBUG,
         },
     },
 ]
@@ -130,8 +125,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_URL = 'http://ec2-54-186-32-0.us-west-2.compute.amazonaws.com/static/'
+PROJECT_ROOT = '/var/www/limboproj/limbo/static' 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 STATICFILES_DIRS = [
