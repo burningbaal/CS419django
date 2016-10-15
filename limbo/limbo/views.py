@@ -5,17 +5,10 @@ from django.core.urlresolvers import reverse
 import json
 from django.http import QueryDict
 from django.http import HttpResponse
+from django.template import loader
 
 def index(request):
-	template = loader.get_template('index.html')
-	return HttpResponse(template.render(context, request))
+	return render(request, 'index.html')
+#	template = loader.get_template('index.html')
+#	return HttpResponse(template.render(context, request))
 
-from .forms import formTest
-def testForm(request):
-	if request.method == 'POST':
-		form = formTest(request.POST)
-		if form.is_valid():
-			return HttpResponseRedirect('/polls/thanks/')
-	else:
-		form = formTest()
-	return render(request, 'polls/formTest', {'form': form})
