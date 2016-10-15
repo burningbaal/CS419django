@@ -7,7 +7,8 @@ from django.http import QueryDict
 from django.http import HttpResponse
 
 def index(request):
-	return render(request, 'index.html')
+	template = loader.get_template('index.html')
+	return HttpResponse(template.render(context, request))
 
 from .forms import formTest
 def testForm(request):
