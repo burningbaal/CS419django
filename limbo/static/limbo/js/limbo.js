@@ -5,12 +5,12 @@
  * 
  */
  
- document.getElementById("UsersEdit").onclick = function() { 
+ document.getElementById("UsersEdit").addEventListener('click', function(event) ) { 
 	alert('UsersEdit'); 
 };
- document.getElementById("EquipmentEdit").onclick = function() { 
+ document.getElementById("EquipmentEdit").addEventListener('click', function(event) ) { 
 	alert('EquipmentEdit'); 
 };
- document.getElementById("ServerEdit").onclick = function() { 
+ document.getElementById("ServerEdit").addEventListener('click', function(event) ) { 
 	alert('ServerEdit'); 
 };
