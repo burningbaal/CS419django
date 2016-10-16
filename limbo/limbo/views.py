@@ -6,27 +6,39 @@ import json
 from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
+from limboLogic import *
 
 def index(request):
 	return render(request, 'index.html')
 
-from .forms import usersForm
-def users(request):
-        # if this is a POST request we need to process the form data
-        if request.method == 'POST':
-                # create a form instance and populate it with data from the request:
-                form = usersForm(request.POST)
-                # check whether it's valid:
-                # process the data in form.cleaned_data as required
-                # redirect to a new URL:
-                name = json.dumps(form.data['user_name'])
-                request.session['name'] = name
-                return redirect('/users' )
 
-        # if a GET (or any other method) we'll create a blank form
-        else:
-                form = usersForm()
-        return render(request, 'limboHtml/UserManagement.html', {'form': form})
+def editUsers(request):
+	if request.method == 'POST':
+			# create a form instance and populate it with data from the request:
+			form = usersForm(request.POST)
+			# check whether it's valid:
+			# process the data in form.cleaned_data as required
+			# redirect to a new URL:
+			name = json.dumps(form.data['user_name'])
+			request.session['name'] = name
+			return redirect('/users' )
+
+	# if a GET (or any other method) we'll create a blank form
+	else:
+		return redirect('/users' )
+
+from .forms import usersForm
+
+def users(request):
+	
+	# if there is a username we're supposed to edit, retrieve the data
+	if 'editUserName' in request.session:
+		form = usersForm(initial=limboLogic.GetUserInfo(request.Session['editUserName']))
+		
+	# create a blank form
+	else:
+		form = usersForm()
+	return render(request, 'limboHtml/UserManagement.html', {'form': form})
 		
 from .forms import equipmentForm
 def equipment(request):

@@ -8,4 +8,7 @@ urlpatterns = [
 	url(r'^(?:users\.?[html]{,4})?$', views.users, name='users'),
 	url(r'^(?:equipment\.?[html]{,4})?$', views.equipment, name='eqiupment'),
 	url(r'^(?:server\.?[html]{,4})?$', views.server, name='server'),
+	url(r'^(edit/users\.[html]{,4})?$', views.editUsers, name='editUsers'),
+	url(r'^(edit/equipment\.?[html]{,4})?$', views.editEquipment, name='editEqiupment'),
+	url(r'^(edit/server\.?[html]{,4})?$', views.editServer, name='editServer'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
