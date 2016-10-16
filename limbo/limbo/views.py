@@ -20,24 +20,25 @@ def editUsers(request):
 		# process the data in form.cleaned_data as required
 		# redirect to a new URL:
 		name = json.dumps(form.data['user_name'])
-		request.session['name'] = name
+		request.session['editUserName'] = name
+		
+		# call out to limboLogic.py to update values
+		
 		test = name
-		return redirect('/users.html' )
+		return redirect('/users.html', name )
 	# if a GET (or any other method) we'll create a blank form
 	else:
-		return redirect('/users.html' )
+		return redirect('limbo.views.users')
 
 from .forms import usersForm
 
+def users(request, name)
+	form = usersForm(initial=limboLogic.GetUserInfo(name))
+	return render(request, 'limboHtml/UserManagement.html', {'form': form})
+
 def users(request):
-	
-	# if there is a username we're supposed to edit, retrieve the data
-	if 'editUserName' in request.session:
-		form = usersForm(initial=limboLogic.GetUserInfo(request.Session['editUserName']))
-		
 	# create a blank form
-	else:
-		form = usersForm()
+	form = usersForm()
 	return render(request, 'limboHtml/UserManagement.html', {'form': form})
 		
 def editEquipment(request):
