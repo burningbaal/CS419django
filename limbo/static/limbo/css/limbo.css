@@ -10,7 +10,15 @@ Author: Keith McKinley, John Watts, Marta Wegner
 Author URI:
 */
  
+.row {
+    display: table;
 }
+
+.row > div {
+    float: none;
+    display: table-cell;
+}
+
 .topBar {
 	height: 100px;
 	width: auto;
