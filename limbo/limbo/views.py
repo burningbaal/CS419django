@@ -40,6 +40,8 @@ def users(request):
 		form = usersForm()
 	return render(request, 'limboHtml/UserManagement.html', {'form': form})
 		
+def editEquipment(request):
+	return HttpHttpResponse("This capability isn't built yet, please go back")
 from .forms import equipmentForm
 def equipment(request):
         # if this is a POST request we need to process the form data
@@ -58,6 +60,8 @@ def equipment(request):
                 form = equipmentForm()
         return render(request, 'limboHtml/EquipmentManagement.html', {'form': form})
 		
+def editServer(request):
+	return HttpHttpResponse("This capability isn't built yet, please go back")
 from .forms import serverForm
 def server(request):
         # if this is a POST request we need to process the form data
