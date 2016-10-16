@@ -33,6 +33,7 @@ def editUsers(request):
 from .forms import *
 
 def users(request, name = False):
+	form = None
 	if name == False:
 		form = equipmentForm(initial='jim') #limboLogic.GetUserInfo(name))
 		# form = usersForm(initial='jim') #limboLogic.GetUserInfo(name))
