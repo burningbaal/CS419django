@@ -32,14 +32,14 @@ def editUsers(request):
 
 from .forms import *
 
-def users(request, name = False):
+def users(request, name=None):
 	form = None
-	if name == False:
-		# form = equipmentForm(initial='jim') #limboLogic.GetUserInfo(name))
-		form = usersForm(initial={'user_name':'jim'}, auto_id=False) #limboLogic.GetUserInfo(name))
-	else:
+	if name is None:
 		# create a blank form
 		form = usersForm()
+	else:
+		# form = equipmentForm(initial='jim') - used to make sure I was branching the if/else correctly
+		form = usersForm(initial={'user_name':'jim'}, auto_id=False) #limboLogic.GetUserInfo(name))
 	return render(request, 'limboHtml/UserManagement.html', {'form': form})
 		
 def editEquipment(request):
