@@ -25,10 +25,10 @@ def editUsers(request):
 		# call out to limboLogic.py to update values
 		
 		test = name
-		return redirect('limbo.views.users', name )
+		return redirect('../users', name )
 	# if a GET (or any other method) we'll create a blank form
 	else:
-		return redirect('limbo.views.users')
+		return redirect('../users')
 
 from .forms import usersForm
 
