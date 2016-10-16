@@ -14,18 +14,17 @@ def index(request):
 
 def editUsers(request):
 	if request.method == 'POST':
-			# create a form instance and populate it with data from the request:
-			form = usersForm(request.POST)
-			# check whether it's valid:
-			# process the data in form.cleaned_data as required
-			# redirect to a new URL:
-			name = json.dumps(form.data['user_name'])
-			request.session['name'] = name
-			return redirect('/users' )
-
+		# create a form instance and populate it with data from the request:
+		form = usersForm(request.POST)
+		# check whether it's valid:
+		# process the data in form.cleaned_data as required
+		# redirect to a new URL:
+		name = json.dumps(form.data['user_name'])
+		request.session['name'] = name
+		return redirect('/users.html' )
 	# if a GET (or any other method) we'll create a blank form
 	else:
-		return redirect('/users' )
+		return redirect('/users.html' )
 
 from .forms import usersForm
 
