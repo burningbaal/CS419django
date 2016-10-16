@@ -26,7 +26,7 @@ def users(request):
         # if a GET (or any other method) we'll create a blank form
         else:
                 form = usersForm()
-        return render(request, '/usersUserManagement.html', {'form': form})
+        return render(request, 'limboHtml/UserManagement.html', {'form': form})
 		
 from .forms import equipmentForm
 def equipment(request):
@@ -44,7 +44,7 @@ def equipment(request):
         # if a GET (or any other method) we'll create a blank form
         else:
                 form = equipmentForm()
-        return render(request, 'EquipmentManagement.html', {'form': form})
+        return render(request, 'limboHtml/EquipmentManagement.html', {'form': form})
 		
 from .forms import serverForm
 def server(request):
@@ -62,4 +62,4 @@ def server(request):
         # if a GET (or any other method) we'll create a blank form
         else:
                 form = serverForm()
-        return render(request, 'ServerConfiguration.html', {'form': form})
+        return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
