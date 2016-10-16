@@ -35,8 +35,8 @@ from .forms import *
 def users(request, name = False):
 	form = None
 	if name == False:
-		form = equipmentForm(initial='jim') #limboLogic.GetUserInfo(name))
-		# form = usersForm(initial='jim') #limboLogic.GetUserInfo(name))
+		# form = equipmentForm(initial='jim') #limboLogic.GetUserInfo(name))
+		form = usersForm(initial={'user_name':'jim'}, auto_id=False) #limboLogic.GetUserInfo(name))
 	else:
 		# create a blank form
 		form = usersForm()
