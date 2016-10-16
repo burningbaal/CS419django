@@ -32,14 +32,13 @@ def editUsers(request):
 
 from .forms import *
 
-def users(request, name):
-	form = equipmentForm(initial='jim') #limboLogic.GetUserInfo(name))
-	# form = usersForm(initial='jim') #limboLogic.GetUserInfo(name))
-	return render(request, 'limboHtml/UserManagement.html', {'form': form})
-
-def users(request):
-	# create a blank form
-	form = usersForm()
+def users(request, name = ''):
+	if name == ''
+		form = equipmentForm(initial='jim') #limboLogic.GetUserInfo(name))
+		# form = usersForm(initial='jim') #limboLogic.GetUserInfo(name))
+	else
+		# create a blank form
+		form = usersForm()
 	return render(request, 'limboHtml/UserManagement.html', {'form': form})
 		
 def editEquipment(request):
