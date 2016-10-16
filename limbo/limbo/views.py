@@ -15,7 +15,7 @@ def users(request):
         # if this is a POST request we need to process the form data
         if request.method == 'POST':
                 # create a form instance and populate it with data from the request:
-                form = NameForm(request.POST)
+                form = usersForm(request.POST)
                 # check whether it's valid:
                 # process the data in form.cleaned_data as required
                 # redirect to a new URL:
@@ -25,7 +25,7 @@ def users(request):
 
         # if a GET (or any other method) we'll create a blank form
         else:
-                form = NameForm()
+                form = usersForm()
         return render(request, 'users', {'form': form})
 		
 from .forms import equipmentForm
@@ -33,7 +33,7 @@ def equipment(request):
         # if this is a POST request we need to process the form data
         if request.method == 'POST':
                 # create a form instance and populate it with data from the request:
-                form = NameForm(request.POST)
+                form = equipmentForm(request.POST)
                 # check whether it's valid:
                 # process the data in form.cleaned_data as required
                 # redirect to a new URL:
@@ -43,7 +43,7 @@ def equipment(request):
 
         # if a GET (or any other method) we'll create a blank form
         else:
-                form = NameForm()
+                form = equipmentForm()
         return render(request, 'equipment', {'form': form})
 		
 from .forms import serverForm
@@ -51,7 +51,7 @@ def server(request):
         # if this is a POST request we need to process the form data
         if request.method == 'POST':
                 # create a form instance and populate it with data from the request:
-                form = NameForm(request.POST)
+                form = serverForm(request.POST)
                 # check whether it's valid:
                 # process the data in form.cleaned_data as required
                 # redirect to a new URL:
@@ -61,5 +61,5 @@ def server(request):
 
         # if a GET (or any other method) we'll create a blank form
         else:
-                form = NameForm()
+                form = serverForm()
         return render(request, 'server', {'form': form})
