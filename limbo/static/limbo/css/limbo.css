@@ -17,7 +17,7 @@ Author URI:
 }
 body {
 	padding-top: 110px;
-	padding-left: 110px;
+/*	padding-left: 110px;/*
 }
 .left-bar { 
   /* position: fixed; */
