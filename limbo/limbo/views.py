@@ -33,10 +33,10 @@ def editUsers(request):
 from .forms import *
 
 def users(request, name = False):
-	if name == False
+	if name == False:
 		form = equipmentForm(initial='jim') #limboLogic.GetUserInfo(name))
 		# form = usersForm(initial='jim') #limboLogic.GetUserInfo(name))
-	else
+	else:
 		# create a blank form
 		form = usersForm()
 	return render(request, 'limboHtml/UserManagement.html', {'form': form})
