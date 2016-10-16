@@ -33,7 +33,7 @@ def editUsers(request):
 from .forms import usersForm
 
 def users(request, name):
-	form = usersForm(initial=limboLogic.GetUserInfo(name))
+	form = usersForm(initial='jim') #limboLogic.GetUserInfo(name))
 	return render(request, 'limboHtml/UserManagement.html', {'form': form})
 
 def users(request):
