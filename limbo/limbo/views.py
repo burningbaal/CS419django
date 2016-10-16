@@ -30,10 +30,11 @@ def editUsers(request):
 	else:
 		return redirect('../users')
 
-from .forms import usersForm
+from .forms import *
 
 def users(request, name):
-	form = usersForm(initial='jim') #limboLogic.GetUserInfo(name))
+	form = equipmentForm(initial='jim') #limboLogic.GetUserInfo(name))
+	# form = usersForm(initial='jim') #limboLogic.GetUserInfo(name))
 	return render(request, 'limboHtml/UserManagement.html', {'form': form})
 
 def users(request):
@@ -43,7 +44,7 @@ def users(request):
 		
 def editEquipment(request):
 	return HttpHttpResponse("This capability isn't built yet, please go back")
-from .forms import equipmentForm
+
 def equipment(request):
         # if this is a POST request we need to process the form data
         if request.method == 'POST':
@@ -63,7 +64,7 @@ def equipment(request):
 		
 def editServer(request):
 	return HttpHttpResponse("This capability isn't built yet, please go back")
-from .forms import serverForm
+
 def server(request):
         # if this is a POST request we need to process the form data
         if request.method == 'POST':
