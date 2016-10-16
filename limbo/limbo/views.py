@@ -25,21 +25,22 @@ def editUsers(request):
 		# call out to limboLogic.py to update values
 		
 		test = name
-		return redirect('../users', name )
+		return redirect('../users')
 	# if a GET (or any other method) we'll create a blank form
 	else:
 		return redirect('../users')
 
 from .forms import *
 
-def users(request, name=None):
+def users(request):
 	form = None
-	if name is None:
+	
+	if 'editUserName' not in request.session:
 		# create a blank form
 		form = usersForm()
 	else:
 		# form = equipmentForm(initial='jim') - used to make sure I was branching the if/else correctly
-		form = usersForm(initial={'user_name':'jim'}, auto_id=False) #limboLogic.GetUserInfo(name))
+		form = usersForm(initial={'user_name':request.session['editUserName']}, auto_id=False) #limboLogic.GetUserInfo(name))
 	return render(request, 'limboHtml/UserManagement.html', {'form': form})
 		
 def editEquipment(request):
