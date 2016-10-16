@@ -18,10 +18,10 @@ Author URI:
     float: none;
     display: table-cell;
 }
-div > nav {
+/*div > nav {
     float: none;
     display: table-cell;
-}
+}*/
 
 .topBar {
 	height: 100px;
