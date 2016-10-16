@@ -21,6 +21,7 @@ def editUsers(request):
 		# redirect to a new URL:
 		name = json.dumps(form.data['user_name'])
 		request.session['name'] = name
+		test = name
 		return redirect('/users.html' )
 	# if a GET (or any other method) we'll create a blank form
 	else:
