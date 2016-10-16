@@ -9,6 +9,7 @@ from django.template import loader
 from limboLogic import *
 
 def index(request):
+	request.session.flush()
 	return render(request, 'index.html')
 
 
