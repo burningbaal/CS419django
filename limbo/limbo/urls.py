@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
 	url(r'^(?:index\.?[html]{,4})?$', views.index, name='index'),
-	url(r'^(?:users\.?[html]{,4})?$', views.users, name='users'),
+	url(r'^(?:users\.?[html]{,4})?$', views.editServer, name='editServer'),
 	url(r'^(?:equipment\.?[html]{,4})?$', views.editEquipment, name='editEquipment'),
 	url(r'^(?:server\.?[html]{,4})?$', views.editServer, name='editServer'),
 	url(r'^edit/users.html$', views.editUsers, name='editUsers'),
