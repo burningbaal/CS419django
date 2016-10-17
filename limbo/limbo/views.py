@@ -81,7 +81,7 @@ def editServer(request):
 
 def server(request):
 	form = None
-	if 'integer' not in request.session:
+	if 'integer' not in request.session or request.method not is 'POST':
 		# create a blank form
 		form = serverForm()
 	else:
