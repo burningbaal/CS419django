@@ -51,10 +51,10 @@ def editEquipment(request):
 			
 			# call out to limboLogic.py to update values, add them to the session
 			
-			return redirect('../equipment')
+			return render(request, 'limboHtml/EquipmentManagement.html', {'form': form})
 	# if a GET (or any other method) we'll create a blank form
 	try:
-		del render(request, 'limboHtml/EquipmentManagement.html', {'form': form})
+		del request.session['editEquipId']
 	except KeyError:
 		pass
 	form = equipmentForm()
