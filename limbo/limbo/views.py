@@ -20,16 +20,17 @@ def editUsers(request):
 		# check whether it's valid:
 		# process the data in form.cleaned_data as required
 		# redirect to a new URL:
-		name = json.dumps(form.data['user_name'])
-		request.session['editUserName'] = name
-		
-		# call out to limboLogic.py to update values
-		
-		test = name
-		return redirect('../users')
+		if form.is_valid():
+			name = form.cleaned_data['user_name'])
+			# name = json.dumps(form.data['user_name'])
+			request.session['editUserName'] = name
+			
+			# call out to limboLogic.py to update values
+			
+			test = name
+			return redirect('../users')
 	# if a GET (or any other method) we'll create a blank form
-	else:
-		return redirect('../users')
+	return redirect('../users')
 
 from .forms import *
 
