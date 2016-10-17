@@ -54,11 +54,11 @@ def editEquipment(request):
 			return redirect('../equipment')
 	# if a GET (or any other method) we'll create a blank form
 	try:
-		del request.session['editEquipId']
+		del render(request, 'limboHtml/EquipmentManagement.html', {'form': form})
 	except KeyError:
 		pass
 	form = equipmentForm()
-	return redirect('../equipment')
+	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form})
 		
 def editServer(request):
 	if request.method == 'POST':
