@@ -74,10 +74,11 @@ def editServer(request):
 			
 			# call out to limboLogic.py to update values, add them to the session
 			
-			return redirect('../server')
+			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
 	# if a GET (or any other method) we'll create a blank form
 	del request.session['integer']
-	return redirect('../server')
+	form = serverForm()
+	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
 
 def server(request):
 	form = None
