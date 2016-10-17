@@ -33,6 +33,7 @@ def editUsers(request):
 		del request.session['editUserName']
 	except KeyError:
 		pass
+	form = usersForm()
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
 def editEquipment(request):
