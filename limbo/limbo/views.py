@@ -74,7 +74,7 @@ def editServer(request):
 			request.session['integer'] = integer
 			
 			# call out to limboLogic.py to update values, add them to the session
-			message = 'The user \'' + integer + '\' has been updated.'
+			message = 'The value \'' + str(integer) + '\' has been updated.'
 			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message})
 		else:
 			message = 'The server configuration has NOT been updated.' + '\n'
