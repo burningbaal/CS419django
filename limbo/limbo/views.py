@@ -8,8 +8,9 @@ from django.http import HttpResponse
 from django.template import loader
 from limboLogic import *
 
-def indexLimbo(request):
+def indexLimbo(request, mystery):
 	# request.session.flush()
+	temp = mystery
 	del request.session['DNE']
 	return render(request, 'index.html')
 
