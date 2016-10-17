@@ -13,6 +13,7 @@ def index(request):
 	return render(request, 'index.html')
 
 
+from .forms import *
 def editUsers(request):
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request:
@@ -26,39 +27,31 @@ def editUsers(request):
 			
 			# call out to limboLogic.py to update values, add them to the session
 			
-			return redirect('../users')
+			return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': 'The user \'' + name + '\' has been updated.'})
 	# if a GET (or any other method) we'll create a blank form
-	del request.session['editUserName']
-	return redirect('../users')
+	try:
+		del request.session['editUserName']
+	except KeyError:
+		pass
+	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
-from .forms import *
-
-def users(request):
-	form = None
-	if 'editUserName' not in request.session:
-		# create a blank form
-		form = usersForm()
-	else:
-		form = usersForm(initial={'user_name':request.session['editUserName']}, auto_id=False) #limboLogic.GetUserInfo(name))
-	return render(request, 'limboHtml/UserManagement.html', {'form': form})
-		
 def editEquipment(request):
 	if request.method == 'POST':
 		form = equipmentForm(request.POST)
 		if form.is_valid():
 			manuf_email = form.cleaned_data['manuf_email']
-			request.session['editEquipId'] = manuf_email
+			request.session['editEquipId'] = 'jim@billy.com' #manuf_email
 			
 			# call out to limboLogic.py to update values, add them to the session
 			
-			return render(request, 'limboHtml/EquipmentManagement.html', {'form': form})
+			return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': 'The equipment \'' + manuf_email + '\' has been updated.'})
 	# if a GET (or any other method) we'll create a blank form
 	try:
 		del request.session['editEquipId']
 	except KeyError:
 		pass
 	form = equipmentForm()
-	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form})
+	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': ''})
 		
 def editServer(request):
 	if request.method == 'POST':
@@ -69,11 +62,11 @@ def editServer(request):
 			
 			# call out to limboLogic.py to update values, add them to the session
 			
-			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
+			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': 'The user \'' + integer + '\' has been updated.'})
 	# if a GET (or any other method) we'll create a blank form
 	try:
 		del request.session['integer']
 	except KeyError:
 		pass
 	form = serverForm()
-	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
+	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': ''})
