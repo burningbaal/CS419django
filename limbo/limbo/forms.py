@@ -10,4 +10,4 @@ class equipmentForm(forms.Form):
 	manuf_email = forms.EmailField(label='Manufacturer\'s email', max_length=100)
 	
 class serverForm(forms.Form):
-	bool_field = forms.BooleanField(label='Is it true?')
+	int_field = forms.IntegerField(label='How many?')

@@ -69,8 +69,8 @@ def editServer(request):
 	if request.method == 'POST':
 		form = serverForm(request.POST)
 		if form.is_valid():
-			bool = form.cleaned_data['bool']
-			request.session['editEquipId'] = bool
+			integer = form.cleaned_data['int_field']
+			request.session['integer'] = integer
 			
 			# call out to limboLogic.py to update values, add them to the session
 			
@@ -80,10 +80,10 @@ def editServer(request):
 
 def server(request):
 	form = None
-	if 'editEquipId' not in request.session:
+	if 'integer' not in request.session:
 		# create a blank form
 		form = serverForm()
 	else:
-		form = serverForm(initial={'bool_field':request.session['bool']}, auto_id=False) #limboLogic.GetUserInfo(name))
+		form = serverForm(initial={'int_field':request.session['integer']}, auto_id=False) #limboLogic.GetUserInfo(name))
 	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
 	
