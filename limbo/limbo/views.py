@@ -74,7 +74,7 @@ def editServer(request):
 			message = 'The user \'' + integer + '\' has been updated.'
 			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message})
 		else:
-			message: 'The user \'' + integer + '\' has NOT been updated.'
+			message = 'The user \'' + integer + '\' has NOT been updated.'
 			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message})
 			message += '<br>' + form.errors + '<br>' + form.non_field_errors
 	# if a GET (or any other method) we'll create a blank form
