@@ -28,7 +28,7 @@ def editUsers(request):
 			
 			return redirect('../users')
 	# if a GET (or any other method) we'll create a blank form
-	request.session.flush()
+	del request.session['editUserName']
 	return redirect('../users')
 
 from .forms import *
@@ -76,6 +76,7 @@ def editServer(request):
 			
 			return redirect('../server')
 	# if a GET (or any other method) we'll create a blank form
+	del request.session['integer']
 	return redirect('../server')
 
 def server(request):
