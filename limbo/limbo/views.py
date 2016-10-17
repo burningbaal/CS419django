@@ -28,6 +28,11 @@ def editUsers(request):
 			# call out to limboLogic.py to update values, add them to the session
 			
 			return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': 'The user \'' + name + '\' has been updated.'})
+		else:
+			message = 'The user \'' + name + '\' has NOT been updated.'
+			message += '<br>' + form.errors + '<br>' + form.non_field_errors
+			return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': message})
+		
 	# if a GET (or any other method) we'll create a blank form
 	try:
 		del request.session['editUserName']
@@ -44,8 +49,12 @@ def editEquipment(request):
 			request.session['editEquipId'] = 'jim@billy.com' #manuf_email
 			
 			# call out to limboLogic.py to update values, add them to the session
-			
-			return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': 'The equipment \'' + manuf_email + '\' has been updated.'})
+			message = 'The equipment \'' + manuf_email + '\' has been updated.'
+			return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': message})
+		else:
+			message = 'The equipment \'' + manuf_email + '\' has NOT been updated.'
+			message += '<br>' + form.errors + '<br>' + form.non_field_errors
+			return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': message})
 	# if a GET (or any other method) we'll create a blank form
 	try:
 		del request.session['editEquipId']
@@ -62,8 +71,12 @@ def editServer(request):
 			request.session['integer'] = integer
 			
 			# call out to limboLogic.py to update values, add them to the session
-			
-			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': 'The user \'' + integer + '\' has been updated.'})
+			message = 'The user \'' + integer + '\' has been updated.'
+			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message})
+		else:
+			message: 'The user \'' + integer + '\' has NOT been updated.'
+			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message})
+			message += '<br>' + form.errors + '<br>' + form.non_field_errors
 	# if a GET (or any other method) we'll create a blank form
 	try:
 		del request.session['integer']
