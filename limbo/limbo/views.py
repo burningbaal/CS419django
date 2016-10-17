@@ -51,9 +51,9 @@ def editEquipment(request):
 			
 			# call out to limboLogic.py to update values, add them to the session
 			
-			return redirect('../users')
+			return redirect('../equipment')
 	# if a GET (or any other method) we'll create a blank form
-	return redirect('../users')
+	return redirect('../equipment')
 
 def equipment(request):
 	form = None
@@ -66,21 +66,24 @@ def equipment(request):
 	
 		
 def editServer(request):
-	return HttpHttpResponse("This capability isn't built yet, please go back")
+	if request.method == 'POST':
+		form = serverForm(request.POST)
+		if form.is_valid():
+			bool = form.cleaned_data['bool']
+			request.session['editEquipId'] = bool
+			
+			# call out to limboLogic.py to update values, add them to the session
+			
+			return redirect('../server')
+	# if a GET (or any other method) we'll create a blank form
+	return redirect('../server')
 
 def server(request):
-        # if this is a POST request we need to process the form data
-        if request.method == 'POST':
-                # create a form instance and populate it with data from the request:
-                form = serverForm(request.POST)
-                # check whether it's valid:
-                # process the data in form.cleaned_data as required
-                # redirect to a new URL:
-                name = json.dumps(form.data['bool_field'])
-                request.session['name'] = name
-                return redirect('/server' )
-
-        # if a GET (or any other method) we'll create a blank form
-        else:
-                form = serverForm()
-        return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
+	form = None
+	if 'editEquipId' not in request.session:
+		# create a blank form
+		form = serverForm()
+	else:
+		form = serverForm(initial={'bool_field':request.session['bool']}, auto_id=False) #limboLogic.GetUserInfo(name))
+	return render(request, 'limboHtml/serverConfiguration.html', {'form': form})
+	
