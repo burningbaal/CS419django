@@ -21,7 +21,7 @@ def editUsers(request):
 		# process the data in form.cleaned_data as required
 		# redirect to a new URL:
 		if form.is_valid():
-			name = form.cleaned_data['user_name'])
+			name = form.cleaned_data['user_name']
 			# name = json.dumps(form.data['user_name'])
 			request.session['editUserName'] = name
 			
