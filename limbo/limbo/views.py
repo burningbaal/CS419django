@@ -57,7 +57,7 @@ def editEquipment(request):
 
 def equipment(request):
 	form = None
-	if 'editUserName' not in request.session:
+	if 'editEquipId' not in request.session:
 		# create a blank form
 		form = equipmentForm()
 	else:
