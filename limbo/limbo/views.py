@@ -61,7 +61,7 @@ def equipment(request):
 		# create a blank form
 		form = equipmentForm()
 	else:
-		form = equipmentForm(initial={'manuf_email':request.session['editEquipId']}, auto_id=False) #limboLogic.GetUserInfo(name))
+		form = equipmentForm(initial={'manuf_email': 'me@home', auto_id=False) #request.session['editEquipId']}, auto_id=False) #limboLogic.GetUserInfo(name))
 	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form})
 	
 		
@@ -85,5 +85,5 @@ def server(request):
 		form = serverForm()
 	else:
 		form = serverForm(initial={'bool_field':request.session['bool']}, auto_id=False) #limboLogic.GetUserInfo(name))
-	return render(request, 'limboHtml/serverConfiguration.html', {'form': form})
+	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
 	
