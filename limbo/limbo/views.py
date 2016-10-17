@@ -53,17 +53,12 @@ def editEquipment(request):
 			
 			return redirect('../equipment')
 	# if a GET (or any other method) we'll create a blank form
+	try:
+		del request.session['editEquipId']
+	except KeyError:
+		pass
+	form = equipmentForm()
 	return redirect('../equipment')
-
-def equipment(request):
-	form = None
-	if 'editEquipId' not in request.session:
-		# create a blank form
-		form = equipmentForm(initial={'manuf_email':'me@home'}, auto_id=False)
-	else:
-		form = equipmentForm(initial={'manuf_email':request.session['editEquipId']}, auto_id=False) #limboLogic.GetUserInfo(name))
-	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form})
-	
 		
 def editServer(request):
 	if request.method == 'POST':
