@@ -82,13 +82,3 @@ def editServer(request):
 		pass
 	form = serverForm()
 	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
-
-def server(request):
-	form = None
-	if 'integer' not in request.session or request.method !='POST':
-		# create a blank form
-		form = serverForm()
-	else:
-		form = serverForm(initial={'int_field':request.session['integer']}, auto_id=False) #limboLogic.GetUserInfo(name))
-	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
-	
