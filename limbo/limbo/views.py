@@ -29,9 +29,9 @@ def editUsers(request):
 			
 			return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': 'The user \'' + name + '\' has been updated.'})
 		else:
-			message = 'The user has NOT been updated.' + '<br>'
-			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '<br>' 
-			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '<br>' 
+			message = 'The user has NOT been updated.' + '\n'
+			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '\n' 
+			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '\n' 
 			return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': message})
 		
 	# if a GET (or any other method) we'll create a blank form
@@ -53,9 +53,9 @@ def editEquipment(request):
 			message = 'The equipment \'' + manuf_email + '\' has been updated.'
 			return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': message})
 		else:
-			message = 'The equipment has NOT been updated.' + '<br>'
-			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '<br>' 
-			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '<br>' 
+			message = 'The equipment has NOT been updated.' + '\n'
+			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '\n' 
+			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '\n' 
 			return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': message})
 	# if a GET (or any other method) we'll create a blank form
 	try:
@@ -76,9 +76,9 @@ def editServer(request):
 			message = 'The user \'' + integer + '\' has been updated.'
 			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message})
 		else:
-			message = 'The server configuration has NOT been updated.' + '<br>'
-			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '<br>' 
-			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '<br>' 
+			message = 'The server configuration has NOT been updated.' + '\n'
+			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '\n' 
+			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '\n' 
 			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message})
 	# if a GET (or any other method) we'll create a blank form
 	try:
