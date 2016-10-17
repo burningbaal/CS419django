@@ -76,7 +76,10 @@ def editServer(request):
 			
 			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
 	# if a GET (or any other method) we'll create a blank form
-	del request.session['integer']
+	try:
+		del request.session['integer']
+	except ValueError:
+		pass
 	form = serverForm()
 	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form})
 
