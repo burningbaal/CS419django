@@ -9,6 +9,6 @@ urlpatterns = [
 	url(r'^(?:equipment\.?[html]{,4})?$', views.equipment, name='eqiupment'),
 	url(r'^(?:server\.?[html]{,4})?$', views.server, name='server'),
 	url(r'^edit/users.html$', views.editUsers, name='editUsers'),
-	url(r'^edit/equipmenthtml$', views.editEquipment, name='editEqiupment'),
+	url(r'^edit/equipment.html$', views.editEquipment, name='editEqiupment'),
 	url(r'^edit/server.html$', views.editServer, name='editServer'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
