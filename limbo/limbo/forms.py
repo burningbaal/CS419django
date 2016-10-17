@@ -8,7 +8,7 @@ class usersForm(forms.Form):
 	user_email = forms.EmailField(label='User\'s email', max_length=100)
 	user_active = forms.BooleanField(label='User active')
 	
-	self.fields['user_active'].initial = True
+	user_active.initial = True
 
 class equipmentForm(forms.Form):
 	manuf_email = forms.EmailField(label='Manufacturer\'s email', max_length=100)
