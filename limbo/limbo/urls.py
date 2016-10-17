@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-	url(r'^(?:index\.?[html]{,4})?$', views.index, name='index'),
+	url(r'^.*(?:index\.?[html]{,4})?$', views.index, name='index'),
 	url(r'^(?:users\.?[html]{,4})?$', views.editServer, name='editServer'),
 	url(r'^(?:equipment\.?[html]{,4})?$', views.editEquipment, name='editEquipment'),
 	url(r'^(?:server\.?[html]{,4})?$', views.editServer, name='editServer'),
