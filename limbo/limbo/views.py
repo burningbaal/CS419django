@@ -10,6 +10,7 @@ from limboLogic import *
 
 def index(request):
 	# request.session.flush()
+	del request.session['DNE']
 	return render(request, 'index.html')
 
 
