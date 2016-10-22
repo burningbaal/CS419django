@@ -15,7 +15,7 @@ class usersForm(forms.Form):
 class equipmentForm(forms.Form):
 	manuf_email = forms.EmailField(label='Manufacturer\'s email', max_length=100)
 
-class serverForm(ModelForm)
+class serverForm(ModelForm):
 	class Meta:
 		model = serverConfig
 		fields = ['ClientMustVerify', 'Auditing']
