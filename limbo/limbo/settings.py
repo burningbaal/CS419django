@@ -59,7 +59,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-		'/var/www/html/',
+		'/var/www/limboproj/limbo/templates/',
+		#'/var/www/html/',
 		'/var/www/html/polls/',
 	],
         'APP_DIRS': True,
