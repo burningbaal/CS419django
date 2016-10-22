@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+ <div class="row">
+	<p>This is the server configuration page</p><br>
+	{{ SubmitMessage }}<br>
+	<form action="/edit/server.html" method="post">
+		{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="OK">
+	</form>
+	<br><p class="bold">This is below the form</p>
+  </div>
+{% endblock %}

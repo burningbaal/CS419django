@@ -83,10 +83,22 @@ WSGI_APPLICATION = 'limbo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Limbo',
+        'USER': 'CS419',
+        'PASSWORD': 'CS419Limbo',
+        'HOST': 'labmanagement.c8cis4tz4ume.us-west-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
+# original db entry
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
 
 
 # Password validation

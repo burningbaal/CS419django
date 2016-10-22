@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+        {% load static %}
+<head>
+	<!-- Written by Keith McKinley for CS419, Oregon State Universtity, Fall 2016-->
+	<!-- Using Django 1.10 and Python 2.7 -->
+        <link rel="stylesheet" type="text/css" href="{% static 'limbo/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'limbo/css/bootstrap-theme.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'limbo/css/limbo.css' %}" />
+        <script src="{% static 'limbo/js/bootstrap.min.js' %}" ></script>
+        <script src="{% static 'limbo/js/limbo.js' %}" ></script>
+		<title>Limbo Equipment Management</title>
+</head>
+  <body height="100%">
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-2">
+					<img style="height:100px;width:auto;" src="{% static 'limbo/img/limbo-clipart-1.jpg' %}" alt="limbo graphic"/>
+				</div>
+				<div class="container-fluid">
+					<nav class="navbar navbar-default">
+						<div class="container-fluid">
+							<div class="navbar-header">
+								<a class="navbar-brand" href="index">Limbo Manager</a>
+							</div>
+							<ul class="nav navbar-nav">
+								<li><a href="users.html">Users</a></li>
+								<li><a href="equipment.html">Equipment</a></li>
+								<li><a href="server.html">Server</a></li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li onClick='alert("Will log out, \nFor now just clears session vars");'><a href="index">User Name</a></li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			{% block content %}
+			{% endblock %}
+		</div>
+		<script src="{% static 'limbo/js/bootstrap.min.js' %}"></script>
+	</div>
+	<div class="footer navbar-fixed-bottom text-center small text-muted">Keith McKinley, Oregon State University, 2016</div>
+	<br>
+  </body>
+</html>
