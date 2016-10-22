@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import ModelForm
+from limbo.models import *
 
 class index (forms.Form):
 	index_val = forms.CharField(label='Your Limbo name', max_length=10)
@@ -12,6 +14,11 @@ class usersForm(forms.Form):
 
 class equipmentForm(forms.Form):
 	manuf_email = forms.EmailField(label='Manufacturer\'s email', max_length=100)
+
+class serverForm(ModelForm)
+	class Meta:
+		model = serverConfig
+		fields = ['ClientMustVerify', 'Auditing']
 	
-class serverForm(forms.Form):
-	int_field = forms.IntegerField(label='How many?')
+# class serverForm(forms.Form):
+#	int_field = forms.IntegerField(label='How many?')
