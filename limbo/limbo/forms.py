@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from limbo.models import *
+from .models import *
 
 class index (forms.Form):
 	index_val = forms.CharField(label='Your Limbo name', max_length=10)
