@@ -69,6 +69,10 @@ def editEquipment(request):
 from limbo.models import serverConfig
 def editServer(request):
 	configs = serverConfig.objects.all()
+	configHtml = ""
+	for item in configs
+		configHtml += item.config_key + "\t" + item.config_value + "\n"
+	
 	if request.method == 'POST':
 		form = serverForm(request.POST)
 		if form.is_valid():

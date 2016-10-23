@@ -4,12 +4,15 @@
  <div class="row">
 	<p>This is the server configuration page</p><br>
 	<p>Current configurations are: </p>
-	<table>
+	{{ CurrentConfigs }}
+	<!-- this idea is great, but need lots of help from sites like http://stackoverflow.com/questions/8000022/django-template-how-to-look-up-a-dictionary-value-with-a-variable to make it work
+	table>
+		
 		<tr><th>Key</th><th>Value</th></tr>
 		{% for key,value in CurrentConfigs %}
 			<tr><td>{{key}}</td><tr>{{value}}</td></tr>
 		{% endfor %}
-	</table>
+	</table-->
 	{{ SubmitMessage }}<br>
 	<form action="/edit/server.html" method="post">
 		{% csrf_token %}
