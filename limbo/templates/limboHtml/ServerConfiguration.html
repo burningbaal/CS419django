@@ -6,8 +6,8 @@
 	<p>Current configurations are: </p>
 	<table>
 		<tr><th>Key</th><th>Value</th></tr>
-		{% for config in CurrentConfigs %}
-			<tr><td>{{item.config_key}}</td><tr>{{item.config_value}}</td></tr>
+		{% for key,value in CurrentConfigs %}
+			<tr><td>{{key}}</td><tr>{{value}}</td></tr>
 		{% endfor %}
 	</table>
 	{{ SubmitMessage }}<br>
