@@ -68,9 +68,9 @@ def editEquipment(request):
 		
 from .models import serverConfig
 def editServer(request):
-	#configs = serverConfig.objects.all()
+	myConfigs = serverConfig.objects.all()
 	configHtml = ""
-	for item in serverConfig.objects.values()
+	for item in myConfigs #serverConfig.objects.values()
 		configHtml += item.config_key + "\t" + item.config_value + "\n"
 	
 	if request.method == 'POST':
@@ -81,12 +81,12 @@ def editServer(request):
 			
 			# call out to limboLogic.py to update values, add them to the session
 			message = 'The value \'' + str(integer) + '\' has been updated.'
-			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message, 'CurrentConfigs': configs})
+			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message, 'CurrentConfigs': configHtml})
 		else:
 			message = 'The server configuration has NOT been updated.' + '\n'
 			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '\n' 
 			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '\n' 
-			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message, 'CurrentConfigs': configs})
+			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message, 'CurrentConfigs': configHtml})
 	# if a GET (or any other method) we'll create a blank form
 	try:
 		del request.session['integer']
