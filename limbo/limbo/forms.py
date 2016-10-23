@@ -20,7 +20,7 @@ class serverForm(ModelForm):
 		model = serverConfig
 		#data = model.objects.all()
 		#fields = '__all__'
-		fields = ['ClientMustVerify', 'Auditing']
+		fields = ['config_key', 'config_value']
 	
 # class serverForm(forms.Form):
 #	int_field = forms.IntegerField(label='How many?')
