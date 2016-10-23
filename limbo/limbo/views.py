@@ -68,7 +68,7 @@ def editEquipment(request):
 	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': ''})
 		
 def editServer(request):
-	configs = limbo.models.serverConfig.objects.all()
+	configs = serverConfig.objects.all()
 	if request.method == 'POST':
 		form = serverForm(request.POST)
 		if form.is_valid():
