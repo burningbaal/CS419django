@@ -7,7 +7,6 @@ from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
 from limboLogic import *
-from limbo.models import *
 
 def indexLimbo(request, mystery):
 	# request.session.flush()
@@ -67,6 +66,7 @@ def editEquipment(request):
 	form = equipmentForm()
 	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': ''})
 		
+from limbo.models import serverConfig
 def editServer(request):
 	configs = serverConfig.objects.all()
 	if request.method == 'POST':
