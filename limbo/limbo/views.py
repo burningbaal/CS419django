@@ -70,7 +70,7 @@ from limbo.models import serverConfig
 def editServer(request):
 	#configs = serverConfig.objects.all()
 	configHtml = ""
-	for item in serverConfig.objects.all()
+	for item in serverConfig.objects.values()
 		configHtml += item.config_key + "\t" + item.config_value + "\n"
 	
 	if request.method == 'POST':
