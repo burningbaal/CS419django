@@ -93,4 +93,4 @@ def editServer(request):
 	except KeyError:
 		pass
 	form = serverForm()
-	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': '', 'CurrentConfigs': configs})
+	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
