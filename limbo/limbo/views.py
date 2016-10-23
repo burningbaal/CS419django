@@ -7,6 +7,7 @@ from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
 from limboLogic import *
+from limbo.models import *
 
 def indexLimbo(request, mystery):
 	# request.session.flush()
@@ -67,6 +68,7 @@ def editEquipment(request):
 	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': ''})
 		
 def editServer(request):
+	configs = limbo.models.serverConfig.objects.all()
 	if request.method == 'POST':
 		form = serverForm(request.POST)
 		if form.is_valid():
@@ -75,16 +77,16 @@ def editServer(request):
 			
 			# call out to limboLogic.py to update values, add them to the session
 			message = 'The value \'' + str(integer) + '\' has been updated.'
-			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message})
+			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message, 'CurrentConfigs': configs})
 		else:
 			message = 'The server configuration has NOT been updated.' + '\n'
 			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '\n' 
 			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '\n' 
-			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message})
+			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message, 'CurrentConfigs': configs})
 	# if a GET (or any other method) we'll create a blank form
 	try:
 		del request.session['integer']
 	except KeyError:
 		pass
 	form = serverForm()
-	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': ''})
+	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': '', 'CurrentConfigs': configs})

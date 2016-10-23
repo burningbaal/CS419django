@@ -18,6 +18,8 @@ class equipmentForm(forms.Form):
 class serverForm(ModelForm):
 	class Meta:
 		model = serverConfig
+		#data = model.objects.all()
+		#fields = '__all__'
 		fields = ['ClientMustVerify', 'Auditing']
 	
 # class serverForm(forms.Form):

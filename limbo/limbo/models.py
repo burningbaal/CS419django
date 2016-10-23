@@ -1,5 +1,6 @@
 from django.db import models
 
 class serverConfig(models.Model):
-	ClientMustVerify = models.NullBooleanField()
-	Auditing = models.BooleanField()
+	
+	config_key = models.CharField(maxLength=63)
+	config_value = models.CharField(maxLength=63)

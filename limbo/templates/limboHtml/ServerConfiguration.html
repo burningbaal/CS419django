@@ -3,6 +3,13 @@
 {% block content %}
  <div class="row">
 	<p>This is the server configuration page</p><br>
+	<p>Current configurations are: </p>
+	<table>
+		<tr><th>Key</th><th>Value</th></tr>
+		{% for config in CurrentConfigs %}
+			<tr><td>{{item.config_key}}</td><tr>{{item.config_value}}</td></tr>
+		{% endfor %}
+	</table>
 	{{ SubmitMessage }}<br>
 	<form action="/edit/server.html" method="post">
 		{% csrf_token %}
