@@ -66,7 +66,7 @@ def editEquipment(request):
 	form = equipmentForm()
 	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': ''})
 		
-from .models import serverConfig
+from limbo.models import serverConfig
 def editServer(request):
 	myConfigs = serverConfig.objects.all()
 	configHtml = ""
