@@ -73,7 +73,7 @@ def editServer(request):
 	myConfigs = serverConfig.objects.all()
 	data = serializers.serialize("xml", serverConfig.objects.all()
 	# print myConfigs.query
-	myConfigs['config_value'] = 'testing234'
+	#myConfigs['config_value'] = 'testing234'
 	configHtml = ""
 	# for item in myConfigs #serverConfig.objects.values()
 	#	configHtml += item.config_key + "\t" + item.config_value + "\n"
@@ -98,4 +98,4 @@ def editServer(request):
 	except KeyError:
 		pass
 	form = serverForm()
-	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
+	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': '', 'CurrentConfigs': data})
