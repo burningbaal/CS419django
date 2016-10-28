@@ -70,8 +70,8 @@ from limbo.models import serverConfig
 from django.core import serializers
 
 def editServer(request):
-	myConfigs = serverConfig.objects.all()
-	data = serializers.serialize("xml", serverConfig.objects.all())
+	myConfigs = serverConfig.objects.values()
+	data = serializers.serialize("xml", serverConfig.objects.values())
 	# print myConfigs.query
 	#myConfigs['config_value'] = 'testing234'
 	configHtml = ""
