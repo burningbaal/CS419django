@@ -67,9 +67,12 @@ def editEquipment(request):
 	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': ''})
 		
 from limbo.models import serverConfig
+from django.core import serializers
+
 def editServer(request):
 	myConfigs = serverConfig.objects.all()
-	print myConfigs.query
+	data = serializers.serialize("xml", serverConfig.objects.all()
+	# print myConfigs.query
 	myConfigs['config_value'] = 'testing234'
 	configHtml = ""
 	# for item in myConfigs #serverConfig.objects.values()
