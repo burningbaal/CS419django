@@ -69,8 +69,8 @@ def editEquipment(request):
 from limbo.models import serverConfig
 def editServer(request):
 	myConfigs = serverConfig.objects.all()
-	myConfigs['config_key'] = 'testing123'
-	myConfigs['config_value'] = 'testing234'
+	myConfigs['configkey'] = 'testing123'
+	myConfigs['configValue'] = 'testing234'
 	configHtml = ""
 	# for item in myConfigs #serverConfig.objects.values()
 	#	configHtml += item.config_key + "\t" + item.config_value + "\n"
