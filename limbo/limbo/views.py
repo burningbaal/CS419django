@@ -72,7 +72,8 @@ from django.forms import modelformset_factory
 def editServer(request):
 	initialDict = {}
 	dictionaries = []
-	myConfigs = serverConfig.objects.values()
+	result = serverConfig.objects.values()
+	myConfigs = [entry for entry in result]
 	for record in myConfigs:
 		initialDict = {'key': record.config_key, 'value': record.config_value}
 		dictionaries.append(initialDict)
