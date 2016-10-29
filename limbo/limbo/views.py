@@ -76,7 +76,7 @@ def editServer(request):
 	for id,key,value in myConfigs:
 		initialDict = {'key': key, 'value': value}
 	
-	formSet = modelformset_factory(serverConfig, extra=0)
+	formSet = modelformset_factory(serverConfig, exclude=('id',), extra=0)
 	finalFormSet = formSet(initial=[{'config_key': x.config_key, 'config_value': x.config_value} for x in myConfigs])
 	if request.method == 'POST':
 		form = serverForm(request.POST)
