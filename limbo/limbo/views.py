@@ -72,8 +72,8 @@ from django.forms import modelformset_factory
 def editServer(request):
 	result = serverConfig.objects.values()
 	myConfigs = [entry for entry in result]
-	formSet = modelformset_factory(serverConfig, exclude=('id',), extra=0)
-	finalFormSet = formSet #(initial=[{'config_key': x['config_key'], 'config_value': x['config_value']} for x in myConfigs])
+	finalFormSet = modelformset_factory(serverConfig, exclude=('id',), extra=0)
+	#finalFormSet = formSet #(initial=[{'config_key': x['config_key'], 'config_value': x['config_value']} for x in myConfigs])
 	if request.method == 'POST':
 		form = serverForm(request.POST)
 		if form.is_valid():
