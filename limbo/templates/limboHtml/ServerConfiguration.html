@@ -9,6 +9,7 @@
 	<h1>Server Configurations</h1>
 	<h2>Change one row and click update before changing the next</h2>
 	<div ='container'>
+	{% csrf_token %}
 	{% for form in formset %}
 		<div class='row'><form method="post" >{{form}} <input type="submit" value="Update" /></form></div>
 	{% endfor %}
