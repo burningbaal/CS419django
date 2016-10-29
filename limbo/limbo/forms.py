@@ -18,8 +18,6 @@ class equipmentForm(forms.Form):
 class serverForm(ModelForm):
 	class Meta:
 		model = serverConfig
-		#data = model.objects.all()
-		#fields = '__all__'
 		fields = ['config_key', 'config_value']
 	def __init__(self, *args, **kwargs):
 		super(serverForm, self).__init__(*args, **kwargs)
