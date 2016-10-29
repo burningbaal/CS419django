@@ -73,7 +73,7 @@ def editServer(request):
 	initialDict = {}
 	dictionaries = []
 	myConfigs = serverConfig.objects.values()
-	for id,key,value in myConfigs
+	for id,key,value in myConfigs:
 		initialDict = {'key': key, 'value': value}
 	
 	formSet = modelformset_factory(serverConfig, extra=0)
