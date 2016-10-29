@@ -71,12 +71,6 @@ from django.core import serializers
 
 def editServer(request):
 	myConfigs = serverConfig.objects.values()
-	data = serializers.serialize("xml", serverConfig.objects.values())
-	# print myConfigs.query
-	#myConfigs['config_value'] = 'testing234'
-	configHtml = ""
-	# for item in myConfigs #serverConfig.objects.values()
-	#	configHtml += item.config_key + "\t" + item.config_value + "\n"
 	
 	if request.method == 'POST':
 		form = serverForm(request.POST)
