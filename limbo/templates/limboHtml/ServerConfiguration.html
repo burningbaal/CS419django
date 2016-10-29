@@ -9,7 +9,7 @@
 	<h1>Formset:</h1>
 	<div ='container'>
 	{% for form in formset %}
-		<div class='row'>{{form.as_table}}</div>
+		<div class='row'>{{form.as_table}} <input type="submit" value="Update" /></div>
 	{% endfor %}
 	<div>
 	

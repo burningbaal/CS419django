@@ -26,7 +26,7 @@ class serverForm(ModelForm):
 		instance = getattr(self, 'instance', None)
 		if instance and instance.pk:
 			self.fields['config_key'].widget.attrs['readonly'] = True
-			#self.fields['config_key'].widget.attrs['disabled'] = True
+			self.fields['config_key'].widget.attrs['disabled'] = True
 			
 # class serverForm(forms.Form):
 #	int_field = forms.IntegerField(label='How many?')
