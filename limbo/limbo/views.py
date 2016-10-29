@@ -101,4 +101,4 @@ def editServer(request):
 		pass
 	form = serverForm()
 		
-	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'formset': formset, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
+	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'formset': finalFormSet, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
