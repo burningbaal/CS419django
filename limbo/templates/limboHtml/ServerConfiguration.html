@@ -4,30 +4,14 @@
  <div class="row">
 	<p>This is the server configuration page</p><br>
 	<p>Current configurations are: </p>
-	{% for record in CurrentConfigs %}
-		{{record.id}}: {{record.config_key}} => {{record.config_value}}<br>
-    {% endfor %}
-
-	<!-- this idea is great, but need lots of help from sites like http://stackoverflow.com/questions/8000022/django-template-how-to-look-up-a-dictionary-value-with-a-variable to make it work
-	table>
-		
-		<tr><th>Key</th><th>Value</th></tr>
-		{% for id,key,value in CurrentConfigs %}
-			<tr><td>{{id}}</td><td>{{key}}</td><tr>{{value}}</td></tr>
-		{% endfor %}
-	</table-->
+	
 	{{ SubmitMessage }}<br>
 	<h1>Formset:</h1>
+	<div ='container'>
 	{% for form in formset %}
-		{{form.as_table}}<br>
+		<div class='row'>{{form.as_table}}</div>
 	{% endfor %}
-	<br><br>
-	<h1>old form:</h1>
-	<form action="/edit/server.html" method="post">
-		{% csrf_token %}
-		{{ form }}
-		<input type="submit" value="OK">
-	</form>
-	<br><p class="bold">This is below the form</p>
+	<div>
+	
   </div>
 {% endblock %}
