@@ -70,14 +70,8 @@ from limbo.models import serverConfig
 from django.forms import modelformset_factory
 
 def editServer(request):
-	initialDict = {}
-	dictionaries = []
 	result = serverConfig.objects.values()
 	myConfigs = [entry for entry in result]
-	# for record in myConfigs:
-	#	initialDict = {'key': record.config_key, 'value': record.config_value}
-	#	dictionaries.append(initialDict)
-	#
 	formSet = modelformset_factory(serverConfig, exclude=('id',), extra=0)
 	finalFormSet = formSet(initial=[{'config_key': x['config_key'], 'config_value': x['config_value']} for x in myConfigs])
 	if request.method == 'POST':
@@ -99,6 +93,5 @@ def editServer(request):
 		del request.session['integer']
 	except KeyError:
 		pass
-	form = serverForm()
-		
-	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'formset': finalFormSet, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
+	
+	return render(request, 'limboHtml/ServerConfiguration.html', {'formset': finalFormSet, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
