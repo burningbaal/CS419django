@@ -10,7 +10,7 @@
 	<h2>Change one row and click update before changing the next</h2>
 	<div ='container'>
 	{% for form in formset %}
-		<div class='row'>{{form.as_table}} <input type="submit" value="Update" /></div>
+		<div class='row'>{{form}} <input type="submit" value="Update" /></div>
 	{% endfor %}
 	<div>
 	
