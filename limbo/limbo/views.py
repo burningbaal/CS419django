@@ -67,11 +67,17 @@ def editEquipment(request):
 	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': ''})
 		
 from limbo.models import serverConfig
-from django.core import serializers
+from django.forms import modelformset_factory
 
 def editServer(request):
+	initialDict = {}
+	dictionaries = []
 	myConfigs = serverConfig.objects.values()
+	for id,key,value in myConfigs
+		initialDict = {'key': key, 'value': value}
 	
+	formSet = modelformset_factory(serverConfig, extra=0)
+	finalFormSet = formSet(initial=[{'config_key': x.config_key, 'config_value': x.config_value} for x in myConfigs])
 	if request.method == 'POST':
 		form = serverForm(request.POST)
 		if form.is_valid():
@@ -92,4 +98,5 @@ def editServer(request):
 	except KeyError:
 		pass
 	form = serverForm()
-	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
+		
+	return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'formset': formset, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})

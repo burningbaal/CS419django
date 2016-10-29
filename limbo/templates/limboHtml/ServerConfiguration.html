@@ -17,6 +17,12 @@
 		{% endfor %}
 	</table-->
 	{{ SubmitMessage }}<br>
+	<h1>Formset:</h1>
+	{% for form in formset %}
+		{% print(form.as_table()) %}
+	{% endfor %}
+	<br><br>
+	<h1>old form:</h1>
 	<form action="/edit/server.html" method="post">
 		{% csrf_token %}
 		{{ form }}
