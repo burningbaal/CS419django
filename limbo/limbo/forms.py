@@ -21,6 +21,12 @@ class serverForm(ModelForm):
 		#data = model.objects.all()
 		#fields = '__all__'
 		fields = ['config_key', 'config_value']
+	def __init__(self, *args, **kwargs):
+        super(serverForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.pk:
+            self.fields['config_key'].widget.attrs['readonly'] = True
+            #self.fields['config_key'].widget.attrs['disabled'] = True
 	
 # class serverForm(forms.Form):
 #	int_field = forms.IntegerField(label='How many?')
