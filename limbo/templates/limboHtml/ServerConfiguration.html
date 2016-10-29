@@ -5,7 +5,7 @@
 	<p>This is the server configuration page</p><br>
 	<p>Current configurations are: </p>
 	{% for record in CurrentConfigs %}
-		{{record.config_key}}, {{record.config_value}}, 
+		{{record.id}}: {{record.config_key}} => {{record.config_value}}, 
     {% endfor %}
 
 	<!-- this idea is great, but need lots of help from sites like http://stackoverflow.com/questions/8000022/django-template-how-to-look-up-a-dictionary-value-with-a-variable to make it work
