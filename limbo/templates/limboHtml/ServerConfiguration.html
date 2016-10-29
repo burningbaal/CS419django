@@ -12,8 +12,8 @@
 	table>
 		
 		<tr><th>Key</th><th>Value</th></tr>
-		{% for key,value in CurrentConfigs %}
-			<tr><td>{{key}}</td><tr>{{value}}</td></tr>
+		{% for id,key,value in CurrentConfigs %}
+			<tr><td>{{id}</td><td>{{key}}</td><tr>{{value}}</td></tr>
 		{% endfor %}
 	</table-->
 	{{ SubmitMessage }}<br>
