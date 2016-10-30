@@ -1,6 +1,5 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import api, polls
 
 urlpatterns = [
 	url(r'^api/', include('api.urls')),
