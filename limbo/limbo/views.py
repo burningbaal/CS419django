@@ -92,6 +92,7 @@ def editServer(request):
 		else:
 			message = 'The server configuration has NOT been updated.' + '\n'
 			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '\n' 
+			message += '<br> ' + ", ".join("%s=%r" % (key,val) for(key,val) in form.iteritems()) 
 			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '\n' 
 			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message, 'CurrentConfigs': myConfigs})
 	# if a GET (or any other method) we'll create a blank form
