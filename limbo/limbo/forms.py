@@ -18,7 +18,8 @@ class equipmentForm(forms.Form):
 class serverForm(ModelForm):
 	class Meta:
 		model = serverConfig
-		fields = ['config_key', 'config_value']
+		fields = ['config_value']
+		readonly_fields = ['config_key']
 	def __init__(self, *args, **kwargs):
 		super(serverForm, self).__init__(*args, **kwargs)
 		instance = getattr(self, 'instance', None)
