@@ -78,13 +78,11 @@ def editServer(request):
 	if request.method == 'POST':
 		formset = finalFormSet(request.POST, request.FILES)
 		if formset.is_valid():
-			key = form.cleaned_data['config_key']
-			value = form.cleaned_data['config_value']
-			request.session['config_key'] = key
-			request.session['config_value'] = value
+			for form in formset:
+				form.save()
 			
 			# call out to limboLogic.py to update values, add them to the session
-			message = 'The value (\'' + key + '\': ' + value + ') has been updated.'
+			message = 'The values have been updated.'
 			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message, 'CurrentConfigs': myConfigs})
 		else:
 			message = 'The server configuration has NOT been updated.' + '\n'
