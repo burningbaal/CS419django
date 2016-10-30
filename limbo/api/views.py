@@ -6,10 +6,9 @@ import json
 from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
-from limboLogic import *
 
 from forms import *
-from limbo.models import *
+from models import *
 from django.forms import modelformset_factory
 from django.forms import formset_factory
 
