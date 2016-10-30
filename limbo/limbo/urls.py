@@ -5,9 +5,6 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-	url(r'^api/', include('api.urls')),
-	url(r'^polls/', include('polls.urls')),
-	url(r'^admin/', admin.site.urls),
 	url(r'^(edit/)*(?:index\.?[html]{,4})?$', views.indexLimbo, name='indexLimbo'),
 	url(r'^edit/users.html$', views.editUsers, name='editUsers'),
 	url(r'^edit/equipment.html$', views.editEquipment, name='editEqiupment'),
