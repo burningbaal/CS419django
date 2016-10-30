@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
- <div class="row">
+ <div class="row-fluid">
 	<p>This is the server configuration page</p><br>
 	<p>Current configurations are: </p>
 	
@@ -10,7 +10,7 @@
 	<h2>Change one row and click update before changing the next</h2>
 	<form method="post" action="">{% csrf_token %}
 	{{ formset.management_form }}
-		<div class='row'>
+		<div class='row-fluid'>
 			{% for form in formset|slice:":1" %}
 				{% for field in form %}
 					{% if field.label != "Id" %}
@@ -20,7 +20,7 @@
 			{% endfor %}
 		</div>
 	{% for form in formset %}
-		<div class='row'>
+		<div class='row-fluid'>
 			{% for field in form %}
 				<div class="col-md-6">{{field}} </div>
 			{% endfor %}
