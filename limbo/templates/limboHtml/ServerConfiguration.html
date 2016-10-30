@@ -24,7 +24,7 @@
 				{% if field.label != "Id" %}
 					<div class="col-md-6">{{field}} </div>
 				{% else %}
-					{{field}}
+					{{field.disabled}}
 				{% endif %}
 			{% endfor %}
 		</div>
