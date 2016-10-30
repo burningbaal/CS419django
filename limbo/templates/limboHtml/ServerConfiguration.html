@@ -22,7 +22,9 @@
 	{% for form in formset %}
 		<div class='row-fluid'>
 			{% for field in form %}
-				<div class="col-md-6">{{field}} </div>
+				{% if field.label != "Id" %}
+					<div class="col-md-6">{{field}} </div>
+				{% endif %}
 			{% endfor %}
 		</div>
 	{% endfor %}
