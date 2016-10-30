@@ -83,7 +83,7 @@ def editServer(request):
 			
 			# call out to limboLogic.py to update values, add them to the session
 			message = 'The values have been updated.'
-			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message, 'CurrentConfigs': myConfigs})
+			return render(request, 'limboHtml/ServerConfiguration.html', {'formset': finalFormSet, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
 		else:
 			message = 'The server configuration has NOT been updated.' + '\n'
 			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '\n' 
