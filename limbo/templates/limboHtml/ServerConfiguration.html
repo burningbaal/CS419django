@@ -9,8 +9,23 @@
 	<h1>Server Configurations</h1>
 	<h2>Change one row and click update before changing the next</h2>
 	<div ='container'>
-		<form method="post" action="">
-		<table>{{ formset }}</table>
+		<form method="post" action="">{% csrf_token %}
+		{{ formset.management_form }}
+			<div class='row'>
+				{% for form in formset|slice:":1" %}
+					{% for field in form %}
+						<strong>{{field.label}}</strong>
+					{% endfor %}
+				{% endfor %}
+			</div>
+		{% for form in formset %}
+			<div class='row'>
+				{% for field in form %}
+					{{field}} 
+				{% endfor %}
+			</div>
+		{% endfor %}
+		<input type="submit" value="Update" />
 		</form>
 	<div>
 	
