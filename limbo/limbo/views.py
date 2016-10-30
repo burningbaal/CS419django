@@ -66,7 +66,7 @@ def editEquipment(request):
 	form = equipmentForm()
 	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': ''})
 		
-from limbo.models import serverConfig
+from limbo.models import *
 from django.forms import modelformset_factory
 from django.forms import formset_factory
 
@@ -97,3 +97,4 @@ def editServer(request):
 		pass
 	
 	return render(request, 'limboHtml/ServerConfiguration.html', {'formset': finalFormSet, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
+

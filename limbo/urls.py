@@ -3,6 +3,7 @@ from django.contrib import admin
 
 urlpatterns = [
 	url(r'^index$', include('limbo.urls')),
+	url(r'^api/', include('api.urls')),
 	url(r'^polls/', include('polls.urls')),
 	url(r'^admin/', admin.site.urls),
 	url(r'^limbo/', include('limbo.limbo.urls')),
