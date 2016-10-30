@@ -16,7 +16,7 @@ def addUsageHistory(request):
 	result = usageHistory.objects.values()
 	myConfigs = [entry for entry in result]
 	
-	finalFormSet = modelformset_factory(usageHistory, exclude=('none'), extra=0) # intentionally not a tuple
+	finalFormSet = modelformset_factory(usageHistory, form=usageHistoryForm, extra=0) # intentionally not a tuple
 	if request.method == 'POST':
 		formset = finalFormSet(request.POST, request.FILES)
 		if formset.is_valid():
