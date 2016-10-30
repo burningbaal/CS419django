@@ -2,7 +2,7 @@ from django.db import models
 
 class usageHistory(models.Model):
 	
-	fk_employee_number = models.CharField(max_length=63)
-	fk_version = models.CharField(max_length=63)
-	fk_instrument = models.CharField(max_length=63)
-	timestamp = models.dateTimeField(max_length=63)
+	fk_employee_number = models.BigIntegerField()
+	fk_version = models.BigIntegerField()
+	fk_instrument = models.BigIntegerField()
+	timestamp = models.dateTimeField(auto_now=False, auto_now_add=False)
