@@ -14,7 +14,7 @@
 			{% for form in formset|slice:":1" %}
 				{% for field in form %}
 					{% if field.label != "Id" %}
-						<div class="span6"><strong>{{field.label}}</strong></div>
+						<div class="span3"><strong>{{field.label}}</strong></div>
 					{% endif %}
 				{% endfor %}
 			{% endfor %}
