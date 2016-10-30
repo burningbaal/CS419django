@@ -78,7 +78,7 @@ def editServer(request):
 	#finalFormSet = formset_factory(serverForm, fields=('config_key','config_value'), extra=0)
 	#finalFormSet = formSet #(initial=[{'config_key': x['config_key'], 'config_value': x['config_value']} for x in myConfigs])
 	if request.method == 'POST':
-		submitted = serverConfig.objects.get()
+		#submitted = serverConfig.objects.get()
 		form = serverForm(request.POST)
 		if form.is_valid():
 			key = form.cleaned_data['config_key']
