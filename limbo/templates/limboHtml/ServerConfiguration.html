@@ -20,10 +20,6 @@
 		</div>
 	{% for form in formset %}
 		<div class='row-fluid'>
-			<div class="col-md-6">{% form.initial.cell.config_key %}</div>
-			<div class="col-md-6">{% form.fields.cell.config_value %}</div>
-	{% endfor %}
-		{% comment %}
 			{% for field in form %}
 				{% if field.label != "Id" %}
 					<div class="col-md-6">{{field}} </div>
@@ -31,9 +27,8 @@
 					{{field}}
 				{% endif %}
 			{% endfor %}
-		{% endcomment %}
 		</div>
-	{# {% endfor %} #}
+	{% endfor %}
 	<input type="submit" value="Update" />
 	</form>
 
