@@ -74,13 +74,12 @@ def editServer(request):
 	result = serverConfig.objects.values()
 	myConfigs = [entry for entry in result]
 	
-	finalFormSet = modelformset_factory(serverConfig, exclude=('id',), extra=0)
 	#finalFormSet = formset_factory(serverForm, fields=('config_key','config_value'), extra=0)
 	#finalFormSet = formSet #(initial=[{'config_key': x['config_key'], 'config_value': x['config_value']} for x in myConfigs])
 	if request.method == 'POST':
-		#submitted = serverConfig.objects.get()
-		form = serverForm(request.POST)
-		if form.is_valid():
+		finalFormSet = modelformset_factory(serverConfig)
+		# formset = serverForm(request.POST)
+		if finalFormSet.is_valid():
 			key = form.cleaned_data['config_key']
 			value = form.cleaned_data['config_value']
 			request.session['config_key'] = key
@@ -101,4 +100,5 @@ def editServer(request):
 	except KeyError:
 		pass
 	
+	finalFormSet = modelformset_factory(serverConfig, exclude=('id',), extra=0)
 	return render(request, 'limboHtml/ServerConfiguration.html', {'formset': finalFormSet, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
