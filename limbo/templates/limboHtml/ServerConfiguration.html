@@ -13,15 +13,15 @@
 		{{ formset.management_form }}
 			<div class='row'>
 				{% for form in formset|slice:":1" %}
-					{% for field in form %}
-						<strong>{{field.label}}</strong>
+					{% for field in form|slice:":2" %}
+						<div class="col-md-6"><strong>{{field.label}}</strong></div>
 					{% endfor %}
 				{% endfor %}
 			</div>
 		{% for form in formset %}
 			<div class='row'>
 				{% for field in form %}
-					{{field}} 
+					<div class="col-md-6">{{field}} </div>
 				{% endfor %}
 			</div>
 		{% endfor %}
