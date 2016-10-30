@@ -77,7 +77,7 @@ def editServer(request):
 	finalFormSet = modelformset_factory(serverConfig, exclude=('id',), extra=0)
 	if request.method == 'POST':
 		formset = finalFormSet(request.POST, request.FILES)
-		if formSet.is_valid():
+		if formset.is_valid():
 			key = form.cleaned_data['config_key']
 			value = form.cleaned_data['config_value']
 			request.session['config_key'] = key
