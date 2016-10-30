@@ -77,7 +77,7 @@ def editServer(request):
 	#finalFormSet = formset_factory(serverForm, fields=('config_key','config_value'), extra=0)
 	#finalFormSet = formSet #(initial=[{'config_key': x['config_key'], 'config_value': x['config_value']} for x in myConfigs])
 	if request.method == 'POST':
-		finalFormSet = modelformset_factory(serverConfig)
+		finalFormSet = modelformset_factory(serverConfig, exclud=('id') # intentionally didn't make id a tuple
 		# formset = serverForm(request.POST)
 		if finalFormSet.is_valid():
 			key = form.cleaned_data['config_key']
