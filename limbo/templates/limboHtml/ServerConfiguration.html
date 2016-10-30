@@ -7,7 +7,6 @@
 	
 	{{ SubmitMessage }}<br>
 	<h1>Server Configurations</h1>
-	<h2>Change one row and click update before changing the next</h2>
 	<form method="post" action="">{% csrf_token %}
 	{{ formset.management_form }}
 		<div class='row-fluid'>
@@ -21,6 +20,9 @@
 		</div>
 	{% for form in formset %}
 		<div class='row-fluid'>
+			<div class="col-md-6">{% form.initial.cell.config_key %}</div>
+			<div class="col-md-6">{% form.fields.cell.config_value %}</div>
+		{% comment %}
 			{% for field in form %}
 				{% if field.label != "Id" %}
 					<div class="col-md-6">{{field}} </div>
@@ -28,6 +30,7 @@
 					{{field}}
 				{% endif %}
 			{% endfor %}
+		{% endcomment %}
 		</div>
 	{% endfor %}
 	<input type="submit" value="Update" />
