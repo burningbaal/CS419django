@@ -8,26 +8,24 @@
 	{{ SubmitMessage }}<br>
 	<h1>Server Configurations</h1>
 	<h2>Change one row and click update before changing the next</h2>
-	<div ='container'>
-		<form method="post" action="">{% csrf_token %}
-		{{ formset.management_form }}
-			<div class='row'>
-				{% for form in formset|slice:":1" %}
-					{% for field in form|slice:":2" %}
-						<div class="col-md-6"><strong>{{field.label}}</strong></div>
-					{% endfor %}
+	<form method="post" action="">{% csrf_token %}
+	{{ formset.management_form }}
+		<div class='row'>
+			{% for form in formset|slice:":1" %}
+				{% for field in form|slice:":1" %}
+					<div class="col-md-6"><strong>{{field.label}}</strong></div>
 				{% endfor %}
-			</div>
-		{% for form in formset %}
-			<div class='row'>
-				{% for field in form %}
-					<div class="col-md-6">{{field}} </div>
-				{% endfor %}
-			</div>
-		{% endfor %}
-		<input type="submit" value="Update" />
-		</form>
-	<div>
-	
+			{% endfor %}
+		</div>
+	{% for form in formset %}
+		<div class='row'>
+			{% for field in form %}
+				<div class="col-md-6">{{field}} </div>
+			{% endfor %}
+		</div>
+	{% endfor %}
+	<input type="submit" value="Update" />
+	</form>
+
   </div>
 {% endblock %}
