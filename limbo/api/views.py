@@ -11,7 +11,7 @@ from forms import *
 from models import *
 from django.forms import modelformset_factory
 from django.forms import formset_factory
-from rest_framework.views import APIView
+#from rest_framework.views import APIView
 #from rest_framework.response import Response
 #from rest_framework.authentication import SessionAuthentication 
 
@@ -21,7 +21,7 @@ from rest_framework.views import APIView
         # return  # To not perform the csrf check previously happening
 # authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 def addUsageHistory(request):
-	authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+	# authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 	result = usageHistory.objects.values()
 	myConfigs = [entry for entry in result]
 	
