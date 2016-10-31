@@ -5,8 +5,8 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-	url(r'^(edit/)*(?:index\.?[html]{,4})?$', views.indexLimbo, name='indexLimbo'),
-	url(r'^edit/users.html$', views.editUsers, name='editUsers'),
-	url(r'^edit/equipment.html$', views.editEquipment, name='editEqiupment'),
-	url(r'^edit/server.html$', views.editServer, name='editServer'),
+	url(r'^*(?:index\.?[html]{,4})?$', views.indexLimbo, name='indexLimbo'),
+	url(r'^users.html$', views.editUsers, name='editUsers'),
+	url(r'^equipment.html$', views.editEquipment, name='editEqiupment'),
+	url(r'^server.html$', views.editServer, name='editServer'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
