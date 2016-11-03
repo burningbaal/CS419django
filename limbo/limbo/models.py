@@ -11,6 +11,19 @@ class InstrType(models.Model):
 	service_email = models.CharField(max_length=50, null=True)
 	servie_website = models.CharField(max_length=50, null=True)
 
+class Method(models.Model):
+	name = models.CharField(max_length=50, unique=true)
+	descriton = models.TextField(null=False)
+
+class Version(models.Model):
+	version_number = models.CharField(max_length=50)
+	cmd_line_script = models.CharField(max_length=250, null=False)
+	SOP = models.TextField(null=False)
+	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE)
+	
+	class Meta:
+		unique_together = ('version_number', 'FK_method')
+
 class Instrument(models.Model):
 	serial_number = models.CharField(max_length=50, unique=True)
 	asset_number = models.CharField(max_length=50, unique=True)
@@ -22,10 +35,6 @@ class Instrument(models.Model):
 						through='Instr_Version', 
 						related_name = 'Instr_Version',
 					)
-
-class Method(models.Model):
-	name = models.CharField(max_length=50, unique=true)
-	descriton = models.TextField(null=False)
 
 # class User(models.Model):
 	# first_name = models.CharField(max_length=50)
@@ -55,15 +64,6 @@ class Method(models.Model):
 
 # class Permission(models.Model):
 	# name = models.CharField(max_length=50, unique=True)
-
-class Version(models.Model):
-	version_number = models.CharField(max_length=50)
-	cmd_line_script = models.CharField(max_length=250, null=False)
-	SOP = models.TextField(null=False)
-	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE)
-	
-	class Meta:
-		unique_together = ('version_number', 'FK_method')
 
 class Instr_Version(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
