@@ -12,7 +12,7 @@ class InstrType(models.Model):
 	servie_website = models.CharField(max_length=50, null=True)
 
 class Method(models.Model):
-	name = models.CharField(max_length=50, unique=true)
+	name = models.CharField(max_length=50, unique=True)
 	descriton = models.TextField(null=False)
 
 class Version(models.Model):
