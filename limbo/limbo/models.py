@@ -17,7 +17,7 @@ class Instrument(models.Model):
 	name = models.CharField(max_length=50)
 	checksum = models.BinaryField
 	FK_instr_type = models.ForeignKey(InstrType, on_delete=models.PROTECT)
-	Instr_Version = models.ManytoManyField(
+	Instr_Version = models.ManyToManyField(
 						Version, 
 						through='Instr_Version', 
 						related_name = 'Instr_Version',
@@ -32,13 +32,13 @@ class Method(models.Model):
 	# last_name = models.CharField(max_length=50)
 	# email = models.CharField(max_length=50, unique=True)
 	# active = models.BooleanField(default=True)
-	# User_Version = models.ManytoManyField(
+	# User_Version = models.ManyToManyField(
 						# Version, 
 						# through='User_Version', 
 						# related_name='User_Version', 
 						# through_fields=('FK_user', 'FK_version'),
 					# )
-	# User_Permission = models.ManytoManyField(
+	# User_Permission = models.ManyToManyField(
 						# Permission, 
 						# through='User_Permission', 
 						# related_name='User_Permission', 
@@ -47,7 +47,7 @@ class Method(models.Model):
 
 # class Role(models.Model):
 	# title = models.CharField(max_length=50, unique=True)
-	# Role_Permission = models.ManytoManyField(
+	# Role_Permission = models.ManyToManyField(
 						# Permission, 
 						# through='Role_Permission', 
 						# related_name = 'Role_Permission',
