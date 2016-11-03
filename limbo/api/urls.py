@@ -4,5 +4,5 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-	url(r'^(?:addUse\.?[html]{,4})?$', views.addUsageHistory, name='addUsageHistory'),
+	url(r'^(addUse\.?[html]{,4})?$', views.addUsageHistory, name='addUsageHistory'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
