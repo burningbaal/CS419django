@@ -68,7 +68,7 @@ class Instrument(models.Model):
 class Instr_Version(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
 	FK_instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
-	validating_user = models.ForeignKey(auth_user, on_delete=models.models.PROTECT)
+	validating_user = models.ForeignKey(auth.user, on_delete=models.models.PROTECT)
 	timestamp = models.DateField(auto_now_add=True)
 
 	class Meta:
@@ -76,17 +76,17 @@ class Instr_Version(models.Model):
 
 class User_Version(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
-	FK_user = models.ForeignKey(auth_user, on_delete=models.CASCADE)
-	validating_user = models.ForeignKey(auth_user, on_delete=models.PROTECT)
+	FK_user = models.ForeignKey(auth.user, on_delete=models.CASCADE)
+	validating_user = models.ForeignKey(auth.user, on_delete=models.PROTECT)
 	timestamp = models.DateField(auto_now_add=True)
 
 	class Meta:
 		unique_together = ('FK_version', 'FK_user')
 
 # class User_Permission(models.Model):
-	# FK_user = models.ForeignKey(auth_user, on_delete=models.CASCADE)
+	# FK_user = models.ForeignKey(auth.user, on_delete=models.CASCADE)
 	# FK_permission = models.ForeignKey(Permission, on_delete=models.CASCADE)
-	# validating_user = models.ForeignKey(auth_user, on_delete=models.PROTECT)
+	# validating_user = models.ForeignKey(auth.user, on_delete=models.PROTECT)
 	# timestamp = models.DateField(auto_now_add=True)
 	
 	# class Meta:
@@ -100,7 +100,7 @@ class User_Version(models.Model):
 		# unique_together = ('FK_role', 'FK_permission')
 
 class UsageHistory(models.Model):
-	FK_user = models.ForeignKey(auth_user, on_delete=models.PROTECT)
+	FK_user = models.ForeignKey(auth.user, on_delete=models.PROTECT)
 	FK_version = models.ForeignKey(Version, on_delete=models.PROTECT)
 	FK_instrument = models.ForeignKey(Instrument, on_delete=models.PROTECT)
 	timestamp = models.DateField(auto_now_add=True)
