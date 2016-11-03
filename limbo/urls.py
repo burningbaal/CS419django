@@ -5,7 +5,7 @@ from django.conf import settings
 
 
 urlpatterns = [
-	url(r'^admin/', include(admin.site.urls)),
+	url(r'^admin/', admin.site.urls),
 	# url(r'^api/', include('api.urls')),
 	#url(r'^index', include('limbo.urls')),
 	#url(r'^polls/', include('polls.urls')),
