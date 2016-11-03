@@ -8,7 +8,7 @@ urlpatterns = [
 	url(r'^api/', include('api.urls')),
 	url(r'^index', include('limbo.urls')),
 	url(r'^polls/', include('polls.urls')),
-	url(r'^admin/', admin.site.urls),
+	url(r'^admin/', include(admin.site.urls),
 	url(r'^limbo/', include('limbo.urls')),
 	url(r'edit/', include('limbo.urls')),
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
