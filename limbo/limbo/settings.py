@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'polls',
     'limbo',
 	'api',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
