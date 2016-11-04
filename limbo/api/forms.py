@@ -7,5 +7,5 @@ class usageHistoryForm(ModelForm):
 		model = usageHistory
 		fields = '__all__'
 	def __init__(self, *args, **kwargs):
-		super(usageHistory, self).__init__(*args, **kwargs)
+		super(usageHistoryForm, self).__init__(*args, **kwargs)
 		instance = getattr(self, 'instance', None)
