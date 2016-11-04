@@ -11,6 +11,7 @@ from forms import *
 from models import *
 from django.forms import modelformset_factory
 from django.forms import formset_factory
+from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
