@@ -29,7 +29,7 @@ def addUsageHistory(request):
 			FK_usr = form.cleaned_data['FK_user']
 			FK_ver = form.cleaned_data['FK_version']
 			FK_isntr = form.cleaned_data['FK_instrument']
-			time = form.cleaned_data['timestamp']
+			#time = form.cleaned_data['timestamp']
 			message = HttpResponse(serializers.serialize("json", usageHistory.objects.filter(pk=usageHistory.Id)))
 			return HttpResponse(message)
 		else:
