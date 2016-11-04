@@ -1,10 +1,10 @@
 from django import forms
 from django.forms import ModelForm
-from .models import *
+from limbo.models import *
 
 class usageHistoryForm(ModelForm):
 	class Meta:
-		model = usageHistory
+		model = UsageHistory
 		fields = '__all__'
 	def __init__(self, *args, **kwargs):
 		super(usageHistoryForm, self).__init__(*args, **kwargs)

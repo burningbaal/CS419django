@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.template import loader
 
 from forms import *
-from models import *
+from limbo.models import *
 from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework.views import APIView
@@ -20,15 +20,15 @@ from rest_framework.decorators import api_view
 @api_view(['GET', 'POST'])
 def addUsageHistory(request):
 	# authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
-	result = usageHistory.objects.values()
+	#result = usageHistory.objects.create(pk=id)
 	myConfigs = [entry for entry in result]
 	
 	if request.method == 'POST':
 		form = usageHistoryForm(request.POST)
 		if True: #form.is_valid():
-			FK_en = form.cleaned_data['fk_employee_number']
-			FK_ver = form.cleaned_data['fk_version']
-			FK_isntr = form.cleaned_data['fk_instrument']
+			FK_usr = form.cleaned_data['FK_user']
+			FK_ver = form.cleaned_data['FK_version']
+			FK_isntr = form.cleaned_data['FK_instrument']
 			time = form.cleaned_data['timestamp']
 			message = HttpResponse(serializers.serialize("json", usageHistory.objects.filter(pk=usageHistory.Id)))
 			HttpResponse(message)
