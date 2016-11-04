@@ -16,11 +16,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication 
 
-class CsrfExemptSessionAuthentication(SessionAuthentication):
-	def enforce_csrf(self, request):
-		return  # To not perform the csrf check previously happening
-	authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
-	
+
 def addUsageHistory(request):
 	# authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 	result = usageHistory.objects.values()
