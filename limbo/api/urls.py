@@ -5,4 +5,5 @@ from . import views
 
 urlpatterns = [
 	url(r'^addUse.html$', views.addUsageHistory, name='addUsageHistory'),
+	url(r'^api-token-auth/', views.obtain_auth_token),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
