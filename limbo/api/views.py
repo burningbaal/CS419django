@@ -34,9 +34,9 @@ def addUsageHistory(request):
 			#model = UsageHistory(FK_user=FK_usr, FK_version=FK_ver, FK_instrument=FK_instr)
 			newUse = form.save()
 			message = HttpResponse('{"Added":{"user":' + \
-			serializers.serialize('json', [newUse.FK_user.user, ]) +  ',"version:' + \
-			serializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument:' + \
-			serializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp:' + \
+			serializers.serialize('json', [newUse.FK_user.user, ]) +  ',"version":' + \
+			serializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument":' + \
+			serializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
 			'"' + str(newUse.timestamp) + '"' #serializers.serialize('json', [newUse.timestamp, ]) +  \
 			'}}') # + serializers.serialize('json', [newUse, ]))
 			
