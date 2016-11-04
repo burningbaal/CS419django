@@ -40,35 +40,6 @@ class Instrument(models.Model):
 						related_name = 'Instr_Version',
 					)
 
-# class User(models.Model):
-	# first_name = models.CharField(max_length=50)
-	# last_name = models.CharField(max_length=50)
-	# email = models.CharField(max_length=50, unique=True)
-	# active = models.BooleanField(default=True)
-	# User_Version = models.ManyToManyField(
-						# Version, 
-						# through='User_Version', 
-						# related_name='User_Version', 
-						# through_fields=('FK_user', 'FK_version'),
-					# )
-	# User_Permission = models.ManyToManyField(
-						# Permission, 
-						# through='User_Permission', 
-						# related_name='User_Permission', 
-						# through_fields=('FK_user', 'FK_permission'),
-					# )
-
-# class Role(models.Model):
-	# title = models.CharField(max_length=50, unique=True)
-	# Role_Permission = models.ManyToManyField(
-						# Permission, 
-						# through='Role_Permission', 
-						# related_name = 'Role_Permission',
-					# )
-
-# class Permission(models.Model):
-	# name = models.CharField(max_length=50, unique=True)
-
 class Instr_Version(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
 	FK_instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
@@ -81,20 +52,11 @@ class Instr_Version(models.Model):
 class User_Version(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
 	FK_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-	validating_user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
+	authorizing_user = models.ForeignKey(UserProfile, related_name='authorizing user', on_delete=models.PROTECT)
 	timestamp = models.DateField(auto_now_add=True)
 
 	class Meta:
 		unique_together = ('FK_version', 'FK_user')
-
-# class User_Permission(models.Model):
-	# FK_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-	# FK_permission = models.ForeignKey(Permission, on_delete=models.CASCADE)
-	# validating_user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
-	# timestamp = models.DateField(auto_now_add=True)
-	
-	# class Meta:
-		# unique_together = ('FK_user', 'FK_permission')
 
 # class Role_Permission(models.Model):
 	# FK_role = ForeignKey(Role, on_delete=models.CASCADE)
