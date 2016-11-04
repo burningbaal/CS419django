@@ -1,4 +1,6 @@
-from django.db.models.signals import post_syncdb
+# from: http://blog.nyaruka.com/adding-a-view-permission-to-django-models
+# on 04Nov2016
+from django.db.models.signals import post_migrate # post_syncdb replaced at v1.9
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import Permission
 
