@@ -23,13 +23,13 @@ def addUsageHistory(request):
 	result = usageHistory.objects.values()
 	myConfigs = [entry for entry in result]
 	
-	finalFormSet = modelformset_factory(usageHistory, form=usageHistoryForm, extra=0) # intentionally not a tuple
 	if request.method == 'POST':
-		formset = finalFormSet(request.POST, request.FILES)
+		form = usageHistory(request.POST)
 		if formset.is_valid():
-			for form in formset:
-				form.save()
-			
+			FK_en = form.cleaned_data['fk_employee_number']
+			FK_ver = form.cleaned_data['fk_version']
+			FK_isntr = form.cleaned_data['fk_instrument']
+			time = form.cleaned_data['timestamp']
 			message = HttpResponse(serializers.serialize("json", usageHistory.objects.filter(pk=usageHistory.Id)))
 			HttpResponse(message)
 			#return render(request, 'limboHtml/ServerConfiguration.html', {'formset': finalFormSet, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
