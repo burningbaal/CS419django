@@ -8,13 +8,12 @@ from django.http import HttpResponse
 from django.template import loader
 
 from forms import *
+from models import *
 from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication 
-from snippets.models import Snippet
-from snippets.serializers import SnippetSerializer
 
 @csrf_exempt
 @APIView(['POST'])
@@ -24,7 +23,7 @@ def addUsageHistory(request):
 	myConfigs = [entry for entry in result]
 	
 	if request.method == 'POST':
-		form = usageHistory(request.POST)
+		form = usageHistoryForm(request.POST)
 		if True: #form.is_valid():
 			FK_en = form.cleaned_data['fk_employee_number']
 			FK_ver = form.cleaned_data['fk_version']
