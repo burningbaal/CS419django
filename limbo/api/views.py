@@ -33,15 +33,13 @@ def addUsageHistory(request):
 			#time = form.cleaned_data['timestamp']
 			#model = UsageHistory(FK_user=FK_usr, FK_version=FK_ver, FK_instrument=FK_instr)
 			newUse = form.save()
-			message = HttpResponse('{"Added":[{"user":' + \
+			message = HttpResponse('{"Added":["user":' + \
 			serializers.serialize('json', [newUse.FK_user.user, ]) +  ',{"version:' + \
 			serializers.serialize('json', [newUse.FK_version, ]) +  ',{"instrument:' + \
 			serializers.serialize('json', [newUse.FK_instrument, ]) +  ',{"timestamp:' + \
 			'"' + str(newUse.timestamp) + '"' #serializers.serialize('json', [newUse.timestamp, ]) +  \
-			']}' + serializers.serialize('json', [newUse, ]))
+			']}}' # + serializers.serialize('json', [newUse, ]))
 			
-			# 'username: "' + str(newUse.FK_user.user.username) + '"},
-			# "version":"' + str(newUse.FK_version.version_number) + '","instrument":"' + str(newUse.FK_instrument.name) + '","time":"' + str(newUse.timestamp) + '"]}')
 			return HttpResponse(message)
 		else:
 			message = '{"Error": ["Message":"The server configuration has NOT been updated.",' + '\n'
