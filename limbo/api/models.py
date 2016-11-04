@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import datetime    
 from django.conf import settings
-from limbo import UserProfile
+from limbo.limbo import UserProfile
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
