@@ -31,7 +31,7 @@ def addUsageHistory(request):
 			FK_ver = form.cleaned_data['FK_version']
 			FK_isntr = form.cleaned_data['FK_instrument']
 			#time = form.cleaned_data['timestamp']
-			message = HttpResponse(serializers.serialize("json", usageHistory.objects.filter(pk=usageHistory.Id)))
+			message = HttpResponse('Added use with user: "' + FK_usr + '", version: "' + FK_ver + '", and instrument:' + FK_instr + '".')
 			return HttpResponse(message)
 		else:
 			message = '{"Error": ["Message":"The server configuration has NOT been updated.",' + '\n'
