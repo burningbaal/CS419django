@@ -21,7 +21,7 @@ from rest_framework.decorators import api_view
 def addUsageHistory(request):
 	# authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 	#result = usageHistory.objects.create(pk=id)
-	myConfigs = [entry for entry in result]
+	#myConfigs = [entry for entry in result]
 	
 	if request.method == 'POST':
 		form = usageHistoryForm(request.POST)
