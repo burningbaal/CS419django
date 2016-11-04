@@ -38,7 +38,7 @@ def addUsageHistory(request):
 			serializers.serialize('json', [newUse.FK_version, ]) +  ',{"instrument:' + \
 			serializers.serialize('json', [newUse.FK_instrument, ]) +  ',{"timestamp:' + \
 			serializers.serialize('json', [newUse.timestamp, ]) +  \
-			']}'
+			']}')
 			
 			# 'username: "' + str(newUse.FK_user.user.username) + '"},
 			# "version":"' + str(newUse.FK_version.version_number) + '","instrument":"' + str(newUse.FK_instrument.name) + '","time":"' + str(newUse.timestamp) + '"]}')
