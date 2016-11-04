@@ -7,7 +7,8 @@ class serverConfig(models.Model):
 	config_value = models.CharField(max_length=63)
 	
 class UserProfile(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	
 	
 class InstrType(models.Model):
 	make = models.CharField(max_length=50)
