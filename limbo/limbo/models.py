@@ -1,10 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class serverConfig(models.Model):
 	
 	config_key = models.CharField(max_length=63)
 	config_value = models.CharField(max_length=63)
-
+	
+class UserProfile(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+	
 class InstrType(models.Model):
 	make = models.CharField(max_length=50)
 	model = models.CharField(max_length=50)
