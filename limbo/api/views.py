@@ -25,7 +25,7 @@ def addUsageHistory(request):
 	
 	if request.method == 'POST':
 		form = usageHistoryForm(request.POST)
-		if True: #form.is_valid():
+		if form.is_valid():
 			FK_usr = form.cleaned_data['FK_user']
 			FK_ver = form.cleaned_data['FK_version']
 			FK_isntr = form.cleaned_data['FK_instrument']
