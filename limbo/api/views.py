@@ -37,11 +37,10 @@ def addUsageHistory(request):
 			message += '"Details":"' + ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '"]}' 
 			#message += '<br> ' + ", ".join("%s=%r" % (key,val) for(key,val) in form.iteritems()) 
 			HttpResponse(message)
-	# if a GET (or any other method) we'll create a blank form
 	try:
 		del request.session['integer']
 	except KeyError:
 		pass
-	message = '{"Error":"Data must be POSTed"}'
+	message = '{"Error":"Data must be POSTed},"Method":"' + request.method + '"}'
 	return HttpResponse(message)
 
