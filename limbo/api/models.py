@@ -20,6 +20,5 @@ class usageHistory(models.Model):
 
 	
 # remove this after first compile, it's just to create the already-existing set of users' tokens
-
-for user in UserProfile.objects.all():
-    Token.objects.get_or_create(user=user)
+# for user in UserProfile.objects.all():
+    # Token.objects.get_or_create(user=user)
