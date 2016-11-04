@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime    
 from django.conf import settings
+from limbo import UserProfile
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -20,5 +21,5 @@ class usageHistory(models.Model):
 	
 # remove this after first compile, it's just to create the already-existing set of users' tokens
 
-for user in User.objects.all():
+for user in UserProfile.objects.all():
     Token.objects.get_or_create(user=user)
