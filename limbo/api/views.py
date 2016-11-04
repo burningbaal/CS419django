@@ -40,7 +40,7 @@ def addUsageHistory(request):
 			serializers.serialize('json', [newUse.timestamp, ]) +  ',' + \
 			
 			# 'username: "' + str(newUse.FK_user.user.username) + '"},
-			"version":"' + str(newUse.FK_version.version_number) + '","instrument":"' + str(newUse.FK_instrument.name) + '","time":"' + str(newUse.timestamp) + '"]}')
+			# "version":"' + str(newUse.FK_version.version_number) + '","instrument":"' + str(newUse.FK_instrument.name) + '","time":"' + str(newUse.timestamp) + '"]}')
 			return HttpResponse(message)
 		else:
 			message = '{"Error": ["Message":"The server configuration has NOT been updated.",' + '\n'
