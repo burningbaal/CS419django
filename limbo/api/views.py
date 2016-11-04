@@ -32,7 +32,7 @@ def addUsageHistory(request):
 			FK_instr = form.cleaned_data['FK_instrument']
 			#time = form.cleaned_data['timestamp']
 			#model = UsageHistory(FK_user=FK_usr, FK_version=FK_ver, FK_instrument=FK_instr)
-			form.save()
+			newUse = form.save()
 			message = HttpResponse('Added use with user: "' + str(FK_usr.user.username) + '", version: "' + str(FK_ver.version_number) + '", and instrument:' + str(FK_instr.name) + '".')
 			return HttpResponse(message)
 		else:
