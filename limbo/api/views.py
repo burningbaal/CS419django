@@ -33,7 +33,7 @@ def addUsageHistory(request):
 			#time = form.cleaned_data['timestamp']
 			model = UsageHistory(FK_user=FK_usr, FK_version=FK_ver, FK_instrument=FK_instr)
 			model.save()
-			message = HttpResponse('Added use with user: "' + str(FK_usr) + '", version: "' + str(FK_ver) + '", and instrument:' + str(FK_instr) + '".')
+			message = HttpResponse('Added use with user: "' + str(FK_usr) + '", version: "' + str(FK_ver.version_number) + '", and instrument:' + str(FK_instr) + '".')
 			return HttpResponse(message)
 		else:
 			message = '{"Error": ["Message":"The server configuration has NOT been updated.",' + '\n'
