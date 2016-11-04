@@ -31,12 +31,12 @@ def addUsageHistory(request):
 			FK_isntr = form.cleaned_data['FK_instrument']
 			time = form.cleaned_data['timestamp']
 			message = HttpResponse(serializers.serialize("json", usageHistory.objects.filter(pk=usageHistory.Id)))
-			HttpResponse(message)
+			return HttpResponse(message)
 		else:
 			message = '{"Error": ["Message":"The server configuration has NOT been updated.",' + '\n'
 			message += '"Details":"' + ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '"]}' 
 			#message += '<br> ' + ", ".join("%s=%r" % (key,val) for(key,val) in form.iteritems()) 
-			HttpResponse(message)
+			return HttpResponse(message)
 	try:
 		del request.session['integer']
 	except KeyError:
