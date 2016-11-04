@@ -33,8 +33,13 @@ def addUsageHistory(request):
 			#time = form.cleaned_data['timestamp']
 			#model = UsageHistory(FK_user=FK_usr, FK_version=FK_ver, FK_instrument=FK_instr)
 			newUse = form.save()
-			message = HttpResponse('{"Added":[{"user":{ ' + \
-			serializers.serialize('json', [newUse.FK_user.user, ]) # 'username: "' + str(newUse.FK_user.user.username) + '"},
+			message = HttpResponse('{"Added":[{"user":' + \
+			serializers.serialize('json', [newUse.FK_user.user, ]) +  ',{"version:' + \
+			serializers.serialize('json', [newUse.FK_version, ]) +  ',{"instrument:' + \
+			serializers.serialize('json', [newUse.FK_instrument, ]) +  ',{"timestamp:' + \
+			serializers.serialize('json', [newUse.timestamp, ]) +  ',' + \
+			
+			# 'username: "' + str(newUse.FK_user.user.username) + '"},
 			"version":"' + str(newUse.FK_version.version_number) + '","instrument":"' + str(newUse.FK_instrument.name) + '","time":"' + str(newUse.timestamp) + '"]}')
 			return HttpResponse(message)
 		else:
