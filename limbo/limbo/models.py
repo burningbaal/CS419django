@@ -70,4 +70,4 @@ class UsageHistory(models.Model):
 	FK_user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
 	FK_version = models.ForeignKey(Version, on_delete=models.PROTECT)
 	FK_instrument = models.ForeignKey(Instrument, on_delete=models.PROTECT)
-	timestamp = models.DateField(auto_now_add=True)
+	timestamp = models.DateTimeField(default=datetime.now)
