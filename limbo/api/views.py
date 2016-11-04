@@ -22,7 +22,7 @@ def addUsageHistory(request):
 	
 	if request.method == 'POST':
 		form = usageHistory(request.POST)
-		if form.is_valid():
+		if True #form.is_valid():
 			FK_en = form.cleaned_data['fk_employee_number']
 			FK_ver = form.cleaned_data['fk_version']
 			FK_isntr = form.cleaned_data['fk_instrument']
