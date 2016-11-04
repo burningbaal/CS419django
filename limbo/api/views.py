@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication 
 
 @csrf_exempt
-@api_view(['GET', 'POST'])
+@APIView(['GET', 'POST'])
 def addUsageHistory(request):
 	# authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 	result = usageHistory.objects.values()
