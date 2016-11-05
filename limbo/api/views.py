@@ -44,9 +44,7 @@ def addUsageHistory(request):
 def getUsageHistory(request):
 	numberRequested = 10 # default number
 	if request.method == 'POST':
-		if form.is_valid():
-			# print number of histories requested
-			numberRequested = request.POST.get('number_histories', numberRequested)
+		numberRequested = request.POST.get('number_histories', numberRequested)
 	elif request.method == 'GET':
 		numberRequested = request.GET.get('number_histories', numberRequested)
 	#print out numberRequested entries (most recent first)
