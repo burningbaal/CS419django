@@ -38,7 +38,7 @@ def addUsageHistory(request):
 			UserSerializer('json', [newUse.FK_user.user, ]).initial_data +  ',"version":' + \
 			serializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument":' + \
 			serializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
-			'"' + str(newUse.timestamp) + '"' #serializers.serialize('json', [newUse.timestamp, ]) +  \
+			'"' #+ str(newUse.timestamp) + '"' #serializers.serialize('json', [newUse.timestamp, ]) +  \
 			'}}') # + serializers.serialize('json', [newUse, ]))
 			# message = removePasswordJson(message)
 			return HttpResponse(message)
