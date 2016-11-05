@@ -43,14 +43,18 @@ def addUsageHistory(request):
 @api_view(['GET', 'POST'])
 def getUsageHistory(request):
 	numberRequested = 10 # default number
+	message = ''
+	counter = 0
 	if request.method == 'POST':
+		message = 'request = ' + 'POST'
 		numberRequested = request.POST.get('number_histories', numberRequested)
 	elif request.method == 'GET':
+		message = 'request = ' + 'GET'
 		numberRequested = request.GET.get('number_histories', numberRequested)
 	#print out numberRequested entries (most recent first)
 	uses = UsageHistory.objects.order_by('timestamp')[:5]
-	message = '{"uses": ['
-	counter = 0
+	message += '{"uses": ['
+	
 	for curUse in uses:
 		if (counter > 0):
 			message += ','
