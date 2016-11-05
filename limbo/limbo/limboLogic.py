@@ -20,6 +20,6 @@ def removePasswordObj(data):
 	return data
 
 def removePasswordJson(inputJSON):
-	data = json.load(inputJSON)
+	data = json.loads(inputJSON)
 	inputJSON = json.dumps(removePasswordObj(data))
 	return inputJSON
