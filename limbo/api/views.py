@@ -19,33 +19,21 @@ from rest_framework.decorators import api_view
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
-def addUsageHistory(request):
-	# authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
-	#result = usageHistory.objects.create(pk=id)
-	#myConfigs = [entry for entry in result]
-	
+def addUsageHistory(request):	
 	if request.method == 'POST':
 		form = usageHistoryForm(request.POST)
 		if form.is_valid():
-			#FK_usr = form.cleaned_data['FK_user']
-			#FK_ver = form.cleaned_data['FK_version']
-			#FK_instr = form.cleaned_data['FK_instrument']
-			#time = form.cleaned_data['timestamp']
-			#model = UsageHistory(FK_user=FK_usr, FK_version=FK_ver, FK_instrument=FK_instr)
 			newUse = form.save()
 			message = HttpResponse('{"Added":{"user":' + \
 			serializers.serialize('json', [newUse.FK_user.user, ]) +  ',"version":' + \
 			serializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument":' + \
 			serializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
-			'"' + str(newUse.timestamp) + '"' #serializers.serialize('json', [newUse.timestamp, ]) +  \
-			'}}') # + serializers.serialize('json', [newUse, ]))
-			
+			'"' + str(newUse.timestamp) + '"' +  \
+			'}}')
 			return HttpResponse(message)
 		else:
 			message = '{"Error": ["Message":"The use history has NOT been added.",' + '\n'
 			message += '"Details":"' + ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '"]}' 
-			
 			return HttpResponse(message)
-	
 	message = '{"Error":"Data must be POSTed},"Method":"' + request.method + '"}'
 	return HttpResponse(message)
