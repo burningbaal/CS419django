@@ -58,7 +58,7 @@ def getUsageHistory(request):
 		serializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument":' + \
 		serializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
 		'"' + str(newUse.timestamp) + '"' +  \
-		'}}')
+		'}}'
 	return HttpResponse(message)
 	
 	
