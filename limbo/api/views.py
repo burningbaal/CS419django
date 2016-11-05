@@ -34,12 +34,12 @@ def addUsageHistory(request):
 			#time = form.cleaned_data['timestamp']
 			#model = UsageHistory(FK_user=FK_usr, FK_version=FK_ver, FK_instrument=FK_instr)
 			newUse = form.save()
-			message = HttpResponse('{"Added":{"user":' + \
-			serializers.serialize('json', [newUse.FK_user.user, ]) +  ',"version":' + \
-			serializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument":' + \
-			serializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
-			'"' + str(newUse.timestamp) + '"' + \
-			'}}') # + serializers.serialize('json', [newUse, ]))
+			message = HttpResponse('{"Added":{' + \
+			'"user":' + serializers.serialize('json', [newUse.FK_user.user, ]) +  ',' + \
+			'"version":' + serializers.serialize('json', [newUse.FK_version, ]) +  ',' + \
+			'"instrument":' + serializers.serialize('json', [newUse.FK_instrument, ]) + ',' + \
+			'"timestamp":"' + str(newUse.timestamp) + '"' + \
+			'}}') 
 			# message = removePasswordJson(message)
 			return HttpResponse(message)
 		else:
