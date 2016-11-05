@@ -42,9 +42,9 @@ def addUsageHistory(request):
 			
 			return HttpResponse(message)
 		else:
-			message = '{"Error": ["Message":"The server configuration has NOT been updated.",' + '\n'
+			message = '{"Error": ["Message":"The use history has NOT been added.",' + '\n'
 			message += '"Details":"' + ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '"]}' 
-			#message += '<br> ' + ", ".join("%s=%r" % (key,val) for(key,val) in form.iteritems()) 
+			
 			return HttpResponse(message)
 	
 	message = '{"Error":"Data must be POSTed},"Method":"' + request.method + '"}'
