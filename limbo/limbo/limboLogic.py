@@ -7,11 +7,12 @@ from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
 from rest_framework import serializers
+from models import *
 
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = User
+        model = UserProfile.user
         exclude = (
             'password', 'is_staff', 'groups', 'user_permissions'
         )
