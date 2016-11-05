@@ -6,7 +6,7 @@ import json
 from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
-from django.core import serializers
+from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
 
