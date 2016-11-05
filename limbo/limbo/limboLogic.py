@@ -7,16 +7,19 @@ from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
 
-def GetUserInfo():
-	userInfo = []
-	userPermissions = []
-	userInfo['userName'] = 'John Doe'
-	userInfo['userEmali'] = 'JDoe@acme.net'
-	
-	userPermissions['operator'] = True
-	userPermissions['editUsers'] = True
-	userPermissions['editEquipment'] = True
-	
-	userInfo['userPermissions'] = userPermissions
-	
-	return userInfo
+def removePasswordObj(data)
+	# borrowed from http://stackoverflow.com/a/3405772/4664804
+	for key in data:
+        try:
+            del dict_del[key]
+        except KeyError:
+            pass
+    for child in data.values():
+        if isinstance(child, dict):
+            removePasswordObj(child, data)
+	return data
+
+def removePasswordJson(inputJSON):
+	data = json.load(inputJSON)
+	inputJSON = json.dumps(removePasswordObj(data))
+	return inputJSON

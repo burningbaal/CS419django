@@ -10,6 +10,7 @@ from django.template import loader
 
 from forms import *
 from limbo.models import *
+from limbo.limboLogic import *
 from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework.views import APIView
@@ -39,7 +40,7 @@ def addUsageHistory(request):
 			serializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
 			'"' + str(newUse.timestamp) + '"' #serializers.serialize('json', [newUse.timestamp, ]) +  \
 			'}}') # + serializers.serialize('json', [newUse, ]))
-			
+			message = removePasswordJson(message)
 			return HttpResponse(message)
 		else:
 			message = '{"Error": ["Message":"The server configuration has NOT been updated.",' + '\n'
