@@ -37,3 +37,28 @@ def addUsageHistory(request):
 			return HttpResponse(message)
 	message = '{"Error":"Data must be POSTed},"Method":"' + request.method + '"}'
 	return HttpResponse(message)
+
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def getUsageHistory(request):
+	numberRequested = 10 # default number
+	if request.method == 'POST':
+		if form.is_valid():
+			# print number of histories requested
+			numberRequested = request.POST.get('number_histories', numberRequested)
+	elif request.method == 'GET':
+		numberRequested = request.GET.get('number_histories', numberRequested)
+	#print out numberRequested entries (most recent first)
+	uses = UsageHistory.objects.order_by('timestamp')[:5]
+	message = ''
+	for curUse in uses:
+		message += '{"Added":{"user":' + \
+		serializers.serialize('json', [newUse.FK_user.user, ]) +  ',"version":' + \
+		serializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument":' + \
+		serializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
+		'"' + str(newUse.timestamp) + '"' +  \
+		'}}')
+	return HttpResponse(message)
+	
+	
