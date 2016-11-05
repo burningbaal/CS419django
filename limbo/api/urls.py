@@ -6,6 +6,6 @@ from rest_framework.authtoken import views as restFwViews
 
 urlpatterns = [
 	url(r'^addUse/', views.addUsageHistory, name='addUsageHistory'),
-	url(r'^agetUse/', views.getUsageHistory, name='getUsageHistory'),
+	url(r'^getUse/', views.getUsageHistory, name='getUsageHistory'),
 	url(r'^api-token-auth/', restFwViews.obtain_auth_token),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
