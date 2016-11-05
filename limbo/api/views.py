@@ -49,20 +49,19 @@ def getUsageHistory(request):
 		numberRequested = request.GET.get('number_histories', numberRequested)
 	#print out numberRequested entries (most recent first)
 	uses = UsageHistory.objects.order_by('timestamp')[:5]
-	message = '{'
-	first = True
+	message = '{"uses": ['
+	counter = 0
 	for curUse in uses:
-		if first:
-			first = False
-		else:
+		if (first > 0):
 			message += ','
+		first += 1
 		message += '{"Added":{"user":' + \
 		serializers.serialize('json', [curUse.FK_user.user, ]) +  ',"version":' + \
 		serializers.serialize('json', [curUse.FK_version, ]) +  ',"instrument":' + \
 		serializers.serialize('json', [curUse.FK_instrument, ]) +  ',"timestamp":' + \
 		'"' + str(curUse.timestamp) + '"' +  \
 		'}}'
-	message += '}'
+	message += ']}'
 	return HttpResponse(message)
 	
 	
