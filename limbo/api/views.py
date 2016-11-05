@@ -27,9 +27,9 @@ def addUsageHistory(request):
 	if request.method == 'POST':
 		form = usageHistoryForm(request.POST)
 		if form.is_valid():
-			FK_usr = form.cleaned_data['FK_user']
-			FK_ver = form.cleaned_data['FK_version']
-			FK_instr = form.cleaned_data['FK_instrument']
+			#FK_usr = form.cleaned_data['FK_user']
+			#FK_ver = form.cleaned_data['FK_version']
+			#FK_instr = form.cleaned_data['FK_instrument']
 			#time = form.cleaned_data['timestamp']
 			#model = UsageHistory(FK_user=FK_usr, FK_version=FK_ver, FK_instrument=FK_instr)
 			newUse = form.save()
