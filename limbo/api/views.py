@@ -10,7 +10,6 @@ from django.template import loader
 
 from forms import *
 from limbo.models import *
-from limbo.limboLogic import *
 from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework.views import APIView
@@ -34,13 +33,13 @@ def addUsageHistory(request):
 			#time = form.cleaned_data['timestamp']
 			#model = UsageHistory(FK_user=FK_usr, FK_version=FK_ver, FK_instrument=FK_instr)
 			newUse = form.save()
-			message = HttpResponse('{"Added":{' + \
-			'"user":' + serializers.serialize('json', [newUse.FK_user.user, ]) +  ',' + \
-			'"version":' + serializers.serialize('json', [newUse.FK_version, ]) +  ',' + \
-			'"instrument":' + serializers.serialize('json', [newUse.FK_instrument, ]) + ',' + \
-			# '"timestamp":"' + str(newUse.timestamp) + '"' + \
-			'}}') 
-			# message = removePasswordJson(message)
+			message = HttpResponse('{"Added":{"user":' + \
+			serializers.serialize('json', [newUse.FK_user.user, ]) +  ',"version":' + \
+			serializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument":' + \
+			serializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
+			'"' + str(newUse.timestamp) + '"' #serializers.serialize('json', [newUse.timestamp, ]) +  \
+			'}}') # + serializers.serialize('json', [newUse, ]))
+			
 			return HttpResponse(message)
 		else:
 			message = '{"Error": ["Message":"The server configuration has NOT been updated.",' + '\n'
@@ -50,4 +49,3 @@ def addUsageHistory(request):
 	
 	message = '{"Error":"Data must be POSTed},"Method":"' + request.method + '"}'
 	return HttpResponse(message)
-
