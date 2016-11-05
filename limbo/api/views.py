@@ -52,9 +52,9 @@ def getUsageHistory(request):
 	message = '{"uses": ['
 	counter = 0
 	for curUse in uses:
-		if (first > 0):
+		if (counter > 0):
 			message += ','
-		first += 1
+		counter += 1
 		message += '{"Added":{"user":' + \
 		serializers.serialize('json', [curUse.FK_user.user, ]) +  ',"version":' + \
 		serializers.serialize('json', [curUse.FK_version, ]) +  ',"instrument":' + \
