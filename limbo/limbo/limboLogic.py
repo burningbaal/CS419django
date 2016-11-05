@@ -7,6 +7,15 @@ from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
 
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        exclude = (
+            'password', 'is_staff', 'groups', 'user_permissions'
+        )
+
+
 def removePasswordObj(data):
 	# borrowed from http://stackoverflow.com/a/3405772/4664804
 	for key in data:
