@@ -7,7 +7,7 @@ from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
 
-def removePasswordObj(data)
+def removePasswordObj(data):
 	# borrowed from http://stackoverflow.com/a/3405772/4664804
 	for key in data:
         try:
