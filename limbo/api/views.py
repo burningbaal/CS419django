@@ -80,7 +80,7 @@ def getInstrument(request):
 	if assetNum is None:
 		return HttpResponse('{"Error":"Must POST or GET \'asset_number\'"}')
 		
-	instrumentObj = Instrument.objects.filter(asset_number=assetNum)
+	instrumentObj = Instrument.objects.get(asset_number=assetNum)
 	#data = coreSerializers.serialize('json', [instrumentObj, ])
 	#return HttpResponse(data)
 	asset_number = instrumentObj.asset_number
