@@ -15,11 +15,11 @@ class InstrType(models.Model):
 	make = models.CharField(max_length=50)
 	model = models.CharField(max_length=50)
 	service_email = models.CharField(max_length=50, null=True)
-	servie_website = models.CharField(max_length=50, null=True)
+	service_website = models.CharField(max_length=50, null=True)
 
 class Method(models.Model):
 	name = models.CharField(max_length=50, unique=True)
-	descriton = models.TextField(null=False)
+	descripton = models.TextField(null=False)
 
 class Version(models.Model):
 	version_number = models.CharField(max_length=50)

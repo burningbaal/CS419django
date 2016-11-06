@@ -14,12 +14,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class InstrTypeSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = InstrType
-		fields = ('make', 'model', 'service_email', 'servie_website')
+		fields = ('make', 'model', 'service_email', 'service_website')
 
 class MethodSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Method
-		fields = ('name', 'descriton')
+		fields = ('name', 'descrpiton')
 
 class VersionSerializer(serializers.ModelSerializer):
 	method = MethodSerializer(read_only=True)
