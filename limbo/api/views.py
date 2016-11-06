@@ -85,8 +85,8 @@ def getInstrument(request):
 	#return HttpResponse(data)
 	asset_number = instrumentObj.asset_number
 	
-	serializer = InstrumentSerializer(instrumentObj)
-	strInstrument = serializer.data + ' ' + asset_number
+	serial = InstrumentSerializer(instrumentObj)
+	strInstrument = serial.data
 	strInstrument = str(strInstrument) + ' ' + asset_number
 	return HttpResponse(strInstrument)
 	
