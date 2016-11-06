@@ -60,7 +60,6 @@ def getUsageHistory(request):
 			message += ','
 		counter += 1
 		message += '{"number":' + str(counter) + ',"data":{"user":' + \
-		#message += '{"' + str(counter) + '":{"user":' + \
 		serializers.serialize('json', [curUse.FK_user.user, ]) +  ',"version":' + \
 		serializers.serialize('json', [curUse.FK_version, ]) +  ',"instrument":' + \
 		serializers.serialize('json', [curUse.FK_instrument, ]) +  ',"timestamp":' + \
