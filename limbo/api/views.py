@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from django.core import serializers
+from django.core import serializers as coreSerializers
 import json
 from django.http import QueryDict
 from django.http import HttpResponse
@@ -27,9 +27,9 @@ def addUsageHistory(request):
 		if form.is_valid():
 			newUse = form.save()
 			message = HttpResponse('{"Added":{"user":' + \
-			serializers.serialize('json', [newUse.FK_user.user, ]) +  ',"version":' + \
-			serializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument":' + \
-			serializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
+			coreSerializers.serialize('json', [newUse.FK_user.user, ]) +  ',"version":' + \
+			coreSerializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument":' + \
+			coreSerializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
 			'"' + str(newUse.timestamp) + '"' +  \
 			'}}')
 			return HttpResponse(message)
@@ -60,9 +60,9 @@ def getUsageHistory(request):
 			message += ','
 		counter += 1
 		message += '{"number":' + str(counter) + ',"data":{"user":' + \
-		serializers.serialize('json', [curUse.FK_user.user, ]) +  ',"version":' + \
-		serializers.serialize('json', [curUse.FK_version, ]) +  ',"instrument":' + \
-		serializers.serialize('json', [curUse.FK_instrument, ]) +  ',"timestamp":' + \
+		coreSerializers.serialize('json', [curUse.FK_user.user, ]) +  ',"version":' + \
+		coreSerializers.serialize('json', [curUse.FK_version, ]) +  ',"instrument":' + \
+		coreSerializers.serialize('json', [curUse.FK_instrument, ]) +  ',"timestamp":' + \
 		'"' + str(curUse.timestamp) + '"' +  \
 		'}}'
 	message += ']}'
