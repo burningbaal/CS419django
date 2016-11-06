@@ -78,10 +78,10 @@ def getInstrument(request):
 	elif request.method == 'GET':
 		assetNum = request.GET.get('asset_number', None)
 	if assetNum is None:
-		return Httpresponse('{"Error":"Must POST or GET \'asset_number\'"}')
+		return HttpResponse('{"Error":"Must POST or GET \'asset_number\'"}')
 	instrumentObj = Instrument.objects.filter(asset_number=assetNum)
 	strInstr = InstrumentSerializer(instrumentObj).data
-	return Httpresponse(strInstr)
+	return HttpResponse(strInstr)
 	
 	
 	
