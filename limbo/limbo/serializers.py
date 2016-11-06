@@ -1,5 +1,5 @@
 from rest_framework import serializers
-import models
+from limbo import models
 
 class serverConfigSerializer(serializers.ModelSerializer):
 	class Meta:
