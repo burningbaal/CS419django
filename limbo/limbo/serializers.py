@@ -22,33 +22,33 @@ class MethodSerializer(serializers.ModelSerializer):
 		model = Method
 		fields = ('name', 'descrpiton')
 
+class Instr_VersionSerializer(serializers.ModelSerializer):
+	version = serializers.Field(source='FK_version.version_number')
+	method = serializers.Field(source='FK_version.method')
+	instr_name = serializers.Field(source='FK_instrument.name')
+	instr_asset_number = serializers.Field(source='FK_instrument.asset_number')
+	instr_checksum = serializers.Field(source='FK_instrument.checksum')
+	instr_serial_number = serializers.Field(source='FK_instrument.serial_number')
+	
+	class Meta:
+		model = Instr_Version
+		fields = ('method', 'version', 'instr_name', 'instr_asset_number', 'instr_checksum', 'instr_serial_number', 'validating_user', 'timestamp')
+
 class VersionSerializer(serializers.ModelSerializer):
 	method = MethodSerializer(read_only=True)
+	Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
 	class Meta:
 		model = Version
-		fields = ('version_number', 'cmd_line_script', 'SOP', 'method')
-	
-	#class Meta:
-		#unique_together = ('version_number', 'FK_method')
+		fields = ('version_number', 'cmd_line_script', 'SOP', 'method', 'Instr_Version')
 
 class InstrumentSerializer(serializers.ModelSerializer):
 	instr_type = InstrTypeSerializer(read_only=True)
-	Instr_Version = Instr_VersionSerializer(many=True, read_only=True)
+	Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
 	
 	class Meta:
 		model = Instrument
 		fields = ('serial_number', 'asset_number', 'name', 'checksum', 'instr_type', 'Instr_Version')
-
-class Instr_VersionSerializer(serializers.ModelSerializer):
-	version = VersionSerializer(read_only=True)
-	instrument = InstrumentSerializer(read_only=True)
-	validating_user = UserProfileSerializer(read_only=True)
-	
-	class Meta:
-		model = Instr_Version
-		fields = ('version', 'instrument', 'validating_user', 'timestamp')
 		
-
 class User_VersionSerializer(serializers.ModelSerializer):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
 	FK_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
