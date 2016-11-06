@@ -72,8 +72,16 @@ def getUsageHistory(request):
 @csrf_exempt
 @api_view(['GET', 'POST'])
 def getInstrument(request):
-	
-	return Httpresponse('{"Error":"In Development"}')
+	assetNum = ''
+	if request.method == 'POST':
+		assetNum = request.POST.get('asset_number', None)
+	elif request.method == 'GET':
+		assetNum = request.GET.get('asset_number', None)
+	if assetNum is None:
+		return Httpresponse('{"Error":"Must POST or GET \'asset_number\'"}')
+	instrumentObj = Instrument.objects.filter(asset_number=assetNum)
+	strInstr = InstrumentSerializer(instrumentObj).data
+	return Httpresponse(strInstr)
 	
 	
 	
