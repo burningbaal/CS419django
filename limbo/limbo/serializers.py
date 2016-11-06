@@ -25,13 +25,14 @@ class MethodSerializer(serializers.ModelSerializer):
 class Instr_VersionSerializer(serializers.ModelSerializer):
 	version = serializers.Field(source='FK_version.version_number')
 	method = serializers.Field(source='FK_version.method')
-	instr_name = serializers.Field(source='FK_instrument.name')
+	#instr_name = serializers.Field(source='FK_instrument.name')
 	instr_asset_number = serializers.Field(source='FK_instrument.asset_number')
-	instr_checksum = serializers.Field(source='FK_instrument.checksum')
+	#instr_checksum = serializers.Field(source='FK_instrument.checksum')
 	
 	class Meta:
 		model = Instr_Version
-		fields = ('method', 'version', 'instr_name', 'instr_asset_number', 'instr_checksum', 'validating_user', 'timestamp')
+		#fields = ('method', 'version', 'instr_name', 'instr_asset_number', 'instr_checksum', 'validating_user', 'timestamp')
+		fields = ('method', 'version', 'instr_asset_number', 'validating_user', 'timestamp')
 
 class VersionSerializer(serializers.ModelSerializer):
 	method = MethodSerializer(read_only=True)
@@ -46,7 +47,7 @@ class InstrumentSerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model = Instrument
-		fields = ('serial_number', 'asset_number', 'name', 'checksum', 'instr_type', 'Instr_Version')
+		fields = ('id', 'serial_number', 'asset_number', 'name', 'checksum', 'instr_type', 'Instr_Version')
 		
 class User_VersionSerializer(serializers.ModelSerializer):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
