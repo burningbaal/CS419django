@@ -28,11 +28,10 @@ class Instr_VersionSerializer(serializers.ModelSerializer):
 	instr_name = serializers.Field(source='FK_instrument.name')
 	instr_asset_number = serializers.Field(source='FK_instrument.asset_number')
 	instr_checksum = serializers.Field(source='FK_instrument.checksum')
-	instr_serial_number = serializers.Field(source='FK_instrument.serial_number')
 	
 	class Meta:
 		model = Instr_Version
-		fields = ('method', 'version', 'instr_name', 'instr_asset_number', 'instr_checksum', 'instr_serial_number', 'validating_user', 'timestamp')
+		fields = ('method', 'version', 'instr_name', 'instr_asset_number', 'instr_checksum', 'validating_user', 'timestamp')
 
 class VersionSerializer(serializers.ModelSerializer):
 	method = MethodSerializer(read_only=True)
