@@ -1,4 +1,5 @@
 from rest_framework import serializers
+import models
 
 class serverConfigSerializer(serializers.ModelSerializer):
 	class Meta:
