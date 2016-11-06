@@ -10,12 +10,14 @@ from django.template import loader
 
 from forms import *
 from limbo.models import *
+from limbo.serializers import *
 from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication 
 from rest_framework.decorators import api_view
+from rest_framework.renderers import JSONRenderer
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
@@ -65,5 +67,13 @@ def getUsageHistory(request):
 		'}}'
 	message += ']}'
 	return HttpResponse(message)
+	
+	
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def getInstrument(request):
+	
+	return Httpresponse('{"Error":"In Development"}')
+	
 	
 	
