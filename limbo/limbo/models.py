@@ -35,7 +35,7 @@ class Instrument(models.Model):
 	asset_number = models.CharField(max_length=50, unique=True)
 	name = models.CharField(max_length=50)
 	#checksum = models.BinaryField
-	checksum_string = models.CharField(max_length=128 default='0123456789ABCDEF0123')
+	checksum_string = models.CharField(max_length=128, default='0123456789ABCDEF0123')
 	FK_instr_type = models.ForeignKey(InstrType, on_delete=models.PROTECT)
 	Instr_Version = models.ManyToManyField(
 						Version, 
