@@ -32,7 +32,7 @@ class VersionSerializer(serializers.ModelSerializer):
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	version = VersionSerializer(source='FK_version_id', read_only=True, many=False)
-	validator = UserProfileSerializer(source='UserProfileSerializer', read_only=True)
+	validator = UserProfileSerializer(source='validating_user', read_only=True)
 	
 	class Meta:
 		model = Instr_Version
