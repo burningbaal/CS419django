@@ -42,8 +42,8 @@ class VersionSerializer(serializers.ModelSerializer):
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
-	instr_type = InstrTypeSerializer(read_only=True)
-	Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
+	#instr_type = InstrTypeSerializer(read_only=True)
+	#Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
 	
 	class Meta:
 		model = Instrument
