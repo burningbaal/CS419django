@@ -36,7 +36,7 @@ class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model = Instr_Version
-		fields = ('id', 'version', 'version_number', 'validator', 'timestamp')
+		fields = ('version', 'validator', 'timestamp')
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
