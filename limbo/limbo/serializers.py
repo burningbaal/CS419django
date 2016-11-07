@@ -21,40 +21,31 @@ class InstrTypeSerializer(serializers.ModelSerializer):
 class MethodSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Method
-		fields = '__all__'
+		fields = ('name', 'description', 'version_set')
 
-class Instr_VersionSerializer(serializers.ModelSerializer):
-	version = serializers.Field(source='FK_version.version_number')
-	method = serializers.Field(source='FK_version.method')
-	#instr_name = serializers.Field(source='FK_instrument.name')
-	instr_asset_number = serializers.Field(source='FK_instrument.asset_number')
-	#instr_checksum = serializers.Field(source='FK_instrument.checksum')
+class VersionSerializer(serializers.ModelSerializer):
+	method = MethodSerializer(read_only=True)
+	#Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
+	class Meta:
+		model = Version
+		fields = ('method', 'version_number', 'cmd_line_script', 'SOP')
+
+class Instr_to_VersionSerializer(serializers.ModelSerializer):
+	version = serializers.Field(source='FK_version', read_only=True, many=True)
 	
 	class Meta:
 		model = Instr_Version
 		#fields = ('method', 'version', 'instr_name', 'instr_asset_number', 'instr_checksum', 'validating_user', 'timestamp')
-		fields = ('method', 'version', 'instr_asset_number', 'validating_user', 'timestamp')
-
-class VersionSerializer(serializers.ModelSerializer):
-	method = MethodSerializer(read_only=True)
-	Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
-	class Meta:
-		model = Version
-		fields = ('version_number', 'cmd_line_script', 'SOP', 'method', 'Instr_Version')
+		fields = ('version', 'instr_asset_number', 'validating_user', 'timestamp')
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
 	instr_type = InstrTypeSerializer(source='FK_instr_type', read_only=True)
-	#Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
+	Instr_Version = Instr_to_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
 	
 	class Meta:
 		model = Instrument
-		fields = ('id', 'asset_number', 'serial_number', 'name', 'checksum_string', 'instr_type')
-			#{
-			#'self': ('id', 'asset_number', 'serial_number', 'name', 'checksum_string'),
-			#'FK_instr_type': ('make', 'model'),
-			#'Instr_Version': ('FK_version', 'validating_user', 'timestamp')
-			#}
+		fields = ('id', 'asset_number', 'serial_number', 'name', 'checksum_string', 'instr_type', 'Instr_Version')
 		
 #class User_VersionSerializer(serializers.ModelSerializer):
 	# FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
