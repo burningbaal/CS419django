@@ -32,11 +32,12 @@ class VersionSerializer(serializers.ModelSerializer):
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	version = VersionSerializer(source='FK_version', read_only=True, many=True)
+	validator = UserProfileSerializer(source='UserProfileSerializer', read_only=True)
 	
 	class Meta:
 		model = Instr_Version
 		#fields = ('method', 'version', 'instr_name', 'instr_asset_number', 'instr_checksum', 'validating_user', 'timestamp')
-		fields = ('version', 'validating_user', 'timestamp')
+		fields = ('version', 'validator', 'timestamp')
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
