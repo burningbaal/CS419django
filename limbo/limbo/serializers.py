@@ -4,22 +4,24 @@ from limbo.models import *
 class serverConfigSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = serverConfig
-		fields = ('config_key', 'config_value')
+		fields = '__all__'
 	
 class UserProfileSerializer(serializers.ModelSerializer):
     #user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	class Meta:
 		model = UserProfile.user
-		fields = ('last_login', 'is_superuser', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined')
+		#fields = ('last_login', 'is_superuser', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined')
+		excludes = ('password',)
 	
 class InstrTypeSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = InstrType
+		fields = '__all__'
 
 class MethodSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Method
-		fields = ('name', 'descrpiton')
+		fields = '__all__'
 
 class Instr_VersionSerializer(serializers.ModelSerializer):
 	version = serializers.Field(source='FK_version.version_number')
