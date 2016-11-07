@@ -42,12 +42,12 @@ class VersionSerializer(serializers.ModelSerializer):
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
-	#instr_type = InstrTypeSerializer(read_only=True)
+	instr_type = InstrTypeSerializer(source='FK_instr_type', read_only=True)
 	#Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
 	
 	class Meta:
 		model = Instrument
-		fields = ('id', 'asset_number', 'serial_number', 'name', 'checksum_string', 'FK_instr_type.make')
+		fields = ('id', 'asset_number', 'serial_number', 'name', 'checksum_string', 'instr_type')
 			#{
 			#'self': ('id', 'asset_number', 'serial_number', 'name', 'checksum_string'),
 			#'FK_instr_type': ('make', 'model'),
