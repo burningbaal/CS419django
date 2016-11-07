@@ -41,9 +41,11 @@ class VersionSerializer(serializers.ModelSerializer):
 		model = Version
 		fields = ('version_number', 'cmd_line_script', 'SOP', 'method', 'Instr_Version')
 
+
 class InstrumentSerializer(serializers.ModelSerializer):
 	instr_type = InstrTypeSerializer(read_only=True)
 	Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
+	strChecksum = ChecksumFieldSerializer(read_only=True)
 	
 	class Meta:
 		model = Instrument

@@ -34,7 +34,7 @@ class Instrument(models.Model):
 	serial_number = models.CharField(max_length=50, unique=True)
 	asset_number = models.CharField(max_length=50, unique=True)
 	name = models.CharField(max_length=50)
-	checksum = models.BinaryField
+	checksum = models.CharField(max_length=128)
 	FK_instr_type = models.ForeignKey(InstrType, on_delete=models.PROTECT)
 	Instr_Version = models.ManyToManyField(
 						Version, 
