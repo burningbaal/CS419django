@@ -21,14 +21,14 @@ class InstrTypeSerializer(serializers.ModelSerializer):
 class MethodSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Method
-		fields = ('name', 'description', 'version_set')
+		fields = ('id', 'name', 'description', 'version_set')
 
 class VersionSerializer(serializers.ModelSerializer):
 	method = MethodSerializer(read_only=True)
 	#Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
 	class Meta:
 		model = Version
-		fields = ('method', 'version_number', 'cmd_line_script', 'SOP')
+		fields = ('id', 'method', 'version_number', 'cmd_line_script', 'SOP')
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	version = VersionSerializer(source='FK_version', read_only=True)#, many=True)
