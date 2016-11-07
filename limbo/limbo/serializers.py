@@ -49,7 +49,7 @@ class InstrumentSerializer(serializers.ModelSerializer):
 		model = Instrument
 		fields = ('id', 'asset_number', 'serial_number', 'name', 'checksum_string', 'instr_type', 'Instr_Version')
 		
-class User_VersionSerializer(serializers.ModelSerializer):
+#class User_VersionSerializer(serializers.ModelSerializer):
 	# FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
 	# FK_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 	# authorizing_user = models.ForeignKey(UserProfile, related_name='+', on_delete=models.PROTECT)
@@ -58,7 +58,7 @@ class User_VersionSerializer(serializers.ModelSerializer):
 	# class Meta:
 		# unique_together = ('FK_version', 'FK_user')
 
-class UsageHistorySerializer(serializers.ModelSerializer):
+#class UsageHistorySerializer(serializers.ModelSerializer):
 	# FK_user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
 	# FK_version = models.ForeignKey(Version, on_delete=models.PROTECT)
 	# FK_instrument = models.ForeignKey(Instrument, on_delete=models.PROTECT)
