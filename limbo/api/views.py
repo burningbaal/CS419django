@@ -87,7 +87,7 @@ def getInstrument(request):
 	
 	serial = InstrumentSerializer(instrumentObj)
 	strInstrument = JSONRenderer().render(serial.data)
-	strInstrument = str(strInstrument) + ' ' + asset_number
+	strInstrument = str(strInstrument)
 	return HttpResponse(strInstrument)
 	
 	
