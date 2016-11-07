@@ -41,11 +41,11 @@ class Instr_to_VersionSerializer(serializers.ModelSerializer):
 
 class InstrumentSerializer(serializers.ModelSerializer):
 	instr_type = InstrTypeSerializer(source='FK_instr_type', read_only=True)
-	Instr_Version = Instr_to_VersionSerializer(many=True, read_only=True)
+	Validated_Versions = Instr_to_VersionSerializer(source='Instr_Version', many=True, read_only=True)
 	
 	class Meta:
 		model = Instrument
-		fields = ('id', 'asset_number', 'serial_number', 'name', 'checksum_string', 'instr_type', 'Instr_Version')
+		fields = ('id', 'asset_number', 'serial_number', 'name', 'checksum_string', 'instr_type', 'Validated_Versions')
 		
 #class User_VersionSerializer(serializers.ModelSerializer):
 	# FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
