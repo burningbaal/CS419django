@@ -81,7 +81,7 @@ def getInstrument(request):
 		return HttpResponse('{"Error":"Must POST or GET \'asset_number\'"}')
 	try:
 		instrumentObj = Instrument.objects.get(asset_number=assetNum)
-	except DoesNotExist:
+	except:
 		return HttpResponse('{"Error":"asset_number \'' + assetNum + '\' does not exist"}')
 	#data = coreSerializers.serialize('json', [instrumentObj, ])
 	#return HttpResponse(data)
