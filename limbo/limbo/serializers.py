@@ -31,7 +31,7 @@ class VersionSerializer(serializers.ModelSerializer):
 		fields = ('id', 'method', 'version_number', 'cmd_line_script', 'SOP')
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
-	version = VersionSerializer(read_only=True)#, source='FK_version')#, many=True)
+	version = VersionSerializer(source='versions', read_only=True)#, many=True)
 	validator = UserProfileSerializer(source='UserProfileSerializer', read_only=True)
 	
 	class Meta:
