@@ -77,7 +77,7 @@ def getInstrument(request):
 		assetNum = request.POST.get('asset_number', None)
 	elif request.method == 'GET':
 		assetNum = request.GET.get('asset_number', None)
-	if assetNum is None:
+	if assetNum = '':
 		return HttpResponse('{"Error":"Must POST or GET \'asset_number\'"}')
 	try:
 		instrumentObj = Instrument.objects.get(asset_number=assetNum)
