@@ -28,7 +28,7 @@ class VersionSerializer(serializers.ModelSerializer):
 	#Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
 	class Meta:
 		model = Version
-		fields = ('id', 'method', 'version_number', 'cmd_line_script', 'SOP')
+		fields = ('id', 'method')#, 'version_number', 'cmd_line_script', 'SOP')
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	version = VersionSerializer(source='versions', read_only=True, many=False)
