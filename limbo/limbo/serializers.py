@@ -36,10 +36,11 @@ class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	version_name = serializers.ReadOnlyField(source='version_number')
 	cmd_line_script = serializers.ReadOnlyField()
 	SOP = serializers.ReadOnlyField()
+	method = MethodSerializer(read_only=True)
 	
 	class Meta:
 		model = Instr_Version
-		fields = ('id', 'version', 'validator', 'timestamp', 'version_name', 'cmd_line_script', 'SOP')
+		fields = ('id', 'version', 'validator', 'timestamp', 'method', 'version_name', 'cmd_line_script', 'SOP')
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
