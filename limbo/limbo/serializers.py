@@ -36,7 +36,7 @@ class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	version_name = serializers.ReadOnlyField(source='version_number')
 	cmd_line_script = serializers.ReadOnlyField()
 	SOP = serializers.ReadOnlyField()
-	method = MethodSerializer(read_only=True)
+	method = MethodSerializer(source='FK_method',read_only=True)
 	
 	class Meta:
 		model = Instr_Version
