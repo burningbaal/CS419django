@@ -41,7 +41,7 @@ class Instr_to_VersionSerializer(serializers.ModelSerializer):
 
 class InstrumentSerializer(serializers.ModelSerializer):
 	instr_type = InstrTypeSerializer(source='FK_instr_type', read_only=True)
-	Validated_Versions = Instr_to_VersionSerializer(source='Instr_Version', many=True, read_only=True)
+	Validated_Versions = Instr_to_VersionSerializer(source='VersionsFromInstrument', many=True, read_only=True)
 	
 	class Meta:
 		model = Instrument
