@@ -33,10 +33,13 @@ class VersionSerializer(serializers.ModelSerializer):
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	version = VersionSerializer(source='FK_version', read_only=True, many=True)
 	validator = UserProfileSerializer(source='validating_user', read_only=True)
+	version_name = serializers.Field(source='Version.version_number')
+	cmd_line_script = serializers.Field(source='Version.cmd_line_script')
+	SOP = serializers.Field(source='Version.SOP')
 	
 	class Meta:
 		model = Instr_Version
-		fields = ('id', 'version', 'validator', 'timestamp')
+		fields = ('id', 'version', 'validator', 'timestamp', 'version_number', 'cmd_line_script', 'SOP')
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
