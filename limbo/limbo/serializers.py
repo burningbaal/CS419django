@@ -31,7 +31,7 @@ class VersionSerializer(serializers.ModelSerializer):
 		fields = ('id', 'method')#, 'version_number', 'cmd_line_script', 'SOP')
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
-	version = VersionSerializer(source='FK_version', read_only=True, many=False)
+	version = VersionSerializer(source='FK_version', read_only=True, many=True)
 	validator = UserProfileSerializer(source='validating_user', read_only=True)
 	
 	class Meta:
@@ -40,7 +40,7 @@ class Instr_to_VersionSerializer(serializers.ModelSerializer):
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
-	instr_type = InstrTypeSerializer(source='FK_instr_type', read_only=True, many=True)
+	instr_type = InstrTypeSerializer(source='FK_instr_type', read_only=True)
 	Validated_Versions = Instr_to_VersionSerializer(source='VersionsFromInstrument', many=True, read_only=True)
 	
 	class Meta:
