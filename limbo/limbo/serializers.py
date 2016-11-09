@@ -19,6 +19,7 @@ class InstrTypeSerializer(serializers.ModelSerializer):
 		fields = '__all__'
 
 class MethodSerializer(serializers.ModelSerializer):
+	description = serializers.ReadOnlyField(source='source='descripton')
 	class Meta:
 		model = Method
 		fields = ('id', 'name', 'description', 'version_set')
