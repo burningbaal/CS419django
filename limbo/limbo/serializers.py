@@ -2,17 +2,17 @@ from rest_framework import serializers
 from django.conf import settings
 from limbo.models import *
 
-class serverConfigSerializer(serializers.HyperlinkedModelSerializer):
+class serverConfigSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = serverConfig
 		fields = '__all__'
 	
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = settings.AUTH_USER_MODEL
 		excludes = 'password'
 		
-class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
+class UserProfileSerializer(serializers.ModelSerializer):
     #user = serializers.serialize(settings.AUTH_USER_MODEL, read_only=True)
 	user = UserSerializer(read_only=True)
 	class Meta:
@@ -21,25 +21,25 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
 		fields = '__all__'
 		#excludes = ('password',)
 	
-class InstrTypeSerializer(serializers.HyperlinkedModelSerializer):
+class InstrTypeSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = InstrType
 		fields = '__all__'
 
-class MethodSerializer(serializers.HyperlinkedModelSerializer):
+class MethodSerializer(serializers.ModelSerializer):
 	description = serializers.ReadOnlyField(source='descripton')
 	class Meta:
 		model = Method
 		fields = ('id', 'name', 'description')
 
-class VersionSerializer(serializers.HyperlinkedModelSerializer):
+class VersionSerializer(serializers.ModelSerializer):
 	method = MethodSerializer(read_only=True)
 	#Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)
 	class Meta:
 		model = Version
 		fields = ('id', 'method')#, 'version_number', 'cmd_line_script', 'SOP')
 
-class Instr_to_VersionSerializer(serializers.HyperlinkedModelSerializer):
+class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	version = VersionSerializer(source='FK_version', read_only=True, many=True)
 	validator = UserProfileSerializer(source='validating_user', read_only=True)
 	#validator = serializers.ReadOnlyField(source='self.validating_user.user.email')
