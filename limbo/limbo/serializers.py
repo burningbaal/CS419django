@@ -40,18 +40,18 @@ class VersionSerializer(serializers.ModelSerializer):
 		fields = ('id', 'method')#, 'version_number', 'cmd_line_script', 'SOP')
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
-	version = VersionSerializer(source='FK_version', read_only=True, many=True)
-	validator = UserProfileSerializer(source='validating_user', read_only=True)
+	version = VersionSerializer(source='self.FK_version', read_only=True, many=Flase)
+	validator = UserProfileSerializer(source='self.validating_user', read_only=True)
 	#validator = serializers.ReadOnlyField(source='self.validating_user.user.email')
-	version_name = serializers.ReadOnlyField(source='version_number')
-	cmd_line_script = serializers.ReadOnlyField()
-	SOP = serializers.ReadOnlyField()
-	method = MethodSerializer(source='FK_method',read_only=True)
+	#version_name = serializers.ReadOnlyField(source='version_number')
+	#cmd_line_script = serializers.ReadOnlyField()
+	#SOP = serializers.ReadOnlyField()
+	#method = MethodSerializer(source='FK_method',read_only=True)
 	#Time_Validated = serializers.ReadOnlyField(source= 'timestamp')
 	
 	class Meta:
 		model = Instr_Version
-		fields = ('id', 'timestamp', 'version', 'validator', 'method', 'version_name', 'cmd_line_script', 'SOP')
+		fields = ('id', 'timestamp', 'validator', 'version', 'method', 'version_name', 'cmd_line_script', 'SOP')
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
