@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.conf import settings
 from limbo.models import *
 
 class serverConfigSerializer(serializers.ModelSerializer):
@@ -7,9 +8,9 @@ class serverConfigSerializer(serializers.ModelSerializer):
 		fields = '__all__'
 	
 class UserProfileSerializer(serializers.ModelSerializer):
-    #user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = serializers.serialize(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	class Meta:
-		model = UserProfile.user
+		model = UserProfile
 		#fields = ('last_login', 'is_superuser', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined')
 		excludes = ('password',)
 	
