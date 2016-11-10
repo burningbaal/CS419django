@@ -7,20 +7,19 @@ class serverConfigSerializer(serializers.ModelSerializer):
 		model = serverConfig
 		fields = '__all__'
 	
-#class UserSerializer(serializers.ModelSerializer):
-	#class Meta:
-		#model = django.contrib.auth.get_user_model()
+class UserSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = UserProfile.user
 		#fields = '__all__'
-		#excludes = ('password',)
+		excludes = 'password'
 		
 class UserProfileSerializer(serializers.ModelSerializer):
-	#user = UserSerializer(read_only=True)
+	user = UserSerializer(read_only=True)
 	#user = serializers.serialize(settings.AUTH_USER_MODEL, read_only=True)
 	class Meta:
 		model = UserProfile
 		#fields = ('last_login', 'is_superuser', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined')
 		fields = '__all__'
-        depth = 2
 		#excludes = ('password',)
 	
 class InstrTypeSerializer(serializers.ModelSerializer):
