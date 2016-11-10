@@ -22,7 +22,7 @@ class MethodSerializer(serializers.ModelSerializer):
 	description = serializers.ReadOnlyField(source='descripton')
 	class Meta:
 		model = Method
-		fields = ('id', 'name', 'description', 'version_set')
+		fields = ('id', 'name', 'description')
 
 class VersionSerializer(serializers.ModelSerializer):
 	method = MethodSerializer(read_only=True)
@@ -38,10 +38,11 @@ class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	cmd_line_script = serializers.ReadOnlyField()
 	SOP = serializers.ReadOnlyField()
 	method = MethodSerializer(source='FK_method',read_only=True)
+	Time_Validated = serializers.ReadOnlyField(source= 'timestamp')
 	
 	class Meta:
 		model = Instr_Version
-		fields = ('id', 'version', 'validator', 'timestamp', 'method', 'version_name', 'cmd_line_script', 'SOP')
+		fields = ('id', 'version', 'validator', 'Time_Validated', 'method', 'version_name', 'cmd_line_script', 'SOP')
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
