@@ -7,12 +7,19 @@ class serverConfigSerializer(serializers.ModelSerializer):
 		model = serverConfig
 		fields = '__all__'
 	
+class UserSerializer(serializers.ModelSerializer)
+	class Meta:
+		model = settings.AUTH_USER_MODEL
+		excludes = 'password'
+		
 class UserProfileSerializer(serializers.ModelSerializer):
     #user = serializers.serialize(settings.AUTH_USER_MODEL, read_only=True)
+	user = UserProflieSerializer(read_only=True)
 	class Meta:
 		model = UserProfile.user
 		#fields = ('last_login', 'is_superuser', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined')
-		excludes = ('password',)
+		fields = '__all__'
+		#excludes = ('password',)
 	
 class InstrTypeSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -34,8 +41,8 @@ class VersionSerializer(serializers.ModelSerializer):
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	version = VersionSerializer(source='FK_version', read_only=True, many=True)
-	#validator = UserProfileSerializer(source='validating_user.user', read_only=True)
-	validator = serializers.ReadOnlyField(source='validating_user.user.email')
+	validator = UserProfileSerializer(source='validating_user.user', read_only=True)
+	#validator = serializers.ReadOnlyField(source='self.validating_user.user.email')
 	version_name = serializers.ReadOnlyField(source='version_number')
 	cmd_line_script = serializers.ReadOnlyField()
 	SOP = serializers.ReadOnlyField()
