@@ -12,7 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = auth.get_user_model()
 		#fields = '__all__'
-		exclude = 'password'
+		exclude = ('password',)
 		
 class UserProfileSerializer(serializers.ModelSerializer):
 	user = UserSerializer(read_only=True)
