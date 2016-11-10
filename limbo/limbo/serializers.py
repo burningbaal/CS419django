@@ -9,7 +9,7 @@ class serverConfigSerializer(serializers.ModelSerializer):
 	
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = settings.get_user_model 
+		model = settings.get_user_model()
 		fields = '__all__'
 		#excludes = ('password',)
 		
