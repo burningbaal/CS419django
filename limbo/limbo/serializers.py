@@ -34,7 +34,7 @@ class VersionSerializer(serializers.ModelSerializer):
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	version = VersionSerializer(source='FK_version', read_only=True, many=True)
-	validator = UserProfileSerializer(source='validating_user', read_only=True)
+	validator = UserProfileSerializer(source='validating_user.user', read_only=True)
 	version_name = serializers.ReadOnlyField(source='version_number')
 	cmd_line_script = serializers.ReadOnlyField()
 	SOP = serializers.ReadOnlyField()
