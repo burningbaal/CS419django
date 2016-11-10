@@ -15,7 +15,6 @@ class serverConfigSerializer(serializers.ModelSerializer):
 		
 class UserProfileSerializer(serializers.ModelSerializer):
     user = serializers.serialize(settings.AUTH_USER_MODEL, read_only=True)
-	#user = UserSerializer(read_only=True)
 	class Meta:
 		model = UserProfile
 		#fields = ('last_login', 'is_superuser', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined')
