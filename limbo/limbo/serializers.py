@@ -40,7 +40,7 @@ class VersionSerializer(serializers.ModelSerializer):
 		fields = ('id', 'method')#, 'version_number', 'cmd_line_script', 'SOP')
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
-	version = VersionSerializer(source='self.FK_version', read_only=True, many=Flase)
+	version = VersionSerializer(source='self.FK_version', read_only=True, many=False)
 	validator = UserProfileSerializer(source='self.validating_user', read_only=True)
 	#validator = serializers.ReadOnlyField(source='self.validating_user.user.email')
 	#version_name = serializers.ReadOnlyField(source='version_number')
