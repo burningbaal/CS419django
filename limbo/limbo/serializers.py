@@ -47,7 +47,7 @@ class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	cmd_line_script = serializers.ReadOnlyField()
 	SOP = serializers.ReadOnlyField()
 	method = MethodSerializer(source='FK_method',read_only=True)
-	Time_Validated = serializers.ReadOnlyField(source= 'timestamp')
+	Time_Validated = serializers.ReadOnlyField(source= 'self.timestamp')
 	
 	class Meta:
 		model = Instr_Version
