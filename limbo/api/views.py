@@ -59,8 +59,11 @@ def getUsageHistory(request):
 		if (counter > 0):
 			message += ','
 		counter += 1
+		serial = UserProfileSerializer(curUse.FK_user)
+		user = JSONRenderer().render(serial.data)
 		message += '{"number":' + str(counter) + ',"data":{"user":' + \
-		coreSerializers.serialize('json', [curUse.FK_user.user, ]) +  ',"version":' + \
+		user + ',"version":' + \
+		#coreSerializers.serialize('json', [curUse.FK_user.user, ]) +  ',"version":' + \
 		coreSerializers.serialize('json', [curUse.FK_version, ]) +  ',"instrument":' + \
 		coreSerializers.serialize('json', [curUse.FK_instrument, ]) +  ',"timestamp":' + \
 		'"' + str(curUse.timestamp) + '"' +  \
