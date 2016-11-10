@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.conf import settings
+from django.contrib import auth
 from limbo.models import *
 
 class serverConfigSerializer(serializers.ModelSerializer):
@@ -9,7 +10,7 @@ class serverConfigSerializer(serializers.ModelSerializer):
 	
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = UserProfile.user
+		model = auth.get_user_model()
 		#fields = '__all__'
 		excludes = 'password'
 		
