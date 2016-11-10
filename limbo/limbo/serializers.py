@@ -39,7 +39,7 @@ class VersionSerializer(serializers.HyperlinkedModelSerializer):
 		model = Version
 		fields = ('id', 'method')#, 'version_number', 'cmd_line_script', 'SOP')
 
-class Instr_to_VersionSerializer(serializers.ModelSerializer):
+class Instr_to_VersionSerializer(serializers.HyperlinkedModelSerializer):
 	version = VersionSerializer(source='FK_version', read_only=True, many=True)
 	validator = UserProfileSerializer(source='validating_user', read_only=True)
 	#validator = serializers.ReadOnlyField(source='self.validating_user.user.email')
@@ -54,7 +54,7 @@ class Instr_to_VersionSerializer(serializers.ModelSerializer):
 		fields = ('id', 'timestamp', 'version', 'validator', 'Time_Validated', 'method', 'version_name', 'cmd_line_script', 'SOP')
 
 
-class InstrumentSerializer(serializers.HyperlinkedModelSerializer):
+class InstrumentSerializer(serializers.ModelSerializer):
 	instr_type = InstrTypeSerializer(source='FK_instr_type', read_only=True)
 	Validated_Versions = Instr_to_VersionSerializer(source='VersionsFromInstrument', many=True, read_only=True)
 	
