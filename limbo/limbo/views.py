@@ -61,7 +61,7 @@ def editEquipment(request):
 		else:
 			message = 'The equipment has NOT been updated.' + '\n'
 			for dict in postFormset.errors:
-				message += .join("%s=%r" % (key,val) for (key,val) in dict) + '\n'
+				message += ', '.join("%s=%r" % (key,val) for (key,val) in dict) + '\n'
 			#message += ', '.join("%s=%r" % (key,val) for (key,val) in postFormset.errors.dict.values) + '\n' 
 			# message += ', '.join("%s=%r" % (key,val) for (key,val) in postFormset.non_form_errors) + '\n' 
 			#message += str(postFormset.non_form_errors)
