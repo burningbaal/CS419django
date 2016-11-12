@@ -5,9 +5,9 @@
 	<p>This is the equipment management page</p><br>
 	{{ SubmitMessage }}<br>
 	<form method="post" action="">{% csrf_token %}
-	{{ formset.management_form }}
+	{{ formSet.management_form }}
 		<div class='row-fluid'>
-			{% for form in formset|slice:":1" %}
+			{% for form in formSet|slice:":1" %}
 				{% for field in form %}
 					{% if field.label != "Id" %}
 						<div class="col-md-6"><strong>{{field.label}}</strong></div>
@@ -15,7 +15,7 @@
 				{% endfor %}
 			{% endfor %}
 		</div>
-	{% for form in formset %}
+	{% for form in formSet %}
 		<div class='row-fluid'>
 			{% for field in form %}
 				{% if field.label != "Id" %}
