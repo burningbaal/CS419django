@@ -87,7 +87,7 @@ def getInstrument(request):
 	password = request.POST.get('password', None)
 	user = None
 	user = authenticate(username=username, password=password)
-    if user is None:
+	if user is None:
 		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}') 
 	serial = UserProfileSerializer(user)
 	userResponse = JSONRenderer().render(serial.data)
