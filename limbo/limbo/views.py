@@ -53,7 +53,7 @@ def editEquipment(request):
 	if request.method == 'POST':
 		postFormset = formSet(request.POST, request.FILES)
 		if postFormset.is_valid():
-			for form in postFormset
+			for form in postFormset:
 				form.save()
 			# call out to limboLogic.py to update values, add them to the session
 			message = 'The values have been updated.'
