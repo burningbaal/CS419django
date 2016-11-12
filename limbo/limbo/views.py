@@ -59,7 +59,7 @@ def editEquipment(request):
 					form.save()
 			# call out to limboLogic.py to update values, add them to the session
 			message = 'The values have been updated.'
-			return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': finalFormSet, 'SubmitMessage': message})
+			return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': postFormset, 'SubmitMessage': message})
 		else:
 			message = 'The equipment has NOT been updated.' + '\n'
 			for dict in postFormset.errors:
