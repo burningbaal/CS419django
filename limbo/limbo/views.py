@@ -47,7 +47,7 @@ def editUsers(request):
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
 def editEquipment(request):
-	formSet = modelformset_factory(Instrument, exclude=('FK_instr_type_id', 'checksum_string',), extra=1)
+	formSet = modelformset_factory(Instrument, exclude=('Instr_Version', 'checksum_string',), extra=1)
 	if request.method == 'POST':
 		form = GeneralEquipmentForm(request.POST)
 		if form.is_valid():
