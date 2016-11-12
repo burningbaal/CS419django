@@ -51,19 +51,18 @@ def editEquipment(request):
 	
 		
 	if request.method == 'POST':
-		form = GeneralEquipmentForm(request.POST)
-		if form.is_valid():
-			manuf_email = form.cleaned_data['manuf_email']
-			request.session['editEquipId'] = 'jim@billy.com' #manuf_email
-			
+		postFormset = formSet(request.POST, request.FILES)
+		if postFormset.is_valid():
+			for form in postFormset
+				form.save()
 			# call out to limboLogic.py to update values, add them to the session
-			message = 'The equipment \'' + manuf_email + '\' has been updated.'
-			return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': message})
+			message = 'The values have been updated.'
+			return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': finalFormSet, 'SubmitMessage': message})
 		else:
 			message = 'The equipment has NOT been updated.' + '\n'
-			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '\n' 
-			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '\n' 
-			return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': message})
+			message += ', '.join("%s=%r" % (key,val) for (key,val) in postFormset.errors.iteritems()) + '\n' 
+			# message += ', '.join("%s=%r" % (key,val) for (key,val) in postFormset.non_field_errors.iteritems()) + '\n' 
+			return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': postFormset, 'SubmitMessage': message})
 	# if a GET (or any other method) we'll create a blank form
 	try:
 		del request.session['editEquipId']
@@ -90,10 +89,10 @@ def editServer(request):
 			return render(request, 'limboHtml/ServerConfiguration.html', {'formset': finalFormSet, 'SubmitMessage': '', 'CurrentConfigs': myConfigs})
 		else:
 			message = 'The server configuration has NOT been updated.' + '\n'
-			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '\n' 
-			message += '<br> ' + ", ".join("%s=%r" % (key,val) for(key,val) in form.iteritems()) 
-			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '\n' 
-			return render(request, 'limboHtml/ServerConfiguration.html', {'form': form, 'SubmitMessage': message, 'CurrentConfigs': myConfigs})
+			message += ', '.join("%s=%r" % (key,val) for (key,val) in formset.errors.iteritems()) + '\n' 
+			message += '<br> ' + ", ".join("%s=%r" % (key,val) for(key,val) in formset.iteritems()) 
+			# message += ', '.join("%s=%r" % (key,val) for (key,val) in formset.non_field_errors.iteritems()) + '\n' 
+			return render(request, 'limboHtml/ServerConfiguration.html', {'form': finalFormSet, 'SubmitMessage': message, 'CurrentConfigs': myConfigs})
 	# if a GET (or any other method) we'll create a blank form
 	try:
 		del request.session['integer']
