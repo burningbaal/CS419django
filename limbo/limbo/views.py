@@ -10,7 +10,7 @@ from limboLogic import *
 from limbo.models import *
 from django.forms import modelformset_factory
 from django.forms import formset_factory
-from rest_framework import serializers
+from django.core import serializers as coreSerializers
 
 def indexLimbo(request, mystery):
 	# request.session.flush()
@@ -62,7 +62,7 @@ def editEquipment(request):
 		else:
 			message = 'The equipment has NOT been updated.' + '\n'
 			for dict in postFormset.errors:
-				message = serializers.serialize('json', [dict,])
+				message = coreSerializers.serialize('json', [dict,])
 				#message += ', '.join("%s=%r" % (key,val) for (key,val) in dict) + '\n'
 			#message += ', '.join("%s=%r" % (key,val) for (key,val) in postFormset.errors.dict.values) + '\n' 
 			# message += ', '.join("%s=%r" % (key,val) for (key,val) in postFormset.non_form_errors) + '\n' 
