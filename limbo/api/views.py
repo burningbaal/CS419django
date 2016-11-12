@@ -78,8 +78,10 @@ def getUsageHistory(request):
 def getInstrument(request):
 	assetNum = ''
 	if request.method == 'POST':
+		strInstrument = json.dumps(request.POST['value'])
 		assetNum = request.POST.get('asset_number', None)
 	elif request.method == 'GET':
+		strInstrument = json.dumps(request.GET['value'])
 		assetNum = request.GET.get('asset_number', None)
 	if assetNum is None:
 		return HttpResponse('{"Error":"Must POST or GET \'asset_number\'"}')
@@ -92,8 +94,8 @@ def getInstrument(request):
 	asset_number = instrumentObj.asset_number
 	
 	serial = InstrumentSerializer(instrumentObj)#, context={'request': request})
-	strInstrument = JSONRenderer().render(serial.data)
-	strInstrument = str(strInstrument)
+	strInstrument = strInstrument + JSONRenderer().render(serial.data)
+	#strInstrument = str(strInstrument)
 	return HttpResponse(strInstrument)
 	
 	
