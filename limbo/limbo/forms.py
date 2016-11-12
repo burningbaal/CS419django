@@ -26,7 +26,7 @@ class GeneralEquipmentForm(ModelForm):
 			#self.fields['config_key'].widget.attrs['disabled'] = True
 	#manuf_email = forms.EmailField(label='Manufacturer\'s email', max_length=100)
 	
-class Instr_VersionCreate(CreateView)
+class Instr_VersionCreate(CreateView):
 	model = Instr_Version
 	
 	def form_valid(self, form):
