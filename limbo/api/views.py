@@ -7,6 +7,7 @@ import json
 from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
+from django.conf import settings
 
 from forms import *
 from limbo.models import *
@@ -47,6 +48,7 @@ def getUsageHistory(request):
 	numberRequested = 10 # default number
 	message = ''
 	counter = 0
+	temp = settings.AUTH_USER_MODEL
 	if request.method == 'POST':
 		numberRequested = request.POST.get('number_histories', numberRequested)
 	elif request.method == 'GET':
