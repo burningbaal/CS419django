@@ -79,13 +79,12 @@ def getUsageHistory(request):
 @api_view(['GET', 'POST'])
 def getInstrument(request):
 	assetNum = ''
-	strInstrument = ""
+	strInstrument = ''
 	userResponse = ''
 	response = ''
-	#strInstrument = coreSerializers.serialize('json', [request,])
+	
 	username = request.POST.get('username', None)
 	password = request.POST.get('password', None)
-	#return HttpResponse('username = ' + username + ', password = ' + password)
 	user = None
 	user = authenticate(username=username, password=password)
 	if user is None:
@@ -93,19 +92,13 @@ def getInstrument(request):
 	serial = UserProfileSerializer(user)
 	userResponse = JSONRenderer().render(serial.data)
 	if request.method == 'POST':
-		#strInstrument = json.dumps(request.POST)
 		assetNum = request.POST.get('asset_number', None)
-	elif request.method == 'GET':
-		#strInstrument = json.dumps(request.GET)
-		assetNum = request.GET.get('asset_number', None)
 	if assetNum is None:
 		return HttpResponse('{"Error":"Must POST or GET \'asset_number\'"}')
 	try:
 		instrumentObj = Instrument.objects.get(asset_number=assetNum)
 	except:
 		return HttpResponse('{"Error":"asset_number \'' + assetNum + '\' does not exist"}')
-	#data = coreSerializers.serialize('json', [instrumentObj, ])
-	#return HttpResponse(data)
 	asset_number = instrumentObj.asset_number
 	
 	serial = InstrumentSerializer(instrumentObj)#, context={'request': request})
