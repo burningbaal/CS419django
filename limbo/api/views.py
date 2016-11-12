@@ -48,7 +48,6 @@ def getUsageHistory(request):
 	numberRequested = 10 # default number
 	message = ''
 	counter = 0
-	temp = settings.AUTH_USER_MODEL
 	if request.method == 'POST':
 		numberRequested = request.POST.get('number_histories', numberRequested)
 	elif request.method == 'GET':
@@ -80,6 +79,7 @@ def getUsageHistory(request):
 def getInstrument(request):
 	assetNum = ''
 	strInstrument = ""
+	temp = settings.AUTH_USER_MODEL
 	strInstrument = coreSerializers.serialize('json', [request,])
 	if request.method == 'POST':
 		#strInstrument = json.dumps(request.POST)
