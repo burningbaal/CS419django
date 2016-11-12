@@ -55,8 +55,8 @@ def editEquipment(request):
 		postFormset = formSet(request.POST, request.FILES)
 		if postFormset.is_valid():
 			for form in postFormset:
-				if form.is_valid() and not form.empty_permitted
-				form.save()
+				if form.is_valid() and not form.empty_permitted:
+					form.save()
 			# call out to limboLogic.py to update values, add them to the session
 			message = 'The values have been updated.'
 			return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': finalFormSet, 'SubmitMessage': message})
