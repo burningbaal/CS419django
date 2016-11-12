@@ -56,7 +56,7 @@ def editInstrument(request):
 		return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit an instrument without a "asset_number" parameter.'})
 	instr = get_object_or_404(Instrument, asset_number=asset) 
 	form = SpecificEquipmentForm(instance=instr)
-	return render(request, 'limboHtml/InstrumentManagement.html?asset_number=' + asset,{}) 
+	return render(request, 'limboHtml/InstrumentManagement.html?asset_number=' + asset,{'form': form}) 
 	
 def editEquipment(request):
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)

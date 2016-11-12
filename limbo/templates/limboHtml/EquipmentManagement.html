@@ -22,9 +22,6 @@
 				{% if field.label != "Id" %}
 					<div class="col-md-4">{{field}} </div>
 				{% else %}
-					{% if field.label == "asset_number" %}
-						{% asset = field.value %}
-					{% endif %}
 					{{field}}
 				{% endif %}
 			{% endfor %}
