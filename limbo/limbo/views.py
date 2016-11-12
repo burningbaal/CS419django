@@ -68,7 +68,7 @@ def editEquipment(request):
 	except KeyError:
 		pass
 	form = GeneralEquipmentForm()
-	return render(request, 'formSet': formSet, 'SubmitMessage': '', 'testing': '123'})
+	return render(request, 'limboHtml/EquipmentManagement.html, {'formSet': formSet, 'SubmitMessage': '', 'testing': '123'})
 
 
 def editServer(request):
