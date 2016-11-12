@@ -11,6 +11,7 @@ from limbo.models import *
 from django.forms import modelformset_factory
 from django.forms import formset_factory
 from django.core import serializers as coreSerializers
+from django.shortcuts import get_object_or_404
 
 def indexLimbo(request, mystery):
 	# request.session.flush()
