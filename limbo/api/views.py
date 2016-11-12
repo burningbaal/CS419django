@@ -79,8 +79,16 @@ def getUsageHistory(request):
 def getInstrument(request):
 	assetNum = ''
 	strInstrument = ""
-	temp = settings.AUTH_USER_MODEL
-	strInstrument = coreSerializers.serialize('json', [request,])
+	userResponse = ''
+	response = ''
+	#strInstrument = coreSerializers.serialize('json', [request,])
+	username = request.POST.get('username', None)
+	password = request.POST.get('password', None)
+	user = authenticate(username=username, password=password)
+    if user is None:
+		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}')
+	serial = UserProfileSerializer(user)
+	userResponse = JSONRenderer().render(serial.data)
 	if request.method == 'POST':
 		#strInstrument = json.dumps(request.POST)
 		assetNum = request.POST.get('asset_number', None)
@@ -99,7 +107,7 @@ def getInstrument(request):
 	
 	serial = InstrumentSerializer(instrumentObj)#, context={'request': request})
 	strInstrument = strInstrument + JSONRenderer().render(serial.data)
-	#strInstrument = str(strInstrument)
+	response = '{ "user":' + userResponse + '},{' + str(strInstrument) + '}'
 	return HttpResponse(strInstrument)
 	
 	
