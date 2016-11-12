@@ -77,6 +77,7 @@ def getUsageHistory(request):
 @api_view(['GET', 'POST'])
 def getInstrument(request):
 	assetNum = ''
+	strInstrument = ""
 	#strInstrument = json.dumps(request.META)
 	if request.method == 'POST':
 		#strInstrument = json.dumps(request.POST)
