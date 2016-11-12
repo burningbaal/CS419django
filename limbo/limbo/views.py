@@ -67,7 +67,7 @@ def editEquipment(request):
 		del request.session['editEquipId']
 	except KeyError:
 		pass
-	form = GeneralEquipmentForm()
+	#form = GeneralEquipmentForm()
 	return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'testing: 123'})
 
 
