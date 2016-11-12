@@ -20,10 +20,14 @@ class InstrType(models.Model):
 	service_website = models.CharField(max_length=50, null=True)
 
 class Method(models.Model):
+	def __str__(self):
+		return self.name
 	name = models.CharField(max_length=50, unique=True)
 	descripton = models.TextField(null=False)
 
 class Version(models.Model):
+	def __str__(self):
+		return self.FK_method + ' ' + self.version_number
 	version_number = models.CharField(max_length=50)
 	cmd_line_script = models.CharField(max_length=250, null=False)
 	SOP = models.TextField(null=False)
