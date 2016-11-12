@@ -1,6 +1,8 @@
 from django import forms
 from django.forms import ModelForm
 from .models import *
+from django.views.generic import CreateView
+
 
 class index (forms.Form):
 	index_val = forms.CharField(label='Your Limbo name', max_length=10)
@@ -23,6 +25,14 @@ class GeneralEquipmentForm(ModelForm):
 			#self.fields['config_key'].widget.attrs['readonly'] = True
 			#self.fields['config_key'].widget.attrs['disabled'] = True
 	#manuf_email = forms.EmailField(label='Manufacturer\'s email', max_length=100)
+	
+class Instr_VersionCreate(CreateView)
+	model = Instr_Version
+	
+	def form_valid(self, form):
+        self.object = form.save(commit=False)
+        #for version in form.cleaned_data['VersionsFromInstrument']:
+			
 
 class SpecificEquipmentForm(ModelForm):
 	class Meta:
