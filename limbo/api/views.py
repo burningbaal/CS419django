@@ -78,10 +78,10 @@ def getUsageHistory(request):
 def getInstrument(request):
 	assetNum = ''
 	if request.method == 'POST':
-		strInstrument = json.dumps(request.POST['value'])
+		strInstrument = json.dumps(request.POST)
 		assetNum = request.POST.get('asset_number', None)
 	elif request.method == 'GET':
-		strInstrument = json.dumps(request.GET['value'])
+		strInstrument = json.dumps(request.GET)
 		assetNum = request.GET.get('asset_number', None)
 	if assetNum is None:
 		return HttpResponse('{"Error":"Must POST or GET \'asset_number\'"}')
