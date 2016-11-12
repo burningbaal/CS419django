@@ -4,6 +4,7 @@
  <div class="row">
 	<p>This is the equipment management page</p><br>
 	{{ SubmitMessage }}<br>
+	{{ formset.non_form_errors }}<br>
 	<form method="post" action="">{% csrf_token %}
 	{{ formSet.management_form }}
 		<div class='row'>
