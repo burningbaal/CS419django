@@ -78,7 +78,7 @@ def getUsageHistory(request):
 def getInstrument(request):
 	assetNum = ''
 	strInstrument = ""
-	#strInstrument = json.dumps(request.META)
+	strInstrument = json.dumps(request.META)
 	if request.method == 'POST':
 		#strInstrument = json.dumps(request.POST)
 		assetNum = request.POST.get('asset_number', None)
