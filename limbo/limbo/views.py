@@ -62,7 +62,7 @@ def editEquipment(request):
 			message = 'The equipment has NOT been updated.' + '\n'
 			#message += ', '.join("%s=%r" % (key,val) for (key,val) in postFormset.errors.dict.values) + '\n' 
 			# message += ', '.join("%s=%r" % (key,val) for (key,val) in postFormset.non_form_errors) + '\n' 
-			message += postFormset.non_form_errors
+			message += str(postFormset.non_form_errors)
 			return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': postFormset, 'SubmitMessage': message})
 	# if a GET (or any other method) we'll create a blank form
 	try:
