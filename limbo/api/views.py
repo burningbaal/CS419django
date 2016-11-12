@@ -8,6 +8,7 @@ from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
 from django.conf import settings
+from django.contrib import auth
 
 from forms import *
 from limbo.models import *
@@ -84,6 +85,7 @@ def getInstrument(request):
 	#strInstrument = coreSerializers.serialize('json', [request,])
 	username = request.POST.get('username', None)
 	password = request.POST.get('password', None)
+	user = None
 	user = authenticate(username=username, password=password)
     if user is None:
 		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}') 
