@@ -30,9 +30,9 @@ class Instr_VersionCreate(CreateView):
 	model = Instr_Version
 	
 	def form_valid(self, form):
-        self.object = form.save(commit=False)
-        #for version in form.cleaned_data['VersionsFromInstrument']:
-			
+		self.object = form.save(commit=False)
+		#for version in form.cleaned_data['VersionsFromInstrument']:
+		
 
 class SpecificEquipmentForm(ModelForm):
 	class Meta:
