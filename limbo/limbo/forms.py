@@ -12,8 +12,26 @@ class usersForm(forms.Form):
 	
 	user_active.initial = True
 
-class equipmentForm(forms.Form):
-	manuf_email = forms.EmailField(label='Manufacturer\'s email', max_length=100)
+class GeneralEquipmentForm(forms.Form):
+	class Meta:
+		model = Instrument
+		fields = '__all__'
+	def __init__(self, *args, **kwargs):
+		super(Instrument, self).__init__(*args, **kwargs)
+		instance = getattr(self, 'instance', None)
+		#if instance and instance.pk:
+			#self.fields['config_key'].widget.attrs['readonly'] = True
+			#self.fields['config_key'].widget.attrs['disabled'] = True
+	#manuf_email = forms.EmailField(label='Manufacturer\'s email', max_length=100)
+
+class SpecificEquipmentForm(forms.Form):
+	class Meta:
+		model = Instrument
+		fields = '__all__'
+		#include way to validate versions (and useres?)
+	def __init__(self, *args, **kwargs):
+		super(Instrument, self).__init__(*args, **kwargs)
+		instance = getattr(self, 'instance', None)	
 
 class serverForm(ModelForm):
 	class Meta:

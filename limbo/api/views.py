@@ -70,6 +70,7 @@ def getUsageHistory(request):
 	user = authenticate(username=username, password=password)
 	if user is None:
 		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}') 
+	#login(request, user))
 	#serial = UserProfileSerializer(user)
 	#userResponse = JSONRenderer().render(serial.data)
 	

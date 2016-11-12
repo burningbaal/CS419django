@@ -6,7 +6,10 @@ import json
 from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
-from limboLogic import *
+from limboLogic import *		
+from limbo.models import *
+from django.forms import modelformset_factory
+from django.forms import formset_factory
 
 def indexLimbo(request, mystery):
 	# request.session.flush()
@@ -44,8 +47,9 @@ def editUsers(request):
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
 def editEquipment(request):
+	formSet = modelformset_factory(Instrument, fields = '__all__', extra=1)
 	if request.method == 'POST':
-		form = equipmentForm(request.POST)
+		form = GeneralEquipmentForm(request.POST)
 		if form.is_valid():
 			manuf_email = form.cleaned_data['manuf_email']
 			request.session['editEquipId'] = 'jim@billy.com' #manuf_email
@@ -63,12 +67,9 @@ def editEquipment(request):
 		del request.session['editEquipId']
 	except KeyError:
 		pass
-	form = equipmentForm()
-	return render(request, 'limboHtml/EquipmentManagement.html', {'form': form, 'SubmitMessage': ''})
-		
-from limbo.models import *
-from django.forms import modelformset_factory
-from django.forms import formset_factory
+	form = GeneralEquipmentForm()
+	return render(request, 'formSet': formSet, 'SubmitMessage': '', 'testing': '123'})
+
 
 def editServer(request):
 	result = serverConfig.objects.values()

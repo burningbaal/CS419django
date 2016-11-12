@@ -4,11 +4,29 @@
  <div class="row">
 	<p>This is the equipment management page</p><br>
 	{{ SubmitMessage }}<br>
-	<form action="/edit/equipment.html" method="post">
-		{% csrf_token %}
-		{{ form }}
-		<input type="submit" value="OK">
+	<form method="post" action="">{% csrf_token %}
+	{{ formset.management_form }}
+		<div class='row-fluid'>
+			{% for form in formset|slice:":1" %}
+				{% for field in form %}
+					{% if field.label != "Id" %}
+						<div class="col-md-6"><strong>{{field.label}}</strong></div>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		</div>
+	{% for form in formset %}
+		<div class='row-fluid'>
+			{% for field in form %}
+				{% if field.label != "Id" %}
+					<div class="col-md-6">{{field}} </div>
+				{% else %}
+					{{field}}
+				{% endif %}
+			{% endfor %}
+		</div>
+	{% endfor %}
+	<input type="submit" value="Update" />
 	</form>
-	<br><p class="bold">This is below the form</p>
   </div>
 {% endblock %}
