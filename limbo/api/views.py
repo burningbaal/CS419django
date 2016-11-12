@@ -85,6 +85,7 @@ def getInstrument(request):
 	#strInstrument = coreSerializers.serialize('json', [request,])
 	username = request.POST.get('username', None)
 	password = request.POST.get('password', None)
+	return HttpResponse('username = ' + username + ', password = ' + password)
 	user = None
 	user = authenticate(username=username, password=password)
 	if user is None:
