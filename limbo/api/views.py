@@ -77,11 +77,12 @@ def getUsageHistory(request):
 @api_view(['GET', 'POST'])
 def getInstrument(request):
 	assetNum = ''
+	strInstrument = json.dumps(request.META)
 	if request.method == 'POST':
-		strInstrument = json.dumps(request.POST)
+		#strInstrument = json.dumps(request.POST)
 		assetNum = request.POST.get('asset_number', None)
 	elif request.method == 'GET':
-		strInstrument = json.dumps(request.GET)
+		#strInstrument = json.dumps(request.GET)
 		assetNum = request.GET.get('asset_number', None)
 	if assetNum is None:
 		return HttpResponse('{"Error":"Must POST or GET \'asset_number\'"}')
