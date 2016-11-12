@@ -12,6 +12,8 @@ class UserProfile(models.Model):
 	
 	
 class InstrType(models.Model):
+	def __str__(self):
+		return self.make + ' ' + self.model
 	make = models.CharField(max_length=50)
 	model = models.CharField(max_length=50)
 	service_email = models.CharField(max_length=50, null=True)

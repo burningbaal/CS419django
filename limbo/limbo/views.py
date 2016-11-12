@@ -48,6 +48,8 @@ def editUsers(request):
 
 def editEquipment(request):
 	formSet = modelformset_factory(Instrument, exclude=('Instr_Version', 'checksum_string',), extra=1)
+	
+		
 	if request.method == 'POST':
 		form = GeneralEquipmentForm(request.POST)
 		if form.is_valid():
@@ -76,6 +78,7 @@ def editServer(request):
 	myConfigs = [entry for entry in result]
 	
 	finalFormSet = modelformset_factory(serverConfig, exclude=('id',), extra=0)
+	
 	if request.method == 'POST':
 		formset = finalFormSet(request.POST, request.FILES)
 		if formset.is_valid():
