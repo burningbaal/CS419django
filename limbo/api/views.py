@@ -24,6 +24,18 @@ from rest_framework.renderers import JSONRenderer
 @csrf_exempt
 @api_view(['GET', 'POST'])
 def addUsageHistory(request):	
+	userResponse = ''
+	response = ''
+	
+	username = request.POST.get('username', None)
+	password = request.POST.get('password', None)
+	user = None
+	user = authenticate(username=username, password=password)
+	if user is None:
+		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}') 
+	#serial = UserProfileSerializer(user)
+	#userResponse = JSONRenderer().render(serial.data)
+	
 	if request.method == 'POST':
 		form = usageHistoryForm(request.POST)
 		if form.is_valid():
@@ -49,6 +61,18 @@ def getUsageHistory(request):
 	numberRequested = 10 # default number
 	message = ''
 	counter = 0
+	userResponse = ''
+	response = ''
+	
+	username = request.POST.get('username', None)
+	password = request.POST.get('password', None)
+	user = None
+	user = authenticate(username=username, password=password)
+	if user is None:
+		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}') 
+	#serial = UserProfileSerializer(user)
+	#userResponse = JSONRenderer().render(serial.data)
+	
 	if request.method == 'POST':
 		numberRequested = request.POST.get('number_histories', numberRequested)
 	elif request.method == 'GET':
