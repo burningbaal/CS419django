@@ -12,7 +12,7 @@ class usersForm(forms.Form):
 	
 	user_active.initial = True
 
-class GeneralEquipmentForm(forms.Form):
+class GeneralEquipmentForm(ModelForm):
 	class Meta:
 		model = Instrument
 		fields = '__all__'
@@ -24,7 +24,7 @@ class GeneralEquipmentForm(forms.Form):
 			#self.fields['config_key'].widget.attrs['disabled'] = True
 	#manuf_email = forms.EmailField(label='Manufacturer\'s email', max_length=100)
 
-class SpecificEquipmentForm(forms.Form):
+class SpecificEquipmentForm(ModelForm):
 	class Meta:
 		model = Instrument
 		fields = '__all__'
