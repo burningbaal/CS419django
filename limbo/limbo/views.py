@@ -49,15 +49,15 @@ def editUsers(request):
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
 def editInstrument(request):
-	asset = request.GET.get('asset_number', None)
+	asset = request.GET.get('instrument', None)
 	if asset is None:
-		asset = request.POST.get('asset_number', None)
+		asset = request.POST.get('instrument', None)
 	if asset is None:
 		formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 		return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit an instrument without a "asset_number" parameter.'})
-	instr = get_object_or_404(Instrument, asset_number=asset) 
+	instr = get_object_or_404(Instrument, pk=asset) 
 	form = SpecificEquipmentForm(instance=instr)
-	return render(request, 'limboHtml/InstrumentManagement.html?asset_number=' + asset,{'form': form}) 
+	return render(request, 'limboHtml/InstrumentManagement.html?instrument=' + asset,{'form': form}) 
 	
 def editEquipment(request):
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)

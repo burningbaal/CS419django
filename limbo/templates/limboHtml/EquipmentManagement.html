@@ -26,8 +26,8 @@
 				{% endif %}
 			{% endfor %}
 			<div class="col-md-4"> 
-				{% if form.asset_number.value != '' %}
-					<a href="{% url 'editInstrument' %}?asset_number={{ form.asset_number.value }}">Edit Details</a>
+				{% if form.Id.value != '' %}
+					<a href="{% url 'editInstrument' %}?instrument={{ form.Id.value }}">Edit Details</a>
 				{% endif %}
 			</div>
 		</div>
