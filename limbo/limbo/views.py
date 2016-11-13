@@ -57,7 +57,7 @@ def editInstrument(request):
 		return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit an instrument without a "asset_number" parameter.'})
 	instr = get_object_or_404(Instrument, pk=int(asset) ) 
 	serial = InstrumentSerializer(instr)
-	strInstrument = strInstrument + JSONRenderer().render(serial.data)
+	strInstrument = JSONRenderer().render(serial.data)
 	form = SpecificEquipmentForm(instance=instr)
 	return render(request, 'limboHtml/InstrumentManagement.html?instrument=' + asset,{'form': form}) 
 	
