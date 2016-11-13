@@ -57,6 +57,7 @@ def editInstrument(request):
 		asset = request.POST.get('id', None)
 		for vers in request.POST.getlist('VersionsFromInstrument'):
 			validation = Instr_Version(FK_instrument=asset, FK_version=vers, timestamp=datetime.now)
+			validation.save()
 	if asset is None:
 		formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 		return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit an instrument without a "asset_number" parameter.'})
