@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 import json
+from datetime import datetime
 from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
@@ -53,7 +54,9 @@ def editUsers(request):
 def editInstrument(request):
 	asset = request.GET.get('instrument', None)
 	if asset is None:
-		asset = request.POST.get('instrument', None)
+		asset = request.POST.get('id', None)
+		for vers in request.POST.getlist('VersionsFromInstrument'):
+			validation = Instr_Version(FK_instrument=asset, FK_version=vers, timestamp=datetime.now)
 	if asset is None:
 		formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 		return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit an instrument without a "asset_number" parameter.'})
