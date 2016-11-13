@@ -40,7 +40,7 @@ class SpecificEquipmentForm(ModelForm):
 		fields = '__all__'
 		#include way to validate versions (and useres?)
 	def __init__(self, *args, **kwargs):
-		super(Instrument, self).__init__(*args, **kwargs)
+		super(SpecificEquipmentForm, self).__init__(*args, **kwargs)
 		instance = getattr(self, 'instance', None)	
 
 class serverForm(ModelForm):
