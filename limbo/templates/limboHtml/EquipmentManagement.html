@@ -26,7 +26,7 @@
 				{% endif %}
 			{% endfor %}
 			<div class="col-md-4"> 
-				{% if len(str(form.assset_number.value)) != 0 %}
+				{% if str(form.assset_number.value) != '' %}
 					<a href="{% url 'editInstrument' %}?instrument={{ form.id.value }}">Edit Details</a>
 				{% endif %}
 			</div>
