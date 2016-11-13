@@ -42,6 +42,7 @@ class VersionSerializer(serializers.ModelSerializer):
 		fields = ('id', 'method')#, 'version_number', 'cmd_line_script', 'SOP')
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
+	# try moving the checksum_string at a level above the instrument data
 	version = VersionSerializer(source='FK_version', read_only=True, many=True)
 	validator = UserProfileSerializer(source='validating_user.user', read_only=True)
 	#validator = serializers.ReadOnlyField(source='self.validating_user.user.email')

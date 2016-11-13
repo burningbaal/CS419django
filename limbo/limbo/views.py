@@ -6,7 +6,7 @@ import json
 from django.http import QueryDict
 from django.http import HttpResponse
 from django.template import loader
-from limboLogic import *		
+from serializers import *
 from limbo.models import *
 from django.forms import modelformset_factory
 from django.forms import formset_factory
@@ -55,7 +55,9 @@ def editInstrument(request):
 	if asset is None:
 		formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 		return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit an instrument without a "asset_number" parameter.'})
-	instr = get_object_or_404(Instrument, pk=asset) 
+	instr = get_object_or_404(Instrument, pk=int(asset) ) 
+	serial = InstrumentSerializer(instr)
+	strInstrument = strInstrument + JSONRenderer().render(serial.data)
 	form = SpecificEquipmentForm(instance=instr)
 	return render(request, 'limboHtml/InstrumentManagement.html?instrument=' + asset,{'form': form}) 
 	
