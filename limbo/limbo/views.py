@@ -61,7 +61,7 @@ def editInstrument(request):
 	serial = InstrumentSerializer(instr)
 	strInstrument = JSONRenderer().render(serial.data)
 	form = SpecificEquipmentForm(instance=instr)
-	return render(request, 'limboHtml/InstrumentManagement.html' + asset,{'form': form}) 
+	return render(request, 'limboHtml/InstrumentManagement.html',{'form': form}) 
 	
 def editEquipment(request):
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
