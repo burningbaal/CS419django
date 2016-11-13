@@ -55,6 +55,7 @@ def editInstrument(request):
 	asset = request.GET.get('instrument', None)
 	if asset is None:
 		asset = request.POST.get('id', None)
+		asset = request.POST.getlist('VersionsFromInstrument') # intentional bug to see what's going on
 		for vers in request.POST.getlist('VersionsFromInstrument'):
 			validation = Instr_Version(FK_instrument=asset, FK_version=vers, timestamp=datetime.now)
 			validation.save()
