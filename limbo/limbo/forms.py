@@ -39,7 +39,7 @@ class Instr_VersionCreate(CreateView):
 class SpecificEquipmentForm(ModelForm):
 	class Meta:
 		model = Instrument
-		exclude = ('checksum_string')
+		exclude = ('checksum_string',)
 		widgets = {'id': forms.HiddenInput()}
 		#include way to validate versions (and useres?)
 	def __init__(self, *args, **kwargs):
