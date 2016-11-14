@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'limbo',
 	'api',
     'rest_framework.authtoken',
+	'jquery',
 ]
 
 MIDDLEWARE = [
