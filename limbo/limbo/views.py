@@ -55,6 +55,7 @@ def editInstrument(request):
 	assetId = request.GET.get('instrument', None)
 	if request.method == 'POST':
 		asset = Instrument.objects.get(asset_number=request.POST.get('asset_number', None))
+		time = datetime.now()
 		for vers in request.POST.getlist('VersionsFromInstrument'):
 			curVersion = Version.objects.get(pk=int(vers))
 			
@@ -62,7 +63,7 @@ def editInstrument(request):
 			curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
 			#####################CHANGE THE LINE ABOVE SOON!!!!######################################
 			
-			validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now, validating_user=curUser)
+			validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
 			#validation.save()
 			assetId = asset.id
 	if assetId is None:
