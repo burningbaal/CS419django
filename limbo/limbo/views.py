@@ -63,7 +63,7 @@ def editInstrument(request):
 			#####################CHANGE THE LINE ABOVE SOON!!!!######################################
 			
 			validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now, validating_user=curUser)
-			validation.save()
+			#validation.save()
 			assetId = asset.id
 	if assetId is None:
 		formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
