@@ -21,10 +21,10 @@
 	{% for form in formSet %}
 		<div class='row-fluid'>
 			{% for field in form.visible_fields %}
-				{% if field.label != "Id" %}
+				{% if field.label not in formSet.visible_fields %}
 					<div class="col-md-2">{{field}} </div>
 				{% else %}
-					{{field}}
+					{# field #}
 				{% endif %}
 			{% endfor %}
 			<div class="col-md-4"> 
