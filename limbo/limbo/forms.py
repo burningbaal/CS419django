@@ -9,7 +9,7 @@ class index (forms.Form):
 	
 class MethodForm(ModelForm):
 	class Meta:
-		model: Method
+		model = Method
 		fields = '__all__'
 		widgets = {'id': forms.HiddenInput()}
 	def __init__(self, *args, **kwargs):
