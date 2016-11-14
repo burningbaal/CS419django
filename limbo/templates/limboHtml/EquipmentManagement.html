@@ -9,7 +9,7 @@
 	{{ formSet.management_form }}
 		<div class='row-fluid'>
 			{% for form in formSet|slice:":1" %}
-				{% for field in form %}
+				{% for field in form.visible_fields %}
 					{% if field.label != "Id" %}
 						<div class="col-md-2"><strong>{{field.label}}</strong></div>
 					{% endif %}
@@ -19,7 +19,7 @@
 		</div>
 	{% for form in formSet %}
 		<div class='row-fluid'>
-			{% for field in form %}
+			{% for field in form.visible_fields %}
 				{% if field.label != "Id" %}
 					<div class="col-md-2">{{field}} </div>
 				{% else %}
