@@ -38,7 +38,7 @@ class SpecificEquipmentForm(ModelForm):
 	class Meta:
 		model = Instrument
 		exclude = ('id', 'checksum_string')
-		self.fields['FK_instr_type'].label = 'Instrumen Type')
+		self.fields['FK_instr_type'].label = 'Instrument Type'
 		#include way to validate versions (and useres?)
 	def __init__(self, *args, **kwargs):
 		super(SpecificEquipmentForm, self).__init__(*args, **kwargs)
