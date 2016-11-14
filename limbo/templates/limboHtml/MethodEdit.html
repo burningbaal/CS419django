@@ -31,7 +31,7 @@
 		<!--new form -->
 			{% for field in form %}
 			<!--new field -->
-				{% if field.label != "Id" %}
+				{% if field not in form.hidden_fields %}
 					<div class="col-sm-4">{{field}} </div>
 				{% else %}
 					{{field}}
