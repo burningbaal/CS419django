@@ -25,7 +25,6 @@
 					{% endif %}
 				{% endfor %}
 			{% endfor %}
-						<!--div class="col-md-2"><strong>Details</strong></div-->
 		</div>
 	{% for form in formSet.forms %}
 		<div class="row-fluid">
@@ -38,11 +37,6 @@
 					{{field}}
 				{% endif %}
 			{% endfor %}
-			<!--div class="col-md-6"> 
-				{% if form.assset_number.value != 'None' %}
-					<a href="{% url 'editInstrument' %}?instrument={{ form.id.value }}">Edit Details</a>
-				{% endif %}
-			</div-->
 		</div>
 	{% endfor %}
 	<div class="row-fluid">
