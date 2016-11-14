@@ -21,11 +21,7 @@
 	{% for form in formSet %}
 		<div class='row-fluid'>
 			{% for field in form.visible_fields %}
-				{% if field.label in formSet.visible_fields %}
-					<div class="col-md-2">{{field}} </div>
-				{% else %}
-					{# field #}
-				{% endif %}
+				<div class="col-md-2">{{field}} </div>
 			{% endfor %}
 			<div class="col-md-4"> 
 				{% if form.assset_number.value != 'None' %}
