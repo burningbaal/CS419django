@@ -56,7 +56,7 @@ def editMethods(request):
 	
 	if request.method =='POST':
 		postFormset = formSet(request.POST, request.FILES)
-	if postFormset.is_valid():
+		if postFormset.is_valid():
 			for form in postFormset:
 				if form.is_valid(): # and not form.empty_permitted:
 					form.save()
