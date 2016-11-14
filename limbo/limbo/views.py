@@ -51,6 +51,30 @@ def editUsers(request):
 	form = usersForm()
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
+def editMethod(request):
+	methodID = request.GET.get('method', None)
+	if request.method == 'POST':
+		method = Method.objects.get(name=request.POST.get('name', None))
+		time = datetime.now()
+		#for vers in request.POST.getlist('VersionsFromInstrument'):
+			#curVersion = Version.objects.get(pk=int(vers))
+			
+			#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
+			#curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
+			#####################CHANGE THE LINE ABOVE SOON!!!!######################################
+			
+			#validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
+			#validation.save()
+			#methodID = asset.id
+	if methodID is None:
+		formSet = modelformset_factory(serverConfig, exclude=('id',), extra=0)
+		return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit an instrument without a "asset_number" parameter.'})
+	instr = get_object_or_404(Instrument, pk=methodID ) 
+	serial = InstrumentSerializer(instr)
+	strInstrument = JSONRenderer().render(serial.data)
+	form = SpecificEquipmentForm(instance=instr)
+	return render(request, 'limboHtml/InstrumentManagement.html', {'formSet': formSet, 'instrument': None})
+	
 def editMethods(request):
 	formSet = modelformset_factory(Method, exclude=('id',), extra=1)
 	
@@ -63,7 +87,7 @@ def editMethods(request):
 			# call out to limboLogic.py to update values, add them to the session
 			message = 'The values have been updated.'
 			return render(request, 'limboHtml/Methods.html', {'formSet': postFormset, 'SubmitMessage': message})	
-	return render(request, 'limboHtml/Methods.html', {'formSet': formSet, 'SubmitMessage': 'testing: 123'})
+	return render(request, 'limboHtml/Methods.html', {'formSet': formSet, 'SubmitMessage': ''})
 
 def editInstrument(request):
 	assetId = request.GET.get('instrument', None)
