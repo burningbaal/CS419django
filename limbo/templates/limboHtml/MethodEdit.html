@@ -21,7 +21,7 @@
 				{% for field in form %}
 					{# if field.label != "Id" and field.label != "FK method" #}
 					{% if field not in form.hidden_fields %}
-						<div class="col-sm-4"><strong>{{field.label}}</strong></div>
+						<div class="col-sm-4"><h2>{{field.label}}</h2></div>
 					{% endif %}
 				{% endfor %}
 			{% endfor %}

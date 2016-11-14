@@ -3,14 +3,19 @@
 {% block content %}
 	<p>This is the equipment management page</p><br>
 	{{ SubmitMessage }}<br>
+	
 	<form method="post" action="../equipment/instrument">{% csrf_token %}
 		{% for field in form %}
-			<div class="row"> <strong><div class="col-md-4"> {{ field.label }}: </div></strong> <div class="col-md-8">{{ field }} </div> </div>
+			<div class="row-fluid"> 
+				<h2><div class="col-md-3"> {{ field.label }}: </div></h2> 
+				    <div class="col-md-9"> {{ field }}        </div> 
+			</div>
 		{% endfor %}
-	<input type="submit" value="Update" />
+	<div class="row-fluid"> 
+		<input type="submit" value="Update" />
+	</div>
 	</form>
-	<strong><a href="{% url 'editInstrument' %}?instrument={{ instrument.id }}">Cancel Changes</a></strong><br><br>
-	
-	<strong><a href="{% url 'editEqiupment' %}">Back to all equipment</a></strong>
+	<p><strong><a href="{% url 'editInstrument' %}?instrument={{ instrument.id }}">Cancel Changes</a></strong></p>
+	<p><strong><a href="{% url 'editEqiupment' %}">Back to all equipment</a></strong></p>
 
 {% endblock %}
