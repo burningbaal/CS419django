@@ -53,8 +53,8 @@ def editUsers(request):
 
 def editInstrument(request):
 	asset = request.GET.get('instrument', None)
-	if asset is None or request.method == 'POST':
-		asset = request.POST.get('id', None)
+	if request.method == 'POST':
+		asset = Instrument.objects.get(asset_number=request.POST.get('asset_number', None))
 		#asset = request.POST.getlist('VersionsFromInstrument') # intentional bug to see what's going on
 		for vers in request.POST.getlist('VersionsFromInstrument'):
 			curVersion = Version.objects.get(pk=int(vers))
