@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
- <div class="row">
+ 
 	<p>This is the equipment management page</p><br>
 	{{ SubmitMessage }}<br>
 	{{ formset.non_form_errors }}<br>
@@ -34,5 +34,5 @@
 	{% endfor %}
 	<input type="submit" value="Update" />
 	</form>
-  </div>
+  
 {% endblock %}
