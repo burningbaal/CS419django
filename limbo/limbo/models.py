@@ -10,7 +10,7 @@ class serverConfig(models.Model):
 class UserProfile(models.Model):
 	def __str__(self):
 		return user.last_name + ', ' + user.first_name
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	
 	
 class InstrType(models.Model):
