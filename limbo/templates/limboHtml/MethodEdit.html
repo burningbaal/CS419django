@@ -7,7 +7,7 @@
 	<form method="post" action="../Method">{% csrf_token %}
 		<div class="row"> 
 		{% for field in form %}
-			<strong><div class="col-md-4"> {{ field.label }}: </div></strong> <div class="col-md-8">{{ field }} </div> 
+			<strong><div class="col-md-2"> {{ field.label }}: </div></strong> <div class="col-md-4">{{ field }} </div> 
 		{% endfor %}
 		</div>
 	<input type="submit" value="Update" />
@@ -16,7 +16,7 @@
 	<h1>Method's Version Details</h1>
 	<form method="post" action="">{% csrf_token %}
 	{{ formSet.management_form }}
-		<div class='row'>
+		<div class="row-fluid">
 			{% for form in formSet|slice:":1" %}
 				{% for field in form %}
 					{# if field.label != "Id" and field.label != "FK method" #}
@@ -28,7 +28,7 @@
 						<!--div class="col-md-2"><strong>Details</strong></div-->
 		</div>
 	{% for form in formSet %}
-		<div class='row'>
+		<div class="row-fluid">
 			{% for field in form %}
 				{% if field.label != "Id" %}
 					<div class="col-md-4">{{field}} </div>
@@ -43,10 +43,11 @@
 			</div-->
 		</div>
 	{% endfor %}
-	<input type="submit" value="Update" />
+	<div class="row-fluid">
+		<input type="submit" value="Update" />
+	</div>
 	</form>
-	<strong><a href="{% url 'editMethod' %}?Method={{ method.id }}">Cancel Changes</a></strong><br><br>
-	
-	<strong><a href="{% url 'editMethods' %}">Back to all Methods</a></strong>
+	<p><strong><a href="{% url 'editMethod' %}?Method={{ method.id }}">Cancel Changes</a></strong></p>
+	<p><strong><a href="{% url 'editMethods' %}">Back to all Methods</a></strong></p>
 
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<p>This is the Methods management page</p><br>
+	<h1>Methods Overview</h1>
 	{{ SubmitMessage }}<br>
 	{{ formset.non_form_errors }}<br>
 	<form method="post" action="">{% csrf_token %}
@@ -32,8 +32,9 @@
 			</div>
 		</div>
 	{% endfor %}
-	<input type="submit" value="Update" />
-	<strong><a href="{% url 'editMethods' %}">Cancel Changes</a></strong><br><br>
-	
+	<div class="row-fluid">
+		<input type="submit" value="Update" />
+		<p><strong><a href="{% url 'editMethods' %}">Cancel Changes</a></strong></p>
+	</div>
 
 {% endblock %}
