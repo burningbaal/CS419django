@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
- <div class="row">
 	<p>This is the equipment management page</p><br>
 	{{ SubmitMessage }}<br>
 	<form method="post" action="edit/equipment/instrument">{% csrf_token %}
@@ -10,5 +9,5 @@
 		{% endfor %}
 	<input type="submit" value="Update" />
 	</form>
-  </div>
+
 {% endblock %}
