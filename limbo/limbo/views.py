@@ -52,7 +52,7 @@ def editUsers(request):
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
 def editMethod(request):
-	methodID = request.GET.get('method', None)
+	methodID = request.GET.get('Method', None)
 	if request.method == 'POST':
 		method = Method.objects.get(name=request.POST.get('name', None))
 		time = datetime.now()
