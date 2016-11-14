@@ -15,7 +15,8 @@
 		<input type="submit" value="Update" />
 	</div>
 	</form>
-	<p><strong><a href="{% url 'editInstrument' %}?instrument={{ instrument.id }}">Cancel Changes</a></strong></p>
-	<p><strong><a href="{% url 'editEqiupment' %}">Back to all equipment</a></strong></p>
-
+	<div class="row-fluid"> 
+		<p><strong><a href="{% url 'editInstrument' %}?instrument={{ instrument.id }}">Cancel Changes</a></strong></p>
+		<p><strong><a href="{% url 'editEqiupment' %}">Back to all equipment</a></strong></p>
+	</div>
 {% endblock %}
