@@ -10,22 +10,22 @@
 			{% for form in formSet|slice:":1" %}
 				{% for field in form %}
 					{% if field.label != "Id" %}
-						<div class="col-md-5"><strong>{{field.label}}</strong></div>
+						<div class="col-lg-5"><strong>{{field.label}}</strong></div>
 					{% endif %}
 				{% endfor %}
 			{% endfor %}
-						<div class="col-md-2"><strong>Details</strong></div>
+						<div class="col-lg-2"><strong>Details</strong></div>
 		</div>
 	{% for form in formSet %}
 		<div class='row'>
 			{% for field in form %}
 				{% if field.label != "Id" %}
-					<div class="col-md-5">{{field}} </div>
+					<div class="col-lg-5">{{field}} </div>
 				{% else %}
 					{{field}}
 				{% endif %}
 			{% endfor %}
-			<div class="col-md-2"> 
+			<div class="col-lg-2"> 
 				{% if form.assset_number.value != 'None' %}
 					<a href="{% url 'editMethod' %}?Method={{ form.id.value }}">Edit Versions</a>
 				{% endif %}

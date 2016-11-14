@@ -3,13 +3,17 @@
 {% block content %}
 	<p>This is the Method editing page</p><br>
 	{{ SubmitMessage }}<br>
+	<h1>Method Overview</h1>
 	<form method="post" action="../Method">{% csrf_token %}
+		<div class="row"> 
 		{% for field in form %}
-			<div class="row"> <strong><div class="col-md-4"> {{ field.label }}: </div></strong> <div class="col-md-8">{{ field }} </div> </div>
+			<strong><div class="col-md-4"> {{ field.label }}: </div></strong> <div class="col-md-8">{{ field }} </div> 
 		{% endfor %}
+		</div>
 	<input type="submit" value="Update" />
 	</form>
 	{{ formSet.non_form_errors }}<br>
+	<h1>Method's Version Details</h1>
 	<form method="post" action="">{% csrf_token %}
 	{{ formSet.management_form }}
 		<div class='row'>
