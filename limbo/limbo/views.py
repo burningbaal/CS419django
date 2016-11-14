@@ -52,7 +52,7 @@ def editUsers(request):
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
 def editMethods(request):
-	formset = modelformset_factory(Method, exclude=('id',), extra=1)
+	formSet = modelformset_factory(Method, exclude=('id',), extra=1)
 	
 	if request.method =='POST':
 		postFormset = formSet(request.POST, request.FILES)
