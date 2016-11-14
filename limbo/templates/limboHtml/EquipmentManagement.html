@@ -15,8 +15,8 @@
 					{% endif %}
 				{% endfor %}
 			{% endfor %}
-						<div class="col-md-2"><strong>Details</strong></div>
-						<div class="col-md-2">&nbsp</div>
+						<div class="col-md-4"><strong>Details</strong></div>
+						
 		</div>
 	{% for form in formSet %}
 		<div class='row-fluid'>
@@ -27,12 +27,12 @@
 					{{field}}
 				{% endif %}
 			{% endfor %}
-			<div class="col-md-2"> 
+			<div class="col-md-4"> 
 				{% if form.assset_number.value != 'None' %}
 					<a href="{% url 'editInstrument' %}?instrument={{ form.id.value }}">Edit Details</a>
 				{% endif %}
 			</div>
-			<div class="col-md-2"> &nbsp</div>
+			
 		</div>
 	{% endfor %}
 	<input type="submit" value="Update" />
