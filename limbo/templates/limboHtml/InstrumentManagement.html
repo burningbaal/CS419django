@@ -5,12 +5,12 @@
 	<p>{{ SubmitMessage }}</p>
 	<div class="row-fluid"> 
 		<form method="post" action="../equipment/instrument">{% csrf_token %}
-			<div class="row-fluid"> 
 			{% for field in form.visible_fields %}
+				<div class="row"> 
 					<div class="col-md-3"><font size="6"> {{ field.label }}: </font> </div>
 					<div class="col-md-9"> {{ field }}        </div> 
+				</div>
 			{% endfor %}
-			</div>
 		<div class="row-fluid"> 
 			<input type="submit" value="Update" />
 		</div>
