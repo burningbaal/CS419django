@@ -6,6 +6,17 @@ from django.views.generic import CreateView
 
 class index (forms.Form):
 	index_val = forms.CharField(label='Your Limbo name', max_length=10)
+	
+class MethodForm(ModelForm):
+	class Meta:
+		model: Method
+		fields = '__all__'
+		widgets = {'id': forms.HiddenInput()}
+	def __init__(self, *args, **kwargs):
+		super(MethodForm, self).__init__(*args, **kwargs)
+		instance = getattr(self, 'instance', None)
+		#self.fields['FK_instr_type'].label = 'Instrument Type'
+		#self.fields['VersionsFromInstrument'].label = 'Valid Versions'
 
 class usersForm(forms.Form):
 	user_name = forms.CharField(label='New User\'s  name', max_length=100)
