@@ -9,6 +9,6 @@
 		{% endfor %}
 	<input type="submit" value="Update" />
 	</form>
-	<strong><a href=="../equipment/instrument?instrument={{ form.field.id }}">Cancel Changes</a></strong>
+	<strong><a href="{% url 'editInstrument' %}?instrument={{ form.field.id }}">Cancel Changes</a></strong>
 
 {% endblock %}
