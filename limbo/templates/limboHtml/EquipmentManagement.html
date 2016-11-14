@@ -7,7 +7,7 @@
 	{{ formSet.non_form_errors }}<br>
 	<form method="post" action="">{% csrf_token %}
 	{{ formSet.management_form }}
-		<div class='row-fluid'>
+		<div class='row'>
 			{% for form in formSet|slice:":1" %}
 				{% for field in form.visible_fields %}
 					{% if field.label != "Id" %}
@@ -19,7 +19,7 @@
 						
 		</div>
 	{% for form in formSet %}
-		<div class='row-fluid'>
+		<div class='row'>
 			{% for field in form.visible_fields %}
 				<div class="col-md-2">{{field}} </div>
 			{% endfor %}
