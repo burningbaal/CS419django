@@ -8,6 +8,5 @@ urlpatterns = [
 	url(r'^(index\.?[html]{,4})?$', views.indexLimbo, name='indexLimbo'),
 	url(r'^users.html$', views.editUsers, name='editUsers'),
 	url(r'^equipment.html$', views.editEquipment, name='editEqiupment'),
-	url(r'^equipment/instrument$', views.editInstrument, name='editInstrument'),
 	url(r'^server.html$', views.editServer, name='editServer'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

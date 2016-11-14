@@ -3,7 +3,7 @@
 {% block content %}
 	<p>This is the equipment management page</p><br>
 	{{ SubmitMessage }}<br>
-	<form method="post" action="../instrument">{% csrf_token %}
+	<form method="post" action="../equipment/instrument">{% csrf_token %}
 		{% for field in form %}
 			<div class="row"> <div class="col-md-4"> {{ field.label }}: </div> <div class="col-md-8">{{ field }} </div> </div>
 		{% endfor %}
