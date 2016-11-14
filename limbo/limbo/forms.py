@@ -37,7 +37,8 @@ class Instr_VersionCreate(CreateView):
 class SpecificEquipmentForm(ModelForm):
 	class Meta:
 		model = Instrument
-		fields = '__all__'
+		exclude = ('id', 'checksum_string')
+		self.fields['FK_instr_type'].label = 'Instrumen Type')
 		#include way to validate versions (and useres?)
 	def __init__(self, *args, **kwargs):
 		super(SpecificEquipmentForm, self).__init__(*args, **kwargs)
