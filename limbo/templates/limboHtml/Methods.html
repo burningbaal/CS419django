@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<p>This is the Methods management page</p><br>
+	{{ SubmitMessage }}<br>
+	<form method="post" action="../Methods">
+		{% csrf_token %}
+		{% for field in form %}
+			<div class="row"> <strong><div class="col-md-4"> {{ field.label }}: </div></strong> <div class="col-md-8">{{ field }} </div> </div>
+		{% endfor %}
+	<input type="submit" value="Update" />
+	</form>
+	<strong><a href="{% url 'editMethods' %}">Cancel Changes</a></strong><br><br>
+	
+
+{% endblock %}

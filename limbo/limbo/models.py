@@ -8,6 +8,8 @@ class serverConfig(models.Model):
 	config_value = models.CharField(max_length=63)
 	
 class UserProfile(models.Model):
+	def __str__(self):
+		return user.last_name + ', ' + user.first_name
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	
 	
@@ -37,6 +39,8 @@ class Version(models.Model):
 		unique_together = ('version_number', 'FK_method')
 
 class Instrument(models.Model):
+	def __str__(self):
+		return self.asset_number + ': ' + self.name
 	serial_number = models.CharField(max_length=50, unique=True)
 	asset_number = models.CharField(max_length=50, unique=True)
 	name = models.CharField(max_length=50)

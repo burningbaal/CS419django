@@ -51,6 +51,20 @@ def editUsers(request):
 	form = usersForm()
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
+def editMethods(request)
+	formset = modelformset_factory(Method, exclude=('id',), extra=1)
+	
+	if request.method =='POST':
+		postFormset = formSet(request.POST, request.FILES)
+	if postFormset.is_valid():
+			for form in postFormset:
+				if form.is_valid(): # and not form.empty_permitted:
+					form.save()
+			# call out to limboLogic.py to update values, add them to the session
+			message = 'The values have been updated.'
+			return render(request, 'limboHtml/Methods.html', {'formSet': postFormset, 'SubmitMessage': message})	
+	return render(request, 'limboHtml/Methods.html', {'formSet': formSet, 'SubmitMessage': 'testing: 123'})
+
 def editInstrument(request):
 	assetId = request.GET.get('instrument', None)
 	if request.method == 'POST':
