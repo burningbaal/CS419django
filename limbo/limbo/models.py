@@ -31,7 +31,7 @@ class Version(models.Model):
 	def __str__(self):
 		return self.FK_method.name + ' ' + self.version_number
 	version_number = models.CharField(max_length=50)
-	cmd_line_script = models.CharField(max_length=250, null=False)
+	cmd_line_script = models.TextField(null=False)
 	SOP = models.TextField(null=False)
 	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE)
 	
