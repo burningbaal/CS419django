@@ -21,6 +21,8 @@ class GeneralEquipmentForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(Instrument, self).__init__(*args, **kwargs)
 		instance = getattr(self, 'instance', None)
+		self.fields['FK_instr_type'].label = 'Instrument Type'
+		#self.fields['VersionsFromInstrument'].label = 'Valid Versions'
 		#if instance and instance.pk:
 			#self.fields['config_key'].widget.attrs['readonly'] = True
 			#self.fields['config_key'].widget.attrs['disabled'] = True
@@ -43,6 +45,7 @@ class SpecificEquipmentForm(ModelForm):
 		super(SpecificEquipmentForm, self).__init__(*args, **kwargs)
 		instance = getattr(self, 'instance', None)
 		self.fields['FK_instr_type'].label = 'Instrument Type'
+		self.fields['VersionsFromInstrument'].label = 'Valid Versions'
 
 class serverForm(ModelForm):
 	class Meta:
