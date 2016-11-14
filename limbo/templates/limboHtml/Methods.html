@@ -6,7 +6,7 @@
 	{{ formset.non_form_errors }}<br>
 	<form method="post" action="">{% csrf_token %}
 	{{ formSet.management_form }}
-		<div class='row'>
+		<div class='row-fluid'>
 			{% for form in formSet|slice:":1" %}
 				{% for field in form %}
 					{% if field.label != "Id" %}
@@ -17,7 +17,7 @@
 						<div class="col-lg-2"><strong>Details</strong></div>
 		</div>
 	{% for form in formSet %}
-		<div class='row'>
+		<div class='row-fluid'>
 			{% for field in form %}
 				{% if field.label != "Id" %}
 					<div class="col-lg-5">{{field}} </div>
