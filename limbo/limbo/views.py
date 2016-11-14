@@ -73,6 +73,7 @@ def editMethod(request):
 	method = get_object_or_404(Method, pk=methodID ) 
 	form = MethodForm(instance=method)
 	formSet = inlineformset_factory(Method, Version, exclude=('FK_method',), can_delete=False)
+	formSet = formSet(instance=method)
 	return render(request, 'limboHtml/MethodEdit.html', {'form': form, 'formSet': formSet, 'method': method})
 	
 def editMethods(request):
