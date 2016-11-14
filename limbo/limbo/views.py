@@ -57,7 +57,7 @@ def editInstrument(request):
 		asset = request.POST.get('id', None)
 		#asset = request.POST.getlist('VersionsFromInstrument') # intentional bug to see what's going on
 		for vers in request.POST.getlist('VersionsFromInstrument'):
-			validation = Instr_Version(FK_instrument=asset, FK_version=vers, timestamp=datetime.now)
+			validation = Instr_Version(FK_instrument=asset, FK_version=int(vers), timestamp=datetime.now)
 			validation.save()
 	if asset is None:
 		formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
