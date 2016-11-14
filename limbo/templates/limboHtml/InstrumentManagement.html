@@ -7,7 +7,7 @@
 	<form method="post" action="../equipment/instrument">{% csrf_token %}
 		{% for field in form.visible_fields %}
 			<div class="row-fluid"> 
-				<h2><div class="col-md-3"> {{ field.label }}: </div></h2> 
+				<h2 style="display:inline;"><div class="col-md-3"> {{ field.label }}: </div></h2> 
 				    <div class="col-md-9"> {{ field }}        </div> 
 			</div>
 		{% endfor %}
