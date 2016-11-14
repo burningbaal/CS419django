@@ -51,7 +51,7 @@ def editUsers(request):
 	form = usersForm()
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
-def editMethods(request)
+def editMethods(request):
 	formset = modelformset_factory(Method, exclude=('id',), extra=1)
 	
 	if request.method =='POST':
