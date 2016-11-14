@@ -71,7 +71,8 @@ def editMethod(request):
 		return render(request, 'limboHtml/Methods.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit a Method without a "id" parameter.'})
 	method = get_object_or_404(Method, pk=methodID ) 
 	form = MethodForm(instance=method)
-	return render(request, 'limboHtml/MethodEdit.html', {'form': form, 'method': method})
+	formSet = inlineformset_factory(Method, Version, can_delete=False)
+	return render(request, 'limboHtml/MethodEdit.html', {'form': form, 'formSet': formSet, method': method})
 	
 def editMethods(request):
 	formSet = modelformset_factory(Method, exclude=('id',), extra=1)
