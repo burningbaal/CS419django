@@ -19,7 +19,6 @@
 		<div class="row-fluid">
 			{% for form in formSet|slice:":1" %}
 				{% for field in form %}
-					{# if field.label != "Id" and field.label != "FK method" #}
 					{% if field not in form.hidden_fields %}
 						<div class="col-sm-4"><h2>{{field.label}}</h2></div>
 					{% endif %}
