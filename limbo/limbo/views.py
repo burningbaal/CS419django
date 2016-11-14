@@ -70,8 +70,6 @@ def editMethod(request):
 		formSet = modelformset_factory(Method, exclude=('id',), extra=1)
 		return render(request, 'limboHtml/Methods.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit a Method without a "id" parameter.'})
 	method = get_object_or_404(Method, pk=methodID ) 
-	serial = InstrumentSerializer(method)
-	strInstrument = JSONRenderer().render(serial.data)
 	form = SpecificEquipmentForm(instance=method)
 	return render(request, 'limboHtml/InstrumentManagement.html', {'formSet': formSet, 'method': method})
 	
@@ -108,8 +106,8 @@ def editInstrument(request):
 		formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 		return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit an instrument without a "asset_number" parameter.'})
 	instr = get_object_or_404(Instrument, pk=assetId ) 
-	serial = InstrumentSerializer(instr)
-	strInstrument = JSONRenderer().render(serial.data)
+	#serial = InstrumentSerializer(instr)
+	#strInstrument = JSONRenderer().render(serial.data)
 	form = SpecificEquipmentForm(instance=instr)
 	return render(request, 'limboHtml/InstrumentManagement.html',{'form': form, 'instrument': instr}) 
 	
