@@ -7,8 +7,8 @@
 	<form method="post" action="../equipment/instrument">{% csrf_token %}
 		{% for field in form.visible_fields %}
 			<div class="row-fluid"> 
-				<font size="6"><div class="col-md-3"> {{ field.label }}: </div></font> 
-				    <div class="col-md-9"> {{ field }}        </div> 
+				<div class="col-md-3"><font size="6"> {{ field.label }}: </font> </div>
+				<div class="col-md-9"> {{ field }}        </div> 
 			</div>
 		{% endfor %}
 	<div class="row-fluid"> 
