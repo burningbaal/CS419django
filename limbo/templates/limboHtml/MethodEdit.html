@@ -27,9 +27,11 @@
 			{% endfor %}
 						<!--div class="col-md-2"><strong>Details</strong></div-->
 		</div>
-	{% for form in formSet %}
+	{% for form in formSet.forms %}
 		<div class="row-fluid">
+		<!--new form -->
 			{% for field in form %}
+			<!--new field -->
 				{% if field.label != "Id" %}
 					<div class="col-sm-4">{{field}} </div>
 				{% else %}
