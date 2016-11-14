@@ -55,10 +55,10 @@ def editInstrument(request):
 	asset = request.GET.get('instrument', None)
 	if request.method == 'POST':
 		asset = Instrument.objects.get(asset_number=request.POST.get('asset_number', None))
-		#asset = request.POST.getlist('VersionsFromInstrument') # intentional bug to see what's going on
 		for vers in request.POST.getlist('VersionsFromInstrument'):
 			curVersion = Version.objects.get(pk=int(vers))
-			validation = Instr_Version(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now)
+			curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV
+			validation = Instr_Version(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now, validating_user=curUser)
 			validation.save()
 	if asset is None:
 		formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
