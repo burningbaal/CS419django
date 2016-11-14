@@ -57,14 +57,18 @@ def editInstrument(request):
 		asset = Instrument.objects.get(asset_number=request.POST.get('asset_number', None))
 		for vers in request.POST.getlist('VersionsFromInstrument'):
 			curVersion = Version.objects.get(pk=int(vers))
-			curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV
-			validation = Instr_Version(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now, validating_user=curUser)
+			
+			#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
+			curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
+			#####################CHANGE THE LINE ABOVE SOON!!!!######################################
+			
+			validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now, validating_user=curUser)
 			validation.save()
 			assetId = asset.id
 	if assetId is None:
 		formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 		return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit an instrument without a "asset_number" parameter.'})
-	instr = get_object_or_404(Instrument, pk=intassetId ) 
+	instr = get_object_or_404(Instrument, pk=int(assetId ) 
 	serial = InstrumentSerializer(instr)
 	strInstrument = JSONRenderer().render(serial.data)
 	form = SpecificEquipmentForm(instance=instr)
