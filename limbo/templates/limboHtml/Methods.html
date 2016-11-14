@@ -10,7 +10,7 @@
 			{% for form in formSet|slice:":1" %}
 				{% for field in form %}
 					{% if field.label != "Id" %}
-						<div class="col-md-2"><strong>{{field.label}}</strong></div>
+						<div class="col-md-5"><strong>{{field.label}}</strong></div>
 					{% endif %}
 				{% endfor %}
 			{% endfor %}
@@ -20,7 +20,7 @@
 		<div class='row'>
 			{% for field in form %}
 				{% if field.label != "Id" %}
-					<div class="col-md-2">{{field}} </div>
+					<div class="col-md-5">{{field}} </div>
 				{% else %}
 					{{field}}
 				{% endif %}
