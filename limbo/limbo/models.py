@@ -25,7 +25,7 @@ class Method(models.Model):
 	def __str__(self):
 		return self.name
 	name = models.CharField(max_length=50, unique=True)
-	descripton = models.TextField(null=False)
+	description = models.TextField(null=False)
 
 class Version(models.Model):
 	def __str__(self):
