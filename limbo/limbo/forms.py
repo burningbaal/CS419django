@@ -30,10 +30,10 @@ class MethodForm(ModelForm):
 
 class MethodFormSetHelper(FormHelper):
 	def __init__(self, *args, **kwargs):
-        super(MethodFormSetHelper, self).__init__(*args, **kwargs)
+		super(MethodFormSetHelper, self).__init__(*args, **kwargs)
 		self.form_method = 'post'
-        self.layout = Layout(
-            Row(
+		self.layout = Layout(
+			Row(
 				Div('name', css_class='col-md-3'),
 				Div('description', css_class='col-md-9'),
 			),
