@@ -31,7 +31,7 @@ class MethodForm(ModelForm):
 class MethodDropDown(forms.Form):
 	method = forms.ChoiceField(
 		choices=[(o.id, str(o)) for o in Method.objects.all()], 
-		label='Method to edit'
+		label='Edit details of: '
 	)
 		
 class MethodFormSetHelper(FormHelper):
