@@ -5,7 +5,7 @@
 	{{ SubmitMessage }}<br>
 	<h1>Method Overview</h1>
 	{% load crispy_forms_tags %}
-	{% crispy example_form %}
+	{% crispy MethodForm %}
 	<form method="post" action="../Method">{% csrf_token %}
 		<div class="row"> 
 		{% for field in form %}
