@@ -19,9 +19,10 @@ class MethodForm(ModelForm):
 		instance = getattr(self, 'instance', None)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
-			Row(
+			Div(
 				Div('name', css_class='col-md-3'),
 				Div('description', css_class='col-md-9'),
+				css_class='row well well-lg',
 			),
 			ButtonHolder(
 				Submit('submit', 'Submit', css_class='button white')
@@ -81,11 +82,12 @@ class EquipmentFormSetHelper(FormHelper):
 		super(EquipmentFormSetHelper, self).__init__(*args, **kwargs)
 		self.form_method = 'post'
 		self.layout = Layout(
-			Row(
+			Div(
 				Div('serial_number', css_class='col-md-3'),
 				Div('asset_number', css_class='col-md-3'),
 				Div('name', css_class='col-md-3'),
 				Div('FK_instr_type', css_class='col-md-3'),
+				css_class='row well well-lg',
 			),
 		)
 		self.render_required_fields = True
