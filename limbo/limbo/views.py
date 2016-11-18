@@ -138,6 +138,7 @@ def editMethods(request):
 
 def editInstrument(request):
 	assetId = request.POST.get('instrument', None)
+	form = SpecificEquipmentForm(instance=instr)
 	try:
 		update = request.POST.getlist('VersionsFromInstrument')
 	except:
@@ -156,13 +157,30 @@ def editInstrument(request):
 			#validation.save()
 			assetId = asset.id
 	if assetId is None:
-		formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
-		return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit an instrument without a "asset_number" parameter.'})
+		formSet = modelformset_factory(
+			Instrument, 
+			exclude=('VersionsFromInstrument', 'checksum_string',), 
+			extra=1
+		)
+		return render(
+			request, 
+			'limboHtml/EquipmentManagement.html', 
+			{
+				'formSet': formSet, 
+				'SubmitMessage': 'ERROR: Cannot edit an instrument without a "asset_number" parameter.'
+			}
+		)
 	instr = get_object_or_404(Instrument, pk=assetId ) 
 	#serial = InstrumentSerializer(instr)
 	#strInstrument = JSONRenderer().render(serial.data)
-	form = SpecificEquipmentForm(instance=instr)
-	return render(request, 'limboHtml/InstrumentManagement.html',{'form': form, 'instrument': instr}) 
+	return render(
+		request, 
+		'limboHtml/InstrumentManagement.html',
+		{
+			'form': form, 
+			'instrument': instr
+		}
+	) 
 	
 def editEquipment(request):
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)

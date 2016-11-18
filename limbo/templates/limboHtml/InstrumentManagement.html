@@ -5,22 +5,6 @@
 	
 	{% load crispy_forms_tags %}
 	{% crispy form %}
-	<br>
-	<br>
-	<br>
-	<div class="row-fluid"> 
-		<form method="post" action="../equipment/instrument">{% csrf_token %}
-			{% for field in form.visible_fields %}
-				<div class="row"> 
-					<div class="col-md-3"><font size="6"> {{ field.label }}: </font> </div>
-					<div class="col-md-9"> {{ field }}        </div> 
-				</div>
-			{% endfor %}
-		<div class="row-fluid"> 
-			<input type="submit" value="Update" />
-		</div>
-		</form>
-	</div>
 	<div class="row-fluid"> 
 		<p><strong><a href="{% url 'editInstrument' %}?instrument={{ instrument.id }}">Cancel Changes</a></strong></p>
 		<p><strong><a href="{% url 'editEqiupment' %}">Back to all equipment</a></strong></p>
