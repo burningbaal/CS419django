@@ -53,8 +53,9 @@ def editUsers(request):
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
 def editMethod(request):
-	methodID = request.GET.get('Method', None)
-	if request.method == 'POST':
+	methodID = request.POST.get('method', None)
+	name = request.POST.get('name', None)
+	if request.method == 'POST' and name is not None:
 		method = Method.objects.get(name=request.POST.get('name', None))
 		time = datetime.now()
 		#for vers in request.POST.getlist('VersionsFromInstrument'):

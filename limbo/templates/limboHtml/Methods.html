@@ -6,7 +6,7 @@
 	<h1>Methods Overview</h1>
 	{{ SubmitMessage }}<br>
 	{{ formset.non_form_errors }}<br>
-	<form action="../Method/" method="get">
+	<form action="../Method/" method="post">
 		{% csrf_token %}
 		{{ form }}
 		<input type="submit" value="Submit" />
