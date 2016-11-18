@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+	{% load crispy_forms_tags %}
 	<h1>Methods Overview</h1>
 	{{ SubmitMessage }}<br>
 	{{ formset.non_form_errors }}<br>
