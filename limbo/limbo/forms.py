@@ -17,19 +17,17 @@ class MethodForm(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(MethodForm, self).__init__(*args, **kwargs)
 		instance = getattr(self, 'instance', None)
-		def __init__(self, *args, **kwargs):
-			super(MethodForm, self).__init__(*args, **kwargs)
-			self.helper = FormHelper()
-			self.helper.layout = Layout(
-				Fieldset(
-					'Method Setup',
-					'name',
-					'description'
-				),
-				ButtonHolder(
-				Submit('submit', 'Submit', css_class='button white')
-				)
+		self.helper = FormHelper()
+		self.helper.layout = Layout(
+			Fieldset(
+				'Method Setup',
+				'name',
+				'description'
+			),
+			ButtonHolder(
+			Submit('submit', 'Submit', css_class='button white')
 			)
+		)
 			
 		#self.fields['FK_instr_type'].label = 'Instrument Type'
 		#self.fields['VersionsFromInstrument'].label = 'Valid Versions'
