@@ -5,6 +5,11 @@
 	<p>This is the equipment management page</p><br>
 	{{ SubmitMessage }}<br>
 	{{ formSet.non_form_errors }}<br>
+	{% load crispy_forms_tags %}
+	{% crispy formSet helper %}
+	<br>
+	<br>
+	<br>
 	<form method="post" action="">{% csrf_token %}
 	{{ formSet.management_form }}
 		<div class='row'>
