@@ -21,8 +21,10 @@ class MethodForm(ModelForm):
 		self.helper.layout = Layout(
 			Fieldset(
 				'Method Setup',
-				'name',
-				'description'
+				Div(
+					Div('name', css_class='span6'),
+					Div('description', css_class='span6'),
+				css_class='row-fluid'),
 			),
 			ButtonHolder(
 			Submit('submit', 'Submit', css_class='button white')
