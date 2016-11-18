@@ -29,7 +29,7 @@ class MethodForm(ModelForm):
 		)
 
 class MethodDropDown(forms.Form):
-	method = forms.ChoiceField(choicees=[(o.id, str(o)) for o in Method.objects.all(), label='Method to edit')
+	method = forms.ChoiceField(choices=[(o.id, str(o)) for o in Method.objects.all()], label='Method to edit')
 		
 class MethodFormSetHelper(FormHelper):
 	def __init__(self, *args, **kwargs):
