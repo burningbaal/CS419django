@@ -138,7 +138,6 @@ def editMethods(request):
 
 def editInstrument(request):
 	assetId = request.POST.get('instrument', None)
-	form = SpecificEquipmentForm(instance=instr)
 	try:
 		update = request.POST.getlist('VersionsFromInstrument')
 	except:
@@ -171,6 +170,7 @@ def editInstrument(request):
 			}
 		)
 	instr = get_object_or_404(Instrument, pk=assetId ) 
+	form = SpecificEquipmentForm(instance=instr)
 	#serial = InstrumentSerializer(instr)
 	#strInstrument = JSONRenderer().render(serial.data)
 	return render(
