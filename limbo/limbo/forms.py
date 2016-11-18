@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from .models import *
 from django.views.generic import CreateView
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div, Row
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div, Row, Button
 
 
 class index (forms.Form):
@@ -37,13 +37,13 @@ class MethodFormSetHelper(FormHelper):
 				Div('name', css_class='col-md-3'),
 				Div('description', css_class='col-md-9'),
 				Div( 
-					Button(
+					ButtonHolder(Button(
 						'edit', 
 						"Edit", 
 						css_class='btn', 
 						onclick="location.href='method?Method=" + 'id' + "';"
 					
-					), 
+					)), 
 					css_class='col-md-4'
 				),
 			),
