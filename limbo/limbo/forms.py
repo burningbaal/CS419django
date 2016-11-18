@@ -126,6 +126,9 @@ class SpecificEquipmentForm(ModelForm):
 				Div('name', css_class='col-md-2'),
 				Div('FK_instr_type', css_class='col-md-3'),
 				Div('VersionsFromInstrument', css_class='col-md-3'),
+				ButtonHolder(
+					Submit('submit', 'Submit', css_class='button white')
+				),
 				css_class='row well well-lg',
 			),
 		)
