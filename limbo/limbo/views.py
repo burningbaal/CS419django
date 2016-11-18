@@ -17,6 +17,15 @@ from django.forms import inlineformset_factory
 
 from rest_framework.renderers import JSONRenderer
 
+#####################################
+# TODO:
+# add view for defining instrument types
+# add login/out feature (for now just let any valida account it)
+#	then restrict editing to just permitted users
+# do something with server configs
+# find a way to widen the fields in the forms
+#####################
+
 def indexLimbo(request, mystery):
 	# request.session.flush()
 	temp = mystery
