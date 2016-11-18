@@ -39,7 +39,12 @@ class MethodFormSetHelper(FormHelper):
 				Div( 
 					self.helper.add_input(
 						Button(
-							'edit', "Edit", css_class='btn', onclick="location.href='method?Method=" + 'id' + ';"))
+							'edit', 
+							"Edit", 
+							css_class='btn', 
+							onclick="location.href='method?Method=" + 'id' + "';"
+						)
+					)
 					, css_class='col-md-4'
 				),
 				),
