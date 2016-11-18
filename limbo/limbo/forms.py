@@ -22,9 +22,9 @@ class MethodForm(ModelForm):
 			Fieldset(
 				'Method Setup',
 				Div(
-					Div('name', css_class='span6'),
-					Div('description', css_class='span6'),
-				css_class='row-fluid'),
+					Div('name', css_class='col-md-4'),
+					Div('description', css_class='col-md-4'),
+				css_class='row'),
 			),
 			ButtonHolder(
 			Submit('submit', 'Submit', css_class='button white')
