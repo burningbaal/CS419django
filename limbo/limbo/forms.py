@@ -37,10 +37,10 @@ class MethodVersionFormSetHelper(FormHelper):
         self.form_method = 'post'
         self.layout = Layout(
             Div(
-				Div('version_number', css_class='col-md-3'),
-				Div('cmd_line_script', css_class='col-md-3'),
-				Div('SOP', css_class='col-md-3'),
-			, css_class='row'),
+				Div('version_number', css_class='col-md-2'),
+				Div('cmd_line_script', css_class='col-md-5'),
+				Div('SOP', css_class='col-md-5'),
+			css_class='row'),
         )
         self.render_required_fields = True
 
