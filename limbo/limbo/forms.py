@@ -23,9 +23,9 @@ class MethodForm(ModelForm):
 				Div('name', css_class='col-md-3'),
 				Div('description', css_class='col-md-9'),
 			),
-		),
-		ButtonHolder(
-			Submit('submit', 'Submit', css_class='button white')
+			ButtonHolder(
+				Submit('submit', 'Submit', css_class='button white')
+			),
 		)
 			
 class MethodVersionFormSetHelper(FormHelper):
