@@ -119,7 +119,8 @@ class SpecificEquipmentForm(ModelForm):
 		instance = getattr(self, 'instance', None)
 		self.fields['FK_instr_type'].label = 'Instrument Type'
 		self.fields['VersionsFromInstrument'].label = 'Valid Versions'
-		self.layout = Layout(
+		self.helper = FormHelper()
+		self.helper.layout = Layout(
 			Div(
 				Div('serial_number', css_class='col-md-2'),
 				Div('asset_number', css_class='col-md-2'),
