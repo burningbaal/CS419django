@@ -3,7 +3,10 @@
 {% block content %}
 
 	{% load crispy_forms_tags %}
-	<h1>Methods Method/" method="get">
+	<h1>Methods Overview</h1>
+	{{ SubmitMessage }}<br>
+	{{ formset.non_form_errors }}<br>
+	<form action="../Method/" method="get">
 		{% csrf_token %}
 		{{ form }}
 		<input type="submit" value="Submit" />
