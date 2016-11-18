@@ -75,9 +75,10 @@ class EquipmentFormSetHelper(FormHelper):
 		self.form_method = 'post'
 		self.layout = Layout(
 			Row(
-				Div('serial_number', css_class='col-md-4'),
-				Div('asset_number', css_class='col-md-4'),
-				Div('name', css_class='col-md-4'),
+				Div('serial_number', css_class='col-md-3'),
+				Div('asset_number', css_class='col-md-3'),
+				Div('name', css_class='col-md-3'),
+				Div('FK_instr_type', css_class='col-md-3'),
 			),
 		)
 		self.render_required_fields = True
