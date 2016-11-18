@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 	'api',
     'rest_framework.authtoken',
 	'jquery',
+	'crispy_forms',
 ]
 
 MIDDLEWARE = [
