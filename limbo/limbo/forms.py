@@ -28,6 +28,9 @@ class MethodForm(ModelForm):
 			),
 		)
 
+class MethodDropDown(forms.Form):
+	method = forms.ChoiceField(choices=[Method.objects.values])
+		
 class MethodFormSetHelper(FormHelper):
 	def __init__(self, *args, **kwargs):
 		super(MethodFormSetHelper, self).__init__(*args, **kwargs)
@@ -36,16 +39,6 @@ class MethodFormSetHelper(FormHelper):
 			Row(
 				Div('name', css_class='col-md-3'),
 				Div('description', css_class='col-md-9'),
-				Div( 
-					ButtonHolder(Button(
-						'edit', 
-						"Edit", 
-						css_class='btn', 
-						onclick="location.href='method?Method=" + self.object.pk + "';"
-					
-					)), 
-					css_class='col-md-4'
-				),
 			),
 		)
 		self.render_required_fields = True

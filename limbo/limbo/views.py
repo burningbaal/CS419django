@@ -103,6 +103,9 @@ def editMethods(request):
 	formSet = modelformset_factory(Method, exclude=('id',), extra=1)
 	helper = MethodFormSetHelper()
 	helper.add_input(Submit("submit", "Save"))
+	
+	form = MethodDropDown()
+	
 	if request.method =='POST':
 		postFormset = formSet(request.POST, request.FILES)
 		if postFormset.is_valid():
