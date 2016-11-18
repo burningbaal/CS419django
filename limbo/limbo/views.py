@@ -137,8 +137,12 @@ def editMethods(request):
 	)
 
 def editInstrument(request):
-	assetId = request.GET.get('instrument', None)
-	if request.method == 'POST':
+	assetId = request.POST.get('instrument', None)
+	try:
+		update = request.POST.getlist('VersionsFromInstrument')
+	except:
+		pass
+	if request.method == 'POST' and update:
 		asset = Instrument.objects.get(asset_number=request.POST.get('asset_number', None))
 		time = datetime.now()
 		for vers in request.POST.getlist('VersionsFromInstrument'):
@@ -164,6 +168,7 @@ def editEquipment(request):
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 	helper = EquipmentFormSetHelper()
 	helper.add_input(Submit("submit", "Save"))
+	form = InstrumentDropDown()
 	if request.method == 'POST':
 		postFormset = formSet(request.POST, request.FILES)
 		if postFormset.is_valid():
@@ -187,7 +192,8 @@ def editEquipment(request):
 				{
 					'formSet': postFormset, 
 					'SubmitMessage': message,
-					'helper': helper
+					'helper': helper,
+					'form': form
 				}
 			)
 	# if a GET (or any other method) we'll create a blank form
@@ -202,7 +208,8 @@ def editEquipment(request):
 		{
 			'formSet': formSet, 
 			'SubmitMessage': '',
-			'helper': helper
+			'helper': helper,
+			'form': form
 		}
 	)
 

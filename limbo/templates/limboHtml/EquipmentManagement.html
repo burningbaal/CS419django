@@ -3,6 +3,13 @@
 {% block content %}
  
 	{{ SubmitMessage }}<br>
+	<div class="row well well-lg">
+	<form action="{% url 'editMethod' %}" method="post">
+		{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="Submit" />
+	</form>
+	</div>
 	{{ formSet.non_form_errors }}<br>
 	{% load crispy_forms_tags %}
 	{% crispy formSet helper %}

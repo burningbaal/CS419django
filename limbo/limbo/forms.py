@@ -34,7 +34,13 @@ class MethodDropDown(forms.Form):
 		choices=[(o.id, str(o)) for o in Method.objects.all()], 
 		label='Edit details of: '
 	)
-		
+	
+class EquipmentDropDown(forms.Form):
+	method = forms.ChoiceField(
+		choices=[(o.id, str(o)) for o in Instrument.objects.all()], 
+		label='Edit details of: '
+	)
+	
 class MethodFormSetHelper(FormHelper):
 	def __init__(self, *args, **kwargs):
 		super(MethodFormSetHelper, self).__init__(*args, **kwargs)
@@ -53,10 +59,11 @@ class MethodVersionFormSetHelper(FormHelper):
         super(MethodVersionFormSetHelper, self).__init__(*args, **kwargs)
         self.form_method = 'post'
         self.layout = Layout(
-            Row(
+            Div(
 				Div('version_number', css_class='col-md-2'),
 				Div('cmd_line_script', css_class='col-md-5'),
 				Div('SOP', css_class='col-md-5'),
+				css_class='row well well-lg',
 			),
         )
         self.render_required_fields = True
