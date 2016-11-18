@@ -41,7 +41,7 @@ class MethodFormSetHelper(FormHelper):
 						'edit', 
 						"Edit", 
 						css_class='btn', 
-						onclick="location.href='method?Method=" + 'id' + "';"
+						onclick="location.href='method?Method=" + self.object.pk + "';"
 					
 					)), 
 					css_class='col-md-4'
