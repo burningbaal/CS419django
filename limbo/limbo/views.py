@@ -156,8 +156,8 @@ def editInstrument(request):
 	
 def editEquipment(request):
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
-	
-		
+	helper = EquipmentFormSetHelper()
+	helper.add_input(Submit("submit", "Save"))
 	if request.method == 'POST':
 		postFormset = formSet(request.POST, request.FILES)
 		if postFormset.is_valid():
@@ -175,14 +175,30 @@ def editEquipment(request):
 			#message += ', '.join("%s=%r" % (key,val) for (key,val) in postFormset.errors.dict.values) + '\n' 
 			# message += ', '.join("%s=%r" % (key,val) for (key,val) in postFormset.non_form_errors) + '\n' 
 			#message += str(postFormset.non_form_errors)
-			return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': postFormset, 'SubmitMessage': message})
+			return render(
+				request, 
+				'limboHtml/EquipmentManagement.html', 
+				{
+					'formSet': postFormset, 
+					'SubmitMessage': message,
+					'helper': helper
+				}
+			)
 	# if a GET (or any other method) we'll create a blank form
 	try:
 		del request.session['editEquipId']
 	except KeyError:
 		pass
 	#form = GeneralEquipmentForm()
-	return render(request, 'limboHtml/EquipmentManagement.html', {'formSet': formSet, 'SubmitMessage': 'testing: 123'})
+	return render(
+		request, 
+		'limboHtml/EquipmentManagement.html', 
+		{
+			'formSet': formSet, 
+			'SubmitMessage': '',
+			'helper': helper
+		}
+	)
 
 
 def editServer(request):

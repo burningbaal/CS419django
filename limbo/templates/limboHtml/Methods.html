@@ -7,40 +7,8 @@
 	{{ SubmitMessage }}<br>
 	{{ formset.non_form_errors }}<br>
 	{% crispy formSet helper %}
-	<br>
-	<br>
-	<br>
-	<form method="post" action="">{% csrf_token %}
-	{{ formSet.management_form }}
-		<div class='row-fluid'>
-			{% for form in formSet|slice:":1" %}
-				{% for field in form %}
-					{% if field.label != "Id" %}
-						<div class="col-lg-5"><strong>{{field.label}}</strong></div>
-					{% endif %}
-				{% endfor %}
-			{% endfor %}
-						<div class="col-lg-2"><strong>Details</strong></div>
-		</div>
-	{% for form in formSet %}
-		<div class='row-fluid'>
-			{% for field in form %}
-				{% if field.label != "Id" %}
-					<div class="col-lg-5">{{field}} </div>
-				{% else %}
-					{{field}}
-				{% endif %}
-			{% endfor %}
-			<div class="col-lg-2"> 
-				{% if form.assset_number.value != 'None' %}
-					<a href="{% url 'editMethod' %}?Method={{ form.id.value }}">Edit Versions</a>
-				{% endif %}
-			</div>
-		</div>
-	{% endfor %}
+	
 	<div class="row-fluid">
-		<input type="submit" value="Update" />
 		<p><strong><a href="{% url 'editMethods' %}">Cancel Changes</a></strong></p>
 	</div>
-
 {% endblock %}

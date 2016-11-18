@@ -68,11 +68,20 @@ class GeneralEquipmentForm(ModelForm):
 		super(Instrument, self).__init__(*args, **kwargs)
 		instance = getattr(self, 'instance', None)
 		self.fields['FK_instr_type'].label = 'Instrument Type'
-		#self.fields['VersionsFromInstrument'].label = 'Valid Versions'
-		#if instance and instance.pk:
-			#self.fields['config_key'].widget.attrs['readonly'] = True
-			#self.fields['config_key'].widget.attrs['disabled'] = True
-	#manuf_email = forms.EmailField(label='Manufacturer\'s email', max_length=100)
+		
+class EquipmentFormSetHelper(FormHelper):
+	def __init__(self, *args, **kwargs):
+		super(EquipmentFormSetHelper, self).__init__(*args, **kwargs)
+		self.form_method = 'post'
+		self.layout = Layout(
+			Row(
+				Div('serial_number', css_class='col-md-4'),
+				Div('asset_number', css_class='col-md-4'),
+				Div('name', css_class='col-md-4'),
+			),
+		)
+		self.render_required_fields = True
+			
 	
 class Instr_VersionCreate(CreateView):
 	model = Instr_Version
