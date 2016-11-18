@@ -39,9 +39,10 @@ class MethodFormSetHelper(FormHelper):
 		super(MethodFormSetHelper, self).__init__(*args, **kwargs)
 		self.form_method = 'post'
 		self.layout = Layout(
-			Row(
+			Div(
 				Div('name', css_class='col-md-3'),
 				Div('description', css_class='col-md-9'),
+				css_class='row well well-lg',
 			),
 		)
 		self.render_required_fields = True
