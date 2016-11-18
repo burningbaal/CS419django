@@ -4,6 +4,10 @@
 	<h1>Methods Overview</h1>
 	{{ SubmitMessage }}<br>
 	{{ formset.non_form_errors }}<br>
+	{% crispy formSet helper %}
+	<br>
+	<br>
+	<br>
 	<form method="post" action="">{% csrf_token %}
 	{{ formSet.management_form }}
 		<div class='row-fluid'>

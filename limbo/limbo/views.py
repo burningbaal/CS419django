@@ -101,7 +101,8 @@ def editMethod(request):
 	
 def editMethods(request):
 	formSet = modelformset_factory(Method, exclude=('id',), extra=1)
-	
+	helper = MethodFormSetHelper()
+	helper.add_input(Submit("submit", "Save"))
 	if request.method =='POST':
 		postFormset = formSet(request.POST, request.FILES)
 		if postFormset.is_valid():
@@ -110,8 +111,24 @@ def editMethods(request):
 					form.save()
 			# call out to limboLogic.py to update values, add them to the session
 			message = 'The values have been updated.'
-			return render(request, 'limboHtml/Methods.html', {'formSet': postFormset, 'SubmitMessage': message})	
-	return render(request, 'limboHtml/Methods.html', {'formSet': formSet, 'SubmitMessage': ''})
+			return render(
+				request, 
+				'limboHtml/Methods.html', 
+				{
+					'formSet': postFormset, 
+					'SubmitMessage': message,
+					'helper': helper
+				}
+			)
+	return render(
+		request, 
+		'limboHtml/Methods.html', 
+		{
+			'formSet': formSet, 
+			'SubmitMessage': '',
+			'helper': helper
+		}
+	)
 
 def editInstrument(request):
 	assetId = request.GET.get('instrument', None)
