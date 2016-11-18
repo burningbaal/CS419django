@@ -36,7 +36,7 @@ class MethodDropDown(forms.Form):
 	)
 	
 class EquipmentDropDown(forms.Form):
-	method = forms.ChoiceField(
+	instrument = forms.ChoiceField(
 		choices=[(o.id, str(o)) for o in Instrument.objects.all()], 
 		label='Edit details of: '
 	)
