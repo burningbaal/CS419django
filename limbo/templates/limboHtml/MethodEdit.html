@@ -9,7 +9,7 @@
 	
 	{{ formSet.non_form_errors }}<br>
 	<h1>Method's Version Details</h1>
-	{% crispy formSet %}
+	{% crispy formSet helper %}
 	<form method="post" action="">{% csrf_token %}
 	{{ formSet.management_form }}
 		<div class="row-fluid">

@@ -69,12 +69,35 @@ def editMethod(request):
 			#methodID = asset.id
 	if methodID is None:
 		formSet = modelformset_factory(Method, exclude=('id',), extra=1)
-		return render(request, 'limboHtml/Methods.html', {'formSet': formSet, 'SubmitMessage': 'ERROR: Cannot edit a Method without a "id" parameter.'})
+		return render(
+			request, 
+			'limboHtml/Methods.html', 
+			{
+				'formSet': formSet, 
+				'SubmitMessage': 'ERROR: Cannot edit a Method without a "id" parameter.'
+			}
+		)
 	method = get_object_or_404(Method, pk=methodID ) 
 	form = MethodForm(instance=method)
-	formSet = inlineformset_factory(Method, Version, exclude=('FK_method',), can_delete=False, extra=1)
+	formSet = inlineformset_factory(
+		Method, 
+		Version, 
+		exclude=('FK_method',), 
+		can_delete=False, extra=1
+	)
 	formSet = formSet(instance=method)
-	return render(request, 'limboHtml/MethodEdit.html', {'form': form, 'formSet': formSet, 'method': method})
+	helper = MethodVersionFormSetHelper()
+	helper.add_input(Submit("submit", "Save"))
+	return render(
+		request, 
+		'limboHtml/MethodEdit.html', 
+		{
+			'form': form, 
+			'formSet': formSet, 
+			'method': method, 
+			'helper': helper
+		}
+	)
 	
 def editMethods(request):
 	formSet = modelformset_factory(Method, exclude=('id',), extra=1)

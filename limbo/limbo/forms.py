@@ -12,7 +12,7 @@ class index (forms.Form):
 class MethodForm(ModelForm):
 	class Meta:
 		model = Method
-		fields = '__all__'
+		fields = ('name', 'description',)
 		widgets = {'id': forms.HiddenInput()}
 	def __init__(self, *args, **kwargs):
 		super(MethodForm, self).__init__(*args, **kwargs)
@@ -22,8 +22,8 @@ class MethodForm(ModelForm):
 			Fieldset(
 				'Method Setup',
 				Div(
-					Div('name', css_class='col-md-4'),
-					Div('description', css_class='col-md-4'),
+					Div('name', css_class='col-md-3'),
+					Div('description', css_class='col-md-9'),
 				css_class='row'),
 			),
 			ButtonHolder(
@@ -31,8 +31,16 @@ class MethodForm(ModelForm):
 			)
 		)
 			
-		#self.fields['FK_instr_type'].label = 'Instrument Type'
-		#self.fields['VersionsFromInstrument'].label = 'Valid Versions'
+class MethodVersionFormSetHelper(FormHelper):
+    def __init__(self, *args, **kwargs):
+        super(MethodVersionFormSetHelper, self).__init__(*args, **kwargs)
+        self.form_method = 'post'
+        self.layout = Layout(
+            'version_number',
+            'cmd_line_script',
+            'SOP',
+        )
+        self.render_required_fields = True
 
 class usersForm(forms.Form):
 	user_name = forms.CharField(label='New User\'s  name', max_length=100)
