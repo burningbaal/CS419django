@@ -168,7 +168,7 @@ def editEquipment(request):
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 	helper = EquipmentFormSetHelper()
 	helper.add_input(Submit("submit", "Save"))
-	form = InstrumentDropDown()
+	form = EquipmentDropDown()
 	if request.method == 'POST':
 		postFormset = formSet(request.POST, request.FILES)
 		if postFormset.is_valid():
