@@ -19,16 +19,13 @@ class MethodForm(ModelForm):
 		instance = getattr(self, 'instance', None)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
-			Fieldset(
-				'Method Setup',
-				Div(
-					Div('name', css_class='col-md-3'),
-					Div('description', css_class='col-md-9'),
-				css_class='row'),
+			Row(
+				Div('name', css_class='col-md-3'),
+				Div('description', css_class='col-md-9'),
 			),
-			ButtonHolder(
+		),
+		ButtonHolder(
 			Submit('submit', 'Submit', css_class='button white')
-			)
 		)
 			
 class MethodVersionFormSetHelper(FormHelper):
