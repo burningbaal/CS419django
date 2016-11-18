@@ -10,34 +10,7 @@
 	{{ formSet.non_form_errors }}<br>
 	<h1>Method's Version Details</h1>
 	{% crispy formSet helper %}
-	<form method="post" action="">{% csrf_token %}
-	{{ formSet.management_form }}
-		<div class="row-fluid">
-			{% for form in formSet|slice:":1" %}
-				{% for field in form %}
-					{% if field not in form.hidden_fields %}
-						<div class="col-sm-4"><h2>{{field.label}}</h2></div>
-					{% endif %}
-				{% endfor %}
-			{% endfor %}
-		</div>
-	{% for form in formSet.forms %}
-		<div class="row-fluid">
-		<!--new form -->
-			{% for field in form %}
-			<!--new field -->
-				{% if field not in form.hidden_fields %}
-					<div class="col-sm-4">{{field}} </div>
-				{% else %}
-					{{field}}
-				{% endif %}
-			{% endfor %}
-		</div>
-	{% endfor %}
-	<div class="row-fluid">
-		<input type="submit" value="Update" />
-	</div>
-	</form>
+	
 	<p><strong><a href="{% url 'editMethod' %}?Method={{ method.id }}">Cancel Changes</a></strong></p>
 	<p><strong><a href="{% url 'editMethods' %}">Back to all Methods</a></strong></p>
 
