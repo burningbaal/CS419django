@@ -6,16 +6,10 @@
 	<h1>Method Overview</h1>
 	{% load crispy_forms_tags %}
 	{% crispy form %}
-	<form method="post" action="../Method">{% csrf_token %}
-		<div class="row"> 
-		{% for field in form %}
-			<strong><div class="col-md-2"> {{ field.label }}: </div></strong> <div class="col-md-4">{{ field }} </div> 
-		{% endfor %}
-		</div>
-	<input type="submit" value="Update" />
-	</form>
+	
 	{{ formSet.non_form_errors }}<br>
 	<h1>Method's Version Details</h1>
+	{% crispy formSet %}
 	<form method="post" action="">{% csrf_token %}
 	{{ formSet.management_form }}
 		<div class="row-fluid">
