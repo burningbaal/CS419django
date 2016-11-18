@@ -120,7 +120,8 @@ def editMethods(request):
 				{
 					'formSet': postFormset, 
 					'SubmitMessage': message,
-					'helper': helper
+					'helper': helper,
+					'form': form
 				}
 			)
 	return render(
@@ -129,7 +130,8 @@ def editMethods(request):
 		{
 			'formSet': formSet, 
 			'SubmitMessage': '',
-			'helper': helper
+			'helper': helper,
+			'form': form
 		}
 	)
 
