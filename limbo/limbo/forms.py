@@ -44,9 +44,8 @@ class MethodFormSetHelper(FormHelper):
 							css_class='btn', 
 							onclick="location.href='method?Method=" + 'id' + "';"
 						)
-					)
-					, css_class='col-md-4'
-				),
+					), 
+					css_class='col-md-4'
 				),
 			),
 		)
