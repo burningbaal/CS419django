@@ -2,43 +2,10 @@
 
 {% block content %}
  
-	<p>This is the equipment management page</p><br>
 	{{ SubmitMessage }}<br>
 	{{ formSet.non_form_errors }}<br>
 	{% load crispy_forms_tags %}
 	{% crispy formSet helper %}
 	<br>
-	<br>
-	<br>
-	<form method="post" action="">{% csrf_token %}
-	{{ formSet.management_form }}
-		<div class='row'>
-			{% for form in formSet|slice:":1" %}
-				{% for field in form.visible_fields %}
-					{% if field.label != "Id" %}
-						<div class="col-md-2"><strong>{{field.label}}</strong></div>
-					{% endif %}
-				{% endfor %}
-			{% endfor %}
-						<div class="col-md-4"><strong>Details</strong></div>
-						
-		</div>
-	{% for form in formSet %}
-		<div class='row'>
-			{% for field in form.visible_fields %}
-				<div class="col-md-2">{{field}} </div>
-			{% endfor %}
-			<div class="col-md-4"> 
-				{% if form.assset_number.value != 'None' %}
-					<a href="{% url 'editInstrument' %}?instrument={{ form.id.value }}">Edit Details</a>
-				{% endif %}
-			</div>
-			
-		</div>
-	{% endfor %}
-	<div class='row-fluid'>
-		<input type="submit" value="Update" />
-	</div>
-	</form>
-  
+	  
 {% endblock %}
