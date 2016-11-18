@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from .models import *
 from django.views.generic import CreateView
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div
+from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div, Row
 
 
 class index (forms.Form):
