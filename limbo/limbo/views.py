@@ -64,7 +64,15 @@ def editUsers(request):
 def editMethod(request):
 	methodID = request.POST.get('method', None)
 	name = request.POST.get('name', None)
-	if request.method == 'POST' and name is not None:
+	formSet = inlineformset_factory(
+		Method,
+		fields= '__all__', 
+		extra=1,
+		can_order=True,
+		can_delete=True,
+	)
+	postFormset = formSet(request.POST, request.FILES)
+	if request.method == 'POST' and (name is not None or postFormset.is_valid()):
 		method = Method.objects.get(name=request.POST.get('name', None))
 		time = datetime.now()
 		for vers in request.POST.getlist('VersionsFromInstrument'):
