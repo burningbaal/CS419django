@@ -77,7 +77,7 @@ def editMethod(request, methodId):
 		can_delete=True,
 		extra=1,
 	)
-	message += ' '.join((str(x) + str(y)) for (x, y) in request.POST)
+	#message += ' '.join((str(x) + str(y)) for (x, y) in request.POST)
 	
 	if request.method == 'POST':
 		postFormset = formSet(request.POST, request.FILES, instance=method)
@@ -91,7 +91,7 @@ def editMethod(request, methodId):
 		except:
 			pass
 		time = datetime.now()
-		for vers in request.POST.getlist('VersionsFromInstrument'):
+		for vers in request.POST.getlist('version_set'):
 			curVersion = Version.objects.get(pk=int(vers))
 			
 			#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
