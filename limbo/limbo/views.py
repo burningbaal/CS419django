@@ -147,6 +147,7 @@ def editMethods(request):
 def editInstrTypes(request):
 	message = ''
 	try:
+		message = request.method + ' '
 		postFormset = formSet(request.POST, request.FILES)
 		if postFormset.is_valid():
 			for form in postFormset:
@@ -156,7 +157,7 @@ def editInstrTypes(request):
 		else:
 			message = 'The values could not be updated'
 	except:
-		message = 'No values have been updated'
+		message += 'No values have been updated'
 	formSet = modelformset_factory(
 			InstrType, 
 			fields= '__all__', 
