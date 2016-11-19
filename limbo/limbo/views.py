@@ -146,6 +146,7 @@ def editMethods(request):
 	)
 def editInstrTypes(request):
 	message = ''
+	formSet = modelformset_factory(InstrType, exclude=('id',), extra=1)
 	try:
 		message = request.method + ' ' + request.POST.get('make', 'None') + ' '
 		postFormset = formSet(request.POST, request.FILES)
