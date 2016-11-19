@@ -66,7 +66,7 @@ def goToMethod(request):
 	methodID = request.POST.get('method', None)
 	return redirect(editMethod, methodId=methodID)
 	
-def editMethod(request, methodId)
+def editMethod(request, methodId):
 	method = get_object_or_404(Method, pk=methodID )
 	name = request.POST.get('name', None)
 	formSet = inlineformset_factory(
