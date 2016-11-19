@@ -158,6 +158,7 @@ def editInstrTypes(request):
 		postFormset = formSet(request.POST, request.FILES)
 		if postFormset.is_valid():
 			for obj in postFormset.deleted_objects:
+				message += 'deleted object ' + obj.pk + '\n'
 				obj.delete()
 			for form in postFormset:
 				#message += 'starting form \n'
