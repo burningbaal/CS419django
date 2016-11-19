@@ -64,8 +64,6 @@ class InstrTypeFormSetHelper(FormHelper):
 				Div('model', css_class='col-md-2'),
 				Div('service_email', css_class='col-md-3'),
 				Div('service_website', css_class='col-md-3'),
-				
-				)
 				css_class='row well well-lg',
 			),
 		)
