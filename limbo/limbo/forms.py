@@ -60,10 +60,12 @@ class InstrTypeFormSetHelper(FormHelper):
 		self.form_method = 'post'
 		self.layout = Layout(
 			Div(
-				Div('make', css_class='col-md-3'),
-				Div('model', css_class='col-md-3'),
+				Div('make', css_class='col-md-2'),
+				Div('model', css_class='col-md-2'),
 				Div('service_email', css_class='col-md-3'),
 				Div('service_website', css_class='col-md-3'),
+				
+				)
 				css_class='row well well-lg',
 			),
 		)
