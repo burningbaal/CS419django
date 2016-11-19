@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+ 
+	{{ SubmitMessage }}<br>
+	<h2><a href="{% url 'editInstrTypes' %}">Edit instrument Types</a></h2>
+	{{ formSet.non_form_errors }}<br>
+	{% load crispy_forms_tags %}
+	{% crispy formSet helper %}
+	<br>
+	  
+{% endblock %}
