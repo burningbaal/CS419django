@@ -64,6 +64,10 @@ def editUsers(request):
 def editMethod(request):
 	message = ''
 	methodID = request.POST.get('method', None)
+	if methodID is None:
+		methodID = request.SESSION.get('methodId', None)
+	else:
+		request.SESSION['methodId'] = methodID
 	name = request.POST.get('name', None)
 	formSet = inlineformset_factory(
 		Method,
@@ -72,7 +76,7 @@ def editMethod(request):
 		can_delete=True,
 		extra=1,
 	)
-	formSet = formSet(instance=methodID)
+	formSet = formSet(instance=get_object_or_404(Method, pk=methodID ) )
 	message += '\n'.join((str(x) + str(y)) for (x, y) in request.POST)
 	postFormset = formSet(request.POST, request.FILES)
 	formsetValid = False
