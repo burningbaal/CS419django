@@ -98,7 +98,8 @@ def editMethod(request):
 		Method, 
 		Version, 
 		exclude=('FK_method',), 
-		can_delete=False, extra=1
+		can_delete=True,
+		extra=1,
 	)
 	formSet = formSet(instance=method)
 	helper = MethodVersionFormSetHelper()
