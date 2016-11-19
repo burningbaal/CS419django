@@ -138,7 +138,8 @@ def editMethod(request, methodId):
 			'form': form, 
 			'formSet': formSet, 
 			'method': method, 
-			'helper': helper
+			'helper': helper,
+			'SubmitMessage': message,
 		}
 	)
 	
