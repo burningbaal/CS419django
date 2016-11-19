@@ -11,5 +11,6 @@ urlpatterns = [
 	url(r'^method/$', views.editMethod, name='editMethod'),
 	url(r'^equipment.html$', views.editEquipment, name='editEqiupment'),
 	url(r'^equipment/instrument$', views.editInstrument, name='editInstrument'),
+	url(r'^equipment/types$', views.editInstrTypes, name='editInstrTypes'),
 	url(r'^server.html$', views.editServer, name='editServer'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

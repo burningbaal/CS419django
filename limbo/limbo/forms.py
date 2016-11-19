@@ -53,6 +53,21 @@ class MethodFormSetHelper(FormHelper):
 			),
 		)
 		self.render_required_fields = True
+				
+class InstrTypeFormSetHelper(FormHelper):
+	def __init__(self, *args, **kwargs):
+		super(InstrTypeFormSetHelper, self).__init__(*args, **kwargs)
+		self.form_method = 'post'
+		self.layout = Layout(
+			Div(
+				Div('make', css_class='col-md-3'),
+				Div('model', css_class='col-md-3'),
+				Div('service_email', css_class='col-md-3'),
+				Div('service_website', css_class='col-md-3'),
+				css_class='row well well-lg',
+			),
+		)
+		self.render_required_fields = True
 			
 class MethodVersionFormSetHelper(FormHelper):
     def __init__(self, *args, **kwargs):

@@ -144,6 +144,24 @@ def editMethods(request):
 			'form': form
 		}
 	)
+def editInstrTypes:
+	message = ''
+	formSet = modelformset_factory(
+			InstrType, 
+			fields= '__all__', 
+			extra=1
+		)
+	helper = InstrTypeFormSetHelper()
+	helper.add_input(Submit("submit", "Save"))
+	return render(
+		request, 
+		'limboHtml/EquipmentTypeManagement.html',
+		{
+			'formSet': formSet, 
+			'SubmitMessage': message,
+			'helper': helper,
+		}
+	)
 
 def editInstrument(request):
 	assetId = request.POST.get('instrument', None)
