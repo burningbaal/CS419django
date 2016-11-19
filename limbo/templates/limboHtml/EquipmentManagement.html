@@ -5,7 +5,7 @@
 	{{ SubmitMessage }}<br>
 	<h2><a href="{% url 'editInstrTypes' %}">Edit instrument Types</a></h2>
 	<div class="row well well-lg">
-	<form action="{% url 'editInstrument' %}" method="post">
+	<form action="{% url 'gotoInstrument' %}" method="post">
 		{% csrf_token %}
 		{{ form }}
 		<input type="submit" value="Submit" />

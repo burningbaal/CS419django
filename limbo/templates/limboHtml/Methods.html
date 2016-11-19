@@ -7,7 +7,7 @@
 	{{ SubmitMessage }}<br>
 	{{ formset.non_form_errors }}<br>
 	<div class="row well well-lg">
-	<form action="{% url 'editMethod' %}" method="post">
+	<form action="{% url 'gotoMethod' %}" method="post">
 		{% csrf_token %}
 		{{ form }}
 		<input type="submit" value="Submit" />
