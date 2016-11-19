@@ -236,18 +236,33 @@ def editInstrument(request, pk):
 	if request.method == 'POST' and update:
 		asset = Instrument.objects.get(asset_number=request.POST.get('asset_number', None))
 		time = datetime.now()
-		for vers in request.POST.getlist('VersionsFromInstrument'):
-			curVersion = Version.objects.get(pk=int(vers))
-			if not Instr_Version.objects.filter(FK_instrument=asset, FK_version=curVersion).exists():
+		for vers in Instr_Version.objects.all():
+			if vers.id in request.POST.getlist('VersionsFromInstrument'):
+				if not Instr_Version.objects.filter(FK_instrument=asset, FK_version=curVersion).exists():
+					#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
+					curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
+					#####################CHANGE THE LINE ABOVE SOON!!!!######################################
+					validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
+				else:
+					pass # already listed
+			else:
+				# version should be removed if it currently exists
+				if Instr_Version.objects.filter(FK_instrument=asset, FK_version=curVersion).exists():
+					asset.VersionsFromInstrument.remove(vers)
+				else:
+					pass # version already not listed
+		#for vers in request.POST.getlist('VersionsFromInstrument'):
+		#	curVersion = Version.objects.get(pk=int(vers))
+		#	if not Instr_Version.objects.filter(FK_instrument=asset, FK_version=curVersion).exists():
 				
 				#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
-				curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
+		#		curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
 				#####################CHANGE THE LINE ABOVE SOON!!!!######################################
 				
-				validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
+		#		validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
 				#validation.save()
-			else:
-				pass
+		#	else:
+		#		pass
 	if assetId is None:
 		formSet = modelformset_factory(
 			Instrument, 
