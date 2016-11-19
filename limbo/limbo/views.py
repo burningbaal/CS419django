@@ -78,7 +78,12 @@ def editMethod(request):
 			#validation.save()
 			#methodID = asset.id
 	if methodID is None:
-		formSet = modelformset_factory(Method, exclude=('id',), extra=1)
+		formSet = modelformset_factory(
+			Method, 
+			exclude=('id',), 
+			extra=1,
+			can_delete=True,
+		)
 		return render(
 			request, 
 			'limboHtml/Methods.html', 

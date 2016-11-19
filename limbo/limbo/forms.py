@@ -60,12 +60,11 @@ class InstrTypeFormSetHelper(FormHelper):
 		self.form_method = 'post'
 		self.layout = Layout(
 			Div(
-				
-                Field('DELETE', css_class='col-md-2 input-small'),
 				Div('make', css_class='col-md-2'),
 				Div('model', css_class='col-md-2'),
 				Div('service_email', css_class='col-md-3'),
 				Div('service_website', css_class='col-md-3'),
+                Field('DELETE', css_class='col-md-2 input-small'),
 				css_class='row well well-lg',
 			),
 		)
@@ -78,7 +77,10 @@ class MethodVersionFormSetHelper(FormHelper):
         self.form_method = 'post'
         self.layout = Layout(
             Div(
-				Row( Div('version_number', css_class='col-md-12') ),
+				Row( 
+					Div('version_number', css_class='col-md-13'),
+					Field('DELETE', css_class='col-md-9 input-small'),
+				),
 				Row( 
 					Div('cmd_line_script', css_class='col-md-6'),
 					Div('SOP', css_class='col-md-6')
