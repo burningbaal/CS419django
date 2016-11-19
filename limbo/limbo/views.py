@@ -156,7 +156,7 @@ def editInstrTypes(request):
 		else:
 			message = 'The values could not be updated'
 	except:
-		pass
+		message = 'No values have been updated'
 	formSet = modelformset_factory(
 			InstrType, 
 			fields= '__all__', 
