@@ -77,17 +77,17 @@ def editMethod(request, methodId):
 		can_delete=True,
 		extra=1,
 	)
-	#message += '\n'.join((str(x) + str(y)) for (x, y) in request.POST)
+	message += ' '.join((str(x) + str(y)) for (x, y) in request.POST)
 	
 	if request.method == 'POST':
 		postFormset = formSet(request.POST, request.FILES, instance=method)
 		formsetValid = False
 		try:
 			if postFormset.is_valid():
-				message = 'postFormset is valid'
+				message += 'postFormset is valid'
 				formsetValid = True
 			else:
-				message = 'postFormset is NOT valid ' + '\n'.join(str(x) for x in postFormset.errors) + ' ' + postFormset.non_form_errors()
+				message += 'postFormset is NOT valid ' + '\n'.join(str(x) for x in postFormset.errors) + ' ' + postFormset.non_form_errors()
 		except:
 			pass
 		time = datetime.now()
