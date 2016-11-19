@@ -102,7 +102,7 @@ def editMethod(request, methodId):
 			validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
 			validation.save()
 			methodID = asset.id
-	if methodID is None:
+	if not method:
 		formSet = modelformset_factory(Method, exclude=('id',), extra=1)
 		helper = MethodFormSetHelper()
 		helper.add_input(Submit("submit", "Save"))
