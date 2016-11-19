@@ -73,11 +73,16 @@ def editMethod(request):
 	)
 	postFormset = formSet(request.POST, request.FILES)
 	message = ''
-	if postFormset.is_valid():
-		message = 'postFormset is valid'
-	else:
-		message = 'postFormset is NOT valid ' + ''.join(str(x) for x in postFormset.errors) + ' ' + postFormset.non_form_errors()
-	if request.method == 'POST' and (name is not None or postFormset.is_valid()):
+	formsetValid = False
+	try:
+		if postFormset.is_valid():
+			message = 'postFormset is valid'
+			formsetValid = True
+		else:
+			message = 'postFormset is NOT valid ' + '\n'.join(str(x) for x in postFormset.errors) + ' ' + postFormset.non_form_errors()
+	except:
+		pass
+	if request.method == 'POST' and (name is not None or formsetValid):
 		method = Method.objects.get(name=request.POST.get('name', None))
 		time = datetime.now()
 		for vers in request.POST.getlist('VersionsFromInstrument'):
