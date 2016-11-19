@@ -8,7 +8,7 @@
 	
 	{{ formSet.non_form_errors }}<br>
 	<h1>Method's Version Details</h1>
-	{{ formSet.management_form }}
+	{# formSet.management_form #}
 	{% crispy formSet helper %}
 	
 	<p><strong><a href="{% url 'editMethod' %}?Method={{ method.id }}">Cancel Changes</a></strong></p>
