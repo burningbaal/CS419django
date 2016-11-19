@@ -62,6 +62,7 @@ def editUsers(request):
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
 def editMethod(request):
+	message = ''
 	methodID = request.POST.get('method', None)
 	name = request.POST.get('name', None)
 	formSet = inlineformset_factory(
@@ -74,7 +75,6 @@ def editMethod(request):
 	formSet = formSet(instance=methodID)
 	message += '\n'.join(str(x) for x in request.POST)
 	postFormset = formSet(request.POST, request.FILES)
-	message = ''
 	formsetValid = False
 	try:
 		if postFormset.is_valid():
