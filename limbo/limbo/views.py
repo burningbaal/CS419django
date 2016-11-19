@@ -238,7 +238,7 @@ def editInstrument(request, pk):
 		time = datetime.now()
 		for vers in request.POST.getlist('VersionsFromInstrument'):
 			curVersion = Version.objects.get(pk=int(vers))
-			if not Instr_version.objects.filter(FK_instrument=asset, FK_version=curVersion).exists():
+			if not Instr_Version.objects.filter(FK_instrument=asset, FK_version=curVersion).exists():
 				
 				#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
 				curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
