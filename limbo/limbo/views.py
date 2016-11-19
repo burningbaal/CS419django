@@ -147,11 +147,15 @@ def editMethods(request):
 def editInstrTypes(request):
 	message = ''
 	try:
-		message = request.method + ' ' + request.POST.get('make', 'None')
+		message = request.method + ' ' + request.POST.get('make', 'None') + ' '
 		postFormset = formSet(request.POST, request.FILES)
+		message += 'built postFormset '
 		if postFormset.is_valid():
+			message += 'postFormset is valid '
 			for form in postFormset:
+				message += 'starting form \n'
 				if form.is_valid():
+					message += 'about to save form\n'
 					form.save()
 			message = 'The values have been updated'
 		else:
