@@ -77,11 +77,10 @@ def editMethod(request, methodId):
 		can_delete=True,
 		extra=1,
 	)
-	formSet = formSet(instance=method )
 	#message += '\n'.join((str(x) + str(y)) for (x, y) in request.POST)
 	
 	if request.method == 'POST':
-		postFormset = formSet(request.POST, request.FILES)
+		postFormset = formSet(request.POST, request.FILES, instance=method)
 		formsetValid = False
 		try:
 			if postFormset.is_valid():
@@ -102,6 +101,9 @@ def editMethod(request, methodId):
 			validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
 			validation.save()
 			methodID = asset.id
+			formSet = postFormset
+	else:
+		formSet = formSet(instance=method )
 	if not method:
 		formSet = modelformset_factory(Method, exclude=('id',), extra=1)
 		helper = MethodFormSetHelper()
