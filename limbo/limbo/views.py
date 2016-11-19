@@ -222,8 +222,13 @@ def editInstrTypes(request):
 		}
 	)
 
-def editInstrument(request):
-	assetId = request.POST.get('instrument', None)
+def gotoInstrument(request):
+	message = ''
+	instrId = int(request.POST.get('instrument', None))
+	return redirect(editMethod, pk=instrId)
+	
+def editInstrument(request, pk):
+	assetId = pk
 	try:
 		update = request.POST.getlist('VersionsFromInstrument')
 	except:
