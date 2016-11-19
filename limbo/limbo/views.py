@@ -146,28 +146,28 @@ def editMethods(request):
 	)
 def editInstrTypes(request):
 	message = ''
-	formSet = modelformset_factory(InstrType, exclude=('id',), extra=1)
+	formSet = modelformset_factory(
+			InstrType, 
+			fields= '__all__', 
+			extra=1
+		)
 	try:
 		message = request.method + ' ' + request.POST.get('make', 'None') + ' '
 		postFormset = formSet(request.POST, request.FILES)
-		message += 'built postFormset '
+		#message += 'built postFormset '
 		if postFormset.is_valid():
-			message += 'postFormset is valid '
+			#message += 'postFormset is valid '
 			for form in postFormset:
-				message += 'starting form \n'
+				#message += 'starting form \n'
 				if form.is_valid():
-					message += 'about to save form\n'
+					#message += 'about to save form\n'
 					form.save()
 			message += 'The values have been updated'
 		else:
 			message += 'The values could not be updated\n' + postFormset.errors
 	except:
 		message += 'No values have been updated'
-	formSet = modelformset_factory(
-			InstrType, 
-			fields= '__all__', 
-			extra=1
-		)
+	
 	helper = InstrTypeFormSetHelper()
 	helper.add_input(Submit("submit", "Update", css_class='btn-default'))
 	helper.add_input(Button('cancel', 'Cancel', css_class='btn-default', onclick="window.history.back()"))
