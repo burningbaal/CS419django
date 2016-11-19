@@ -153,6 +153,7 @@ def editInstrTypes(request):
 		)
 	helper = InstrTypeFormSetHelper()
 	helper.add_input(Submit("submit", "Save"))
+	helper.add_input(Button('cancel', 'Cancel', css_class='btn-default', onclick="window.history.back()"))
 	return render(
 		request, 
 		'limboHtml/EquipmentTypeManagement.html',

@@ -68,6 +68,7 @@ class InstrTypeFormSetHelper(FormHelper):
 			),
 		)
 		self.render_required_fields = True
+		
 			
 class MethodVersionFormSetHelper(FormHelper):
     def __init__(self, *args, **kwargs):
