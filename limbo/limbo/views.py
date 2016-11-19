@@ -160,7 +160,7 @@ def editInstrTypes(request):
 					form.save()
 			message += 'The values have been updated'
 		else:
-			message += 'The values could not be updated'
+			message += 'The values could not be updated\n' + postFormset.errors
 	except:
 		message += 'No values have been updated'
 	formSet = modelformset_factory(
