@@ -11,7 +11,7 @@
 	{# formSet.management_form #}
 	{% crispy formSet helper %}
 	
-	<p><strong><a href="{% url 'editMethod' %}?Method={{ method.id }}">Cancel Changes</a></strong></p>
+	<p><strong><a href="{% url 'editMethod' method.id %}">Cancel Changes</a></strong></p>
 	<p><strong><a href="{% url 'editMethods' %}">Back to all Methods</a></strong></p>
 
 {% endblock %}
