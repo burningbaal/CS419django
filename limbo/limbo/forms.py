@@ -60,6 +60,8 @@ class InstrTypeFormSetHelper(FormHelper):
 		self.form_method = 'post'
 		self.layout = Layout(
 			Div(
+				
+                Field('DELETE', css_class='col-md-2 input-small'),
 				Div('make', css_class='col-md-2'),
 				Div('model', css_class='col-md-2'),
 				Div('service_email', css_class='col-md-3'),
