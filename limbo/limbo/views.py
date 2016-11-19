@@ -61,13 +61,13 @@ def editUsers(request):
 	form = usersForm()
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
 
-def editMethod(request):
+def goToMethod(request):
 	message = ''
 	methodID = request.POST.get('method', None)
-	if methodID is None:
-		methodID = request.SESSION.get('methodId', None)
-	else:
-		request.SESSION['methodId'] = methodID
+	return redirect(editMethod, methodId=methodID)
+	
+def editMethod(request, methodId)
+	method = get_object_or_404(Method, pk=methodID )
 	name = request.POST.get('name', None)
 	formSet = inlineformset_factory(
 		Method,
@@ -76,7 +76,7 @@ def editMethod(request):
 		can_delete=True,
 		extra=1,
 	)
-	formSet = formSet(instance=get_object_or_404(Method, pk=methodID ) )
+	formSet = formSet(instance=method )
 	message += '\n'.join((str(x) + str(y)) for (x, y) in request.POST)
 	postFormset = formSet(request.POST, request.FILES)
 	formsetValid = False
@@ -89,7 +89,6 @@ def editMethod(request):
 	except:
 		pass
 	if request.method == 'POST' and (name is not None or formsetValid):
-		method = Method.objects.get(name=request.POST.get('name', None))
 		time = datetime.now()
 		for vers in request.POST.getlist('VersionsFromInstrument'):
 			curVersion = Version.objects.get(pk=int(vers))
@@ -117,7 +116,6 @@ def editMethod(request):
 				'form': form
 			}
 		)
-	method = get_object_or_404(Method, pk=methodID ) 
 	form = MethodForm(instance=method)
 	formSet = inlineformset_factory(
 		Method, 
