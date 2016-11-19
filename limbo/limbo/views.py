@@ -144,7 +144,7 @@ def editMethods(request):
 			'form': form
 		}
 	)
-def editInstrTypes:
+def editInstrTypes(request):
 	message = ''
 	formSet = modelformset_factory(
 			InstrType, 
