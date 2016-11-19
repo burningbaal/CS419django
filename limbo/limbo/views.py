@@ -85,23 +85,25 @@ def editMethod(request, methodId):
 		try:
 			if postFormset.is_valid():
 				message += 'postFormset is valid'
+				postFormset.save()
+				formSet = postFormset
 				formsetValid = True
 			else:
 				message += 'postFormset is NOT valid ' + '\n'.join(str(x) for x in postFormset.errors) + ' ' + postFormset.non_form_errors()
 		except:
 			pass
-		time = datetime.now()
+		#time = datetime.now()
 		#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
-		curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
+		#curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
 		#####################CHANGE THE LINE ABOVE SOON!!!!######################################
-		for vers in postFormset:
-			curVersion = Version.objects.get(pk=int(vers))
-			message += '\nNext vers'
+		#for vers in postFormset:
+			#curVersion = Version.objects.get(pk=int(vers))
+			#message += '\nNext vers'
 			
-			validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
-			validation.save()
-			methodID = asset.id
-			formSet = postFormset
+			#validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
+			#validation.save()
+			#methodID = asset.id
+		
 	else:
 		formSet = formSet(instance=method )
 	if not method:
