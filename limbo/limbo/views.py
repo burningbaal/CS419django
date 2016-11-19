@@ -67,16 +67,16 @@ def editMethod(request):
 	if request.method == 'POST' and name is not None:
 		method = Method.objects.get(name=request.POST.get('name', None))
 		time = datetime.now()
-		#for vers in request.POST.getlist('VersionsFromInstrument'):
-			#curVersion = Version.objects.get(pk=int(vers))
+		for vers in request.POST.getlist('VersionsFromInstrument'):
+			curVersion = Version.objects.get(pk=int(vers))
 			
 			#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
-			#curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
+			curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
 			#####################CHANGE THE LINE ABOVE SOON!!!!######################################
 			
-			#validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
-			#validation.save()
-			#methodID = asset.id
+			validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
+			validation.save()
+			methodID = asset.id
 	if methodID is None:
 		formSet = modelformset_factory(Method, exclude=('id',), extra=1)
 		helper = MethodFormSetHelper()
