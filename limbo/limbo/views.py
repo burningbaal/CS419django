@@ -147,7 +147,7 @@ def editMethods(request):
 def editInstrTypes(request):
 	message = ''
 	try:
-		message = request.method + ' '
+		message = request.method + ' ' + request.POST.get('make', 'None')
 		postFormset = formSet(request.POST, request.FILES)
 		if postFormset.is_valid():
 			for form in postFormset:
