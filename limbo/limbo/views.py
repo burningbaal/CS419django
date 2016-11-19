@@ -154,15 +154,11 @@ def editInstrTypes(request):
 			can_delete=True,
 		)
 	try:
-		message = request.method + ' ' + request.POST.get('make', 'None') + ' '
+		#message = request.method + ' ' + request.POST.get('make', 'None') + ' '
 		postFormset = formSet(request.POST, request.FILES)
-		enurl=urllib.urlencode(request.POST) # To convert POST into a string
-		matchobj=re.search(r'del_btn\d',enurl) # To match for e.g. del_btn1
-		btnname=matchobj.group() # Contains matched button name
-		pri_key=btname[-1] # slice the number of btn to identify primarykey 
-		
 		if postFormset.is_valid():
-			#message += 'postFormset is valid '
+			for obj in postFormset.deleted_objects:
+				obj.delete()
 			for form in postFormset:
 				#message += 'starting form \n'
 				if form.is_valid():
