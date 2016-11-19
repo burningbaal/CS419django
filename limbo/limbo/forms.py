@@ -60,10 +60,11 @@ class MethodVersionFormSetHelper(FormHelper):
         self.form_method = 'post'
         self.layout = Layout(
             Div(
-				Row( Div('version_number', css_class='col-md-2') ),
-				Row( 
+				Div( Div('version_number', css_class='col-md-2'), css_class='row-fluid' ),
+				Div( 
 					Div('cmd_line_script', css_class='col-md-6'),
-					Div('SOP', css_class='col-md-6')
+					Div('SOP', css_class='col-md-6'),
+					css_class='row-fluid',
 				),
 				css_class='row well well-lg',
 			),
