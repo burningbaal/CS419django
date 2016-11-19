@@ -225,7 +225,7 @@ def editInstrTypes(request):
 def gotoInstrument(request):
 	message = ''
 	instrId = int(request.POST.get('instrument', None))
-	return redirect(editMethod, pk=instrId)
+	return redirect(editInstrument, pk=instrId)
 	
 def editInstrument(request, pk):
 	assetId = pk
