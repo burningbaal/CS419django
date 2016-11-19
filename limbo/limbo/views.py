@@ -66,10 +66,10 @@ def editMethod(request):
 	name = request.POST.get('name', None)
 	formSet = inlineformset_factory(
 		Method,
-		fields= '__all__', 
-		extra=1,
-		can_order=True,
+		Version,
+		exclude=('FK_method',), 
 		can_delete=True,
+		extra=1,
 	)
 	postFormset = formSet(request.POST, request.FILES)
 	if request.method == 'POST' and (name is not None or postFormset.is_valid()):
