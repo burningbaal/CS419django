@@ -93,7 +93,7 @@ def editMethod(request, methodId):
 		time = datetime.now()
 		for vers in request.POST.getlist('version_set'):
 			curVersion = Version.objects.get(pk=int(vers))
-			
+			message += '\nNext vers'
 			#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
 			curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
 			#####################CHANGE THE LINE ABOVE SOON!!!!######################################
