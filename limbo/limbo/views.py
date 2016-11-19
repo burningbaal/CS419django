@@ -234,11 +234,11 @@ def editInstrument(request, pk):
 	except:
 		pass
 	if request.method == 'POST' and update:
-		asset = Instrument.objects.get(asset_number=request.POST.get('asset_number', None))
+		asset = Instrument.objects.get(pk=assetId)
 		time = datetime.now()
 		for vers in Instr_Version.objects.all():
 			if vers.id in request.POST.getlist('VersionsFromInstrument'):
-				if not Instr_Version.objects.filter(FK_instrument=asset, FK_version=curVersion).exists():
+				if not Instr_Version.objects.filter(FK_instrument=assetid, FK_version=vers.id).exists():
 					#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
 					curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
 					#####################CHANGE THE LINE ABOVE SOON!!!!######################################
