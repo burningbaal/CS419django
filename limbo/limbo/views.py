@@ -84,6 +84,8 @@ def editMethod(request):
 			extra=1,
 			can_delete=True,
 		)
+		helper = MethodVersionFormSetHelper()
+		helper.add_input(Submit("submit", "Save"))
 		return render(
 			request, 
 			'limboHtml/Methods.html', 
