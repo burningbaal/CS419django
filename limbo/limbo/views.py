@@ -73,7 +73,7 @@ def editMethod(request):
 		extra=1,
 	)
 	formSet = formSet(instance=methodID)
-	message += '\n'.join(str(x), str(y) for x, y in request.POST)
+	message += '\n'.join((str(x) + str(y)) for (x, y) in request.POST)
 	postFormset = formSet(request.POST, request.FILES)
 	formsetValid = False
 	try:
