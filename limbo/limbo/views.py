@@ -91,12 +91,12 @@ def editMethod(request, methodId):
 		except:
 			pass
 		time = datetime.now()
-		for vers in request.POST.getlist('version_set'):
+		#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
+		curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
+		#####################CHANGE THE LINE ABOVE SOON!!!!######################################
+		for vers in postFormset:
 			curVersion = Version.objects.get(pk=int(vers))
 			message += '\nNext vers'
-			#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
-			curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
-			#####################CHANGE THE LINE ABOVE SOON!!!!######################################
 			
 			validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
 			validation.save()
