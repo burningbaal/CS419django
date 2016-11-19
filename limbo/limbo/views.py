@@ -152,7 +152,7 @@ def editInstrTypes(request):
 			extra=1
 		)
 	helper = InstrTypeFormSetHelper()
-	helper.add_input(Submit("submit", "Save"))
+	helper.add_input(Submit("submit", "Save", css_class='btn-default'))
 	helper.add_input(Button('cancel', 'Cancel', css_class='btn-default', onclick="window.history.back()"))
 	return render(
 		request, 
