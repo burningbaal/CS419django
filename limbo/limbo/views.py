@@ -78,20 +78,19 @@ def editMethod(request):
 			#validation.save()
 			#methodID = asset.id
 	if methodID is None:
-		formSet = modelformset_factory(
-			Method, 
-			exclude=('id',), 
-			extra=1,
-			can_delete=True,
-		)
-		helper = MethodVersionFormSetHelper()
+		formSet = modelformset_factory(Method, exclude=('id',), extra=1)
+		helper = MethodFormSetHelper()
 		helper.add_input(Submit("submit", "Save"))
+		
+		form = MethodDropDown()
 		return render(
 			request, 
 			'limboHtml/Methods.html', 
 			{
 				'formSet': formSet, 
-				'SubmitMessage': 'ERROR: Cannot edit a Method without a "id" parameter.'
+				'SubmitMessage': 'ERROR:  cannot edit method without ID',
+				'helper': helper,
+				'form': form
 			}
 		)
 	method = get_object_or_404(Method, pk=methodID ) 
