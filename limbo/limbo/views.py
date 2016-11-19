@@ -72,6 +72,11 @@ def editMethod(request):
 		extra=1,
 	)
 	postFormset = formSet(request.POST, request.FILES)
+	message = ''
+	if postFormset.is_valid():
+		message = 'postFormset is valid'
+	else:
+		message = 'postFormset is NOT valid'
 	if request.method == 'POST' and (name is not None or postFormset.is_valid()):
 		method = Method.objects.get(name=request.POST.get('name', None))
 		time = datetime.now()
@@ -96,7 +101,7 @@ def editMethod(request):
 			'limboHtml/Methods.html', 
 			{
 				'formSet': formSet, 
-				'SubmitMessage': 'ERROR:  cannot edit method without ID',
+				'SubmitMessage': message + '\nERROR:  cannot edit method without ID',
 				'helper': helper,
 				'form': form
 			}
