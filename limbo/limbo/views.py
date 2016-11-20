@@ -29,10 +29,9 @@ from rest_framework.renderers import JSONRenderer
 #####################
 
 def logout(request):
-	
+	logout(request)
 	return redirect(
 		indexLimbo, 
-		request
 	)
 
 def indexLimbo(request):
