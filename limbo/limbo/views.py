@@ -229,6 +229,7 @@ def gotoInstrument(request):
 	
 def editInstrument(request, pk):
 	assetId = pk
+	message = ''
 	try:
 		update = request.POST.getlist('VersionsFromInstrument')
 	except:
@@ -236,6 +237,7 @@ def editInstrument(request, pk):
 	if request.method == 'POST' and update:
 		asset = Instrument.objects.get(pk=assetId)
 		time = datetime.now()
+		message += 'Vers are: ' + ' '.join(str(x) for x in request.POST.getlist('VersionsFromInstrument')
 		for vers in Instr_Version.objects.all():
 			if vers.id in request.POST.getlist('VersionsFromInstrument'):
 				if not Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.id).exists():
@@ -288,7 +290,8 @@ def editInstrument(request, pk):
 		'limboHtml/InstrumentManagement.html',
 		{
 			'form': form, 
-			'instrument': instr
+			'instrument': instr,
+			'SubmitMessage': message,
 		}
 	) 
 	
