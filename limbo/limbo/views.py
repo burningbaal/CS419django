@@ -28,7 +28,7 @@ from rest_framework.renderers import JSONRenderer
 
 def indexLimbo(request):
 	# request.session.flush()
-	temp = mystery
+	
 	return redirect(
 		django.contrib.auth.views.login, 
 		template_name = 'index.html',
