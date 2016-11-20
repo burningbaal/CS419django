@@ -70,7 +70,6 @@ class InstrTypeFormSetHelper(FormHelper):
 		)
 		self.render_required_fields = True
 		
-			
 class MethodVersionFormSetHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(MethodVersionFormSetHelper, self).__init__(*args, **kwargs)
@@ -90,12 +89,52 @@ class MethodVersionFormSetHelper(FormHelper):
         )
         self.render_required_fields = True
 
-class usersForm(forms.Form):
-	user_name = forms.CharField(label='New User\'s  name', max_length=100)
-	user_email = forms.EmailField(label='User\'s email', max_length=100)
-	user_active = forms.BooleanField(label='User active')
+class usersFormSetHelper(FormHelper):
+	def __init__(self, *args, **kwargs):
+        super(usersFormSetHelper, self).__init__(*args, **kwargs)
+        self.form_method = 'post'
+        self.layout = Layout(
+			Div(
+				Div(
+					Div(
+						Div('user.username', css_class='col-md-4'),
+						Div('user.email', css_class='col-md-8'),
+						css_class='row',
+					),
+					Div(
+						Div('user.first_name', css_class='col-md-4'),
+						Div('user.last_name', css_class='col-md-4'),
+						Div('user.is_active', css_class='col-md-4')
+						css_class='row',
+					),
+					css_class='col-md-6',
+				),
+				Div(
+					Div(
+						Div('user.user_permissions', css_class='col-md-12'),
+						css_class='col-md-6',
+					),
+					Div(
+						Div('user.groups', css_class='col-md-12'),
+						css_class='col-md-6',
+					),
+					css_class='col-md-3',
+				),
+				Div(
+					Field('is_superuser', css_class='col-md-4'),
+					Field('last_login', css_class='col-md-4'),
+					Field('date_joined', css_class='col-md-4'),
+					css_class='col-md-3',
+				),
+				css_class='row well well-lg',
+			)
+		)
 	
-	user_active.initial = True
+	#user_name = forms.CharField(label='New User\'s  name', max_length=100)
+	#user_email = forms.EmailField(label='User\'s email', max_length=100)
+	#user_active = forms.BooleanField(label='User active')
+	
+	#user_active.initial = True
 
 class GeneralEquipmentForm(ModelForm):
 	class Meta:
