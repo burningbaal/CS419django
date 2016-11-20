@@ -85,6 +85,7 @@ def editUsers(request):
 		return redirect(logoutLimbo)
 	message = 'This is just your own profile<br>\nFirst visit'
 	form = UserChangeForm()
+	helper = usersFormSetHelper()
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request:
 		form = UserChangeForm(request.POST)
@@ -95,16 +96,39 @@ def editUsers(request):
 			message = 'form would save now'
 			# call out to limboLogic.py to update values, add them to the session
 			
-			return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': message})
+			return render(
+				request, 
+				'limboHtml/UserManagement.html', 
+				{
+					'form': form, 
+					'SubmitMessage': message,
+					'helper': helper,
+				}
+			)
 		else:
 			message = 'The would NOT have been updated.' + '\n'
 			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '\n' 
 			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '\n' 
-			return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': message})
+			return render(
+				request, 
+				'limboHtml/UserManagement.html', 
+				{
+					'form': form, 
+					'SubmitMessage': message,
+					'helper': helper,
+				}
+			)
 		
 	# if a GET (or any other method) we'll create a blank form
-	
-	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': message})
+	return render(
+		request, 
+		'limboHtml/UserManagement.html', 
+		{
+			'form': form, 
+			'SubmitMessage': message,
+			'helper': helper,
+		}
+	)
 
 def goToMethod(request):
 	message = ''
