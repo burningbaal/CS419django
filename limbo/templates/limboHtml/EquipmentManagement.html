@@ -3,7 +3,7 @@
 {% block content %}
  
 	{{ SubmitMessage }}<br>
-	<h2><a href="{% url 'editInstrTypes' %}">Edit instrument Types</a></h2>
+	<h3><a href="{% url 'editInstrTypes' %}">Edit instrument Types</a></h3>
 	<div class="row well well-lg">
 	<form action="{% url 'gotoInstrument' %}" method="post">
 		{% csrf_token %}
