@@ -44,16 +44,6 @@ def indexLimbo(request):
 		user = authenticate(username=username, password=password)
 		if user is not None:
 			login(request, user)
-			form = None
-			message = 'Welcome, ' + user.get_short_name() + ', to the Limbo server interface!'
-			return render(
-				request, 
-				'index.html',
-				{
-					'form': form,
-					'message': message,
-				}
-			)
 		else: 
 			message = 'Username or password incorrect, try again'
 			return render(
@@ -64,6 +54,17 @@ def indexLimbo(request):
 					'message': message,
 				}
 			)
+	if request.user.is_authenticated:
+		form = None
+		message = 'Welcome, ' + request.user.get_username() + ', to the Limbo server interface!'
+		return render(
+			request, 
+			'index.html',
+			{
+				'form': form,
+				'message': message,
+			}
+		)
 	else:
 		return render(
 				request, 
