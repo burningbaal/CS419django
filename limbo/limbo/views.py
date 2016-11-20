@@ -238,7 +238,7 @@ def editInstrument(request, pk):
 		time = datetime.now()
 		for vers in Instr_Version.objects.all():
 			if vers.id in request.POST.getlist('VersionsFromInstrument'):
-				if not Instr_Version.objects.filter(FK_instrument=assetid, FK_version=vers.id).exists():
+				if not Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.id).exists():
 					#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
 					curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
 					#####################CHANGE THE LINE ABOVE SOON!!!!######################################
@@ -248,7 +248,7 @@ def editInstrument(request, pk):
 			else:
 				# version should be removed if it currently exists
 				if Instr_Version.objects.filter(FK_instrument=asset, FK_version=vers.id).exists():
-					toRemove = Instr_Version.objects.filter(FK_instrument=asset, FK_version=vers.id)
+					toRemove = Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.id)
 					for entry in toRemove:
 						entry.delete()
 				else:
