@@ -165,7 +165,7 @@ class usersFormSetHelper(FormHelper):
 					Field('last_login', css_class='col-md-4'),
 					Field('date_joined', css_class='col-md-4'),
 				),
-				css_class='row well well-lg',
+				css_class='well well-lg',
 			)
 		)
 	
