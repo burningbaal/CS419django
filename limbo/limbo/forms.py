@@ -9,11 +9,11 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div, Row
 class index (forms.Form):
 	index_val = forms.CharField(label='Your Limbo name', max_length=10)
 	
-class loginForm(ModelForm):
+class loginForm(forms.Form):
 	class Meta:
-		model = UserProfile.user
-		fields = ('username', 'password',)
-		widgets = {'id': forms.HiddenInput()}
+		
+		password = forms.CharField(widget=forms.PasswordInput())
+		username = forms.CharField(label='Username', max_length='100')
 		def __init__(self, *args, **kwargs):
 			super(loginForm, self).__init__(*args, **kwargs)
 			instance = getattr(self, 'instance', None)
