@@ -247,7 +247,7 @@ def editInstrument(request, pk):
 					#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
 					curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
 					#####################CHANGE THE LINE ABOVE SOON!!!!######################################
-					validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
+					validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=vers.FK_version, timestamp=datetime.now(), validating_user=curUser)
 				else:
 					message += ' version #' + str(vers.FK_version.id) + ' already listed\n'
 			else:
