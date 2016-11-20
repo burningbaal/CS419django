@@ -6,7 +6,7 @@
 {% if form is not None %}
 	<form action="{% url 'indexLimbo' %}" method="post">
 		{% csrf_token %}
-		{{ form }}
+		{{ crispy form }}
 	</form>
 {% endif %}
 <br>
