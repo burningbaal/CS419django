@@ -16,6 +16,7 @@ from django.shortcuts import get_object_or_404
 from django.forms import inlineformset_factory
 from django.contrib.auth import views as djangoViews
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from .forms import *
 from rest_framework.renderers import JSONRenderer
 
@@ -82,10 +83,11 @@ def indexLimbo(request):
 def editUsers(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
-	message = 'First visit'
+	message = 'This is just your own profile<br>\nFirst visit'
+	form = UserChangeForm()
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request:
-		form = usersForm(request.POST)
+		form = UserChangeForm(request.POST)
 		# check whether it's valid:
 		# process the data in form.cleaned_data as required
 		# redirect to a new URL:
@@ -102,7 +104,6 @@ def editUsers(request):
 		
 	# if a GET (or any other method) we'll create a blank form
 	
-	form = usersForm()
 	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': message})
 
 def goToMethod(request):
