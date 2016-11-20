@@ -15,19 +15,19 @@ class loginForm(ModelForm):
 		fields = ('user.username', 'user.password',)
 		widgets = {'id': forms.HiddenInput()}
 		def __init__(self, *args, **kwargs):
-		super(loginForm, self).__init__(*args, **kwargs)
-		instance = getattr(self, 'instance', None)
-		self.helper = FormHelper()
-		self.helper.layout = Layout(
-			Div(
-				Div('user.username', css_class='row'),
-				Div('user.password', css_class='row'),
-				css_class='row well well-md',
-			),
-			ButtonHolder(
-				Submit('submit', 'Submit', css_class='button white')
-			),
-		)
+			super(loginForm, self).__init__(*args, **kwargs)
+			instance = getattr(self, 'instance', None)
+			self.helper = FormHelper()
+			self.helper.layout = Layout(
+				Div(
+					Div('user.username', css_class='row'),
+					Div('user.password', css_class='row'),
+					css_class='row well well-md',
+				),
+				ButtonHolder(
+					Submit('submit', 'Submit', css_class='button white')
+				),
+			)
 		#password = forms.CharField(widget=forms.PasswordInput())
 		#username = forms.CharField(label='Username', max_length='100')
 		#widgets = {
