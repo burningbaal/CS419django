@@ -112,7 +112,7 @@ class MethodVersionFormSetHelper(FormHelper):
         )
         self.render_required_fields = True
 
-class usersForm(ModelForm)
+class usersForm(ModelForm):
 	class Meta:
 		model = UserProfile.user
 		fields = (
