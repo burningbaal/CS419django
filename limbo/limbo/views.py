@@ -243,13 +243,13 @@ def editInstrument(request, pk):
 			if str(vers.FK_version.id) in postedVersions:
 				message += 'Checking version #' + str(vers.FK_version) + '\n'
 				if not Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.FK_version).exists():
-					message += 'version #' + vers.FK_version + ' is going to be added to validVersions\n'
+					message += 'version #' + str(vers.FK_version.id) + ' is going to be added to validVersions\n'
 					#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
 					curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
 					#####################CHANGE THE LINE ABOVE SOON!!!!######################################
 					validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=curVersion, timestamp=datetime.now(), validating_user=curUser)
 				else:
-					message += ' version already listed\n'
+					message += ' version #' + str(vers.FK_version.id) + ' already listed\n'
 			else:
 				# version should be removed if it currently exists
 				if Instr_Version.objects.filter(FK_instrument=asset, FK_version=vers.FK_version).exists():
