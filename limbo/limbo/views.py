@@ -29,12 +29,46 @@ from rest_framework.renderers import JSONRenderer
 
 def indexLimbo(request):
 	# request.session.flush()
-	
-	return redirect(
-		djangoViews.login, 
-		{ 'template_name': 'index.html', },
-		)
-	return render(request, 'index.html')
+	form = UserForm()
+	if request.method = 'POST':
+		username = request.POST.get('username', None)
+		password = request.POST.get('password', None)
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			login(request, user)
+			form = None
+			message = 'Welcome to the Limbo server interface!'
+			render(
+				request, 
+				'index.html',
+				{
+					'form': form,
+					'message': message,
+				}
+			)
+		else: 
+			message = 'Username or password incorrect, try again'
+			render(
+				request, 
+				'index.html',
+				{
+					'form': form,
+					'message': message,
+				}
+			)
+	else:
+		render(
+				request, 
+				'index.html',
+				{
+					'form': form,
+					'message': message,
+				}
+			)
+	#return redirect(
+	#	djangoViews.login, 
+	#	{ 'template_name': 'index.html', },
+	#	)
 
 
 from .forms import *

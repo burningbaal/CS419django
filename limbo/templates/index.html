@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-In development, please try again later
+
+<p>{{ message }}</p>
+{% if form is not None %}
+	<form action="{% url 'indexLimbo' %}" method="post">
+		{% csrf_token %}
+		{{ form }}
+	</form>
+{% endif %}
 <br>
 <br>
 Author: Keith McKinley

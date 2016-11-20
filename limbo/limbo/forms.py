@@ -9,6 +9,15 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div, Row
 class index (forms.Form):
 	index_val = forms.CharField(label='Your Limbo name', max_length=10)
 	
+class UserForm(ModelForm):
+    class Meta:
+        password = forms.CharField(widget=forms.PasswordInput())
+		username = forms.CharField(label='Username', max_length='100')
+        model = UserProfile
+        widgets = {
+            'user.password': forms.PasswordInput(),
+        } 
+	
 class MethodForm(ModelForm):
 	class Meta:
 		model = Method
