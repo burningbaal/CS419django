@@ -129,38 +129,42 @@ class usersFormSetHelper(FormHelper):
 		self.form_method = 'post'
 		self.layout = Layout(
 			Div(
+				css_class='row well well-lg',
 				Div(
+					css_class='col-md-4',
 					Div(
+						css_class='row',
 						Div('username', css_class='col-md-4'),
 						Div('email', css_class='col-md-8'),
-						css_class='row',
 					),
 					Div(
+						css_class='row',
 						Div('first_name', css_class='col-md-4'),
-						Div('last_name', css_class='col-md-4'),
-						Div('is_active', css_class='col-md-4'),
+						Div('last_name', css_class='col-md-8'),
+					),
+					Div(
 						css_class='row',
+						Div('is_active', css_class='col-md-12'),
 					),
-					css_class='col-md-6',
+					
 				),
 				Div(
+					css_class='col-md-8',
 					Div(
+						css_class='row',
 						Div('user_permissions', css_class='col-md-12'),
-						css_class='col-md-6',
 					),
 					Div(
+						css_class='row',
 						Div('groups', css_class='col-md-12'),
-						css_class='col-md-6',
 					),
-					css_class='col-md-3',
 				),
 				Div(
+					css_class='row',
 					Field('is_superuser', css_class='col-md-4'),
 					Field('last_login', css_class='col-md-4'),
 					Field('date_joined', css_class='col-md-4'),
-					css_class='col-md-3',
 				),
-				css_class='row well well-lg',
 			)
 		)
 	
