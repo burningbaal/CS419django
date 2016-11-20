@@ -115,7 +115,7 @@ def goToMethod(request):
 def editMethod(request, methodId):
 	message = ''
 	if not request.user.is_authenticated:
-		redirect(logoutLimbo)
+		return redirect(logoutLimbo)
 	method = get_object_or_404(Method, pk=methodId )
 	name = request.POST.get('name', None)
 	formSet = inlineformset_factory(
