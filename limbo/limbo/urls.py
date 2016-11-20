@@ -5,6 +5,7 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
+	url(r'^$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index/$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index.html$', views.indexLimbo, name='indexLimbo'),

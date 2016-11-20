@@ -11,5 +11,6 @@ urlpatterns = [
 	url(r'^polls/', include('polls.urls')),
 	# url(r'^limbo/', include('limbo.urls')),
 	url(r'edit/', include('limbo.urls')),
+	url(r'$', include('limbo.urls')),
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
