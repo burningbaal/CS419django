@@ -129,7 +129,6 @@ class usersFormSetHelper(FormHelper):
 		self.form_method = 'post'
 		self.layout = Layout(
 			Div(
-				css_class='row well well-lg',
 				Div(
 					Div(
 						Div('username', css_class='col-md-4'),
@@ -165,6 +164,7 @@ class usersFormSetHelper(FormHelper):
 					Field('date_joined', css_class='col-md-4'),
 					css_class='row',
 				),
+				css_class='row well well-lg',
 			)
 		)
 	
