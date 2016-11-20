@@ -28,6 +28,13 @@ from rest_framework.renderers import JSONRenderer
 # TEST!!!!
 #####################
 
+def logout(request):
+	
+	return redirect(
+		indexLimbo, 
+		request
+	)
+
 def indexLimbo(request):
 	# request.session.flush()
 	message = 'Welcome, please log in'

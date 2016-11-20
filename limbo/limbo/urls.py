@@ -8,6 +8,7 @@ urlpatterns = [
 	url(r'^index/$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index.html$', views.indexLimbo, name='indexLimbo'),
+	url(r'^index/logout/$', views.logout, name='logout'),
 	url(r'^users.html$', views.editUsers, name='editUsers'),
 	url(r'^methods.html$', views.editMethods, name='editMethods'),
 	url(r'^method/(?P<methodId>\d+)/$', views.editMethod, name='editMethod'),
