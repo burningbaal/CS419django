@@ -29,6 +29,7 @@ from rest_framework.renderers import JSONRenderer
 
 def indexLimbo(request):
 	# request.session.flush()
+	message = ''
 	form = loginForm()
 	if request.method == 'POST':
 		username = request.POST.get('username', None)
