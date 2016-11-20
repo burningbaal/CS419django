@@ -112,16 +112,16 @@ class MethodVersionFormSetHelper(FormHelper):
         )
         self.render_required_fields = True
 
-class usersForm(ModelForm):
-	class Meta:
-		model = UserProfile.user
-		fields = (
-			'first_name', 
-			'last_name',
-			'user_permissions',
-			'groups',
-		)
-		widgets = {'id': forms.HiddenInput()}
+#class usersForm(ModelForm):
+	#class Meta:
+		#model = UserProfile.user
+		#fields = (
+			#'first_name', 
+			#'last_name',
+			#'user_permissions',
+			#'groups',
+		#)
+		#widgets = {'id': forms.HiddenInput()}
 		
 class usersFormSetHelper(FormHelper):
 	def __init__(self, *args, **kwargs):
