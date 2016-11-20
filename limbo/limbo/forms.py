@@ -104,7 +104,7 @@ class usersFormSetHelper(FormHelper):
 					Div(
 						Div('user.first_name', css_class='col-md-4'),
 						Div('user.last_name', css_class='col-md-4'),
-						Div('user.is_active', css_class='col-md-4')
+						Div('user.is_active', css_class='col-md-4'),
 						css_class='row',
 					),
 					css_class='col-md-6',
