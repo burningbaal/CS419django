@@ -239,7 +239,7 @@ def editInstrument(request, pk):
 		time = datetime.now()
 		message += 'Vers are: ' + ' & '.join(str(x) for x in request.POST.getlist('VersionsFromInstrument')) + '\n'
 		for vers in Instr_Version.objects.all():
-			if str(vers.id) in request.POST.getlist('VersionsFromInstrument'):
+			if vers.id in request.POST.getlist('VersionsFromInstrument'):
 				message += 'Checking version #' + str(vers.id) + '\n'
 				if not Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.id).exists():
 					message += 'version #' + vers.id + ' is going to be added to validVersions\n'
