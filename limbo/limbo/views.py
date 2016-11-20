@@ -14,6 +14,7 @@ from django.forms import formset_factory
 from django.core import serializers as coreSerializers
 from django.shortcuts import get_object_or_404
 from django.forms import inlineformset_factory
+from django.contrib.auth import views as djangoViews
 
 from rest_framework.renderers import JSONRenderer
 
@@ -30,7 +31,7 @@ def indexLimbo(request):
 	# request.session.flush()
 	
 	return redirect(
-		django.contrib.auth.views.login, 
+		djangoViews.login, 
 		template_name = 'index.html',
 		)
 	return render(request, 'index.html')
