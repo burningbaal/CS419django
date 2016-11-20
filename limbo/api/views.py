@@ -113,7 +113,7 @@ def getInstrument(request):
 	user = None
 	user = authenticate(username=username, password=password)
 	if user is None:
-		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}' status=401) 
+		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}', status=401) 
 	serial = UserProfileSerializer(user)
 	userResponse = JSONRenderer().render(serial.data)
 	if request.method == 'POST':
