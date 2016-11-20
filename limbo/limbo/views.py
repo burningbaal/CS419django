@@ -248,7 +248,7 @@ def editInstrument(request, pk):
 			else:
 				# version should be removed if it currently exists
 				if Instr_Version.objects.filter(FK_instrument=asset, FK_version=vers.id).exists():
-					toRemove = Instr_Version.objects.filter(FK_instrument=assetid, FK_version=vers.id)
+					toRemove = Instr_Version.objects.filter(FK_instrument=asset, FK_version=vers.id)
 					for entry in toRemove:
 						entry.remove()
 				else:
