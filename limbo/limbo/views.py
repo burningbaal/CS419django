@@ -28,7 +28,7 @@ from rest_framework.renderers import JSONRenderer
 # TEST!!!!
 #####################
 
-def logout(request):
+def logoutLimbo(request):
 	logout(request)
 	return redirect(
 		indexLimbo, 
