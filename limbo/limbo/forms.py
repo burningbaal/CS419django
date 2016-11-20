@@ -131,25 +131,25 @@ class usersFormSetHelper(FormHelper):
 			Div(
 				Div(
 					Div(
-						Div('user.username', css_class='col-md-4'),
-						Div('user.email', css_class='col-md-8'),
+						Div('username', css_class='col-md-4'),
+						Div('email', css_class='col-md-8'),
 						css_class='row',
 					),
 					Div(
-						Div('user.first_name', css_class='col-md-4'),
-						Div('user.last_name', css_class='col-md-4'),
-						Div('user.is_active', css_class='col-md-4'),
+						Div('first_name', css_class='col-md-4'),
+						Div('last_name', css_class='col-md-4'),
+						Div('is_active', css_class='col-md-4'),
 						css_class='row',
 					),
 					css_class='col-md-6',
 				),
 				Div(
 					Div(
-						Div('user.user_permissions', css_class='col-md-12'),
+						Div('user_permissions', css_class='col-md-12'),
 						css_class='col-md-6',
 					),
 					Div(
-						Div('user.groups', css_class='col-md-12'),
+						Div('groups', css_class='col-md-12'),
 						css_class='col-md-6',
 					),
 					css_class='col-md-3',
