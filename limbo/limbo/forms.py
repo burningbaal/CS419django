@@ -10,10 +10,9 @@ class index (forms.Form):
 	index_val = forms.CharField(label='Your Limbo name', max_length=10)
 	
 class loginForm(forms.Form):
+	password = forms.CharField(widget=forms.PasswordInput())
+	username = forms.CharField(label='Username', max_length='100')
 	class Meta:
-		
-		password = forms.CharField(widget=forms.PasswordInput())
-		username = forms.CharField(label='Username', max_length='100')
 		def __init__(self, *args, **kwargs):
 			super(loginForm, self).__init__(*args, **kwargs)
 			instance = getattr(self, 'instance', None)
