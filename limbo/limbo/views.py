@@ -29,7 +29,7 @@ from rest_framework.renderers import JSONRenderer
 
 def indexLimbo(request):
 	# request.session.flush()
-	message = ''
+	message = 'Welcome, please log in'
 	form = loginForm()
 	if request.method == 'POST':
 		username = request.POST.get('username', None)
@@ -38,7 +38,7 @@ def indexLimbo(request):
 		if user is not None:
 			login(request, user)
 			form = None
-			message = 'Welcome to the Limbo server interface!'
+			message = 'Welcome, ' + user.get_short_name() + ', to the Limbo server interface!'
 			return render(
 				request, 
 				'index.html',
