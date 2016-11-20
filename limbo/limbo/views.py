@@ -80,6 +80,8 @@ def indexLimbo(request):
 			)
 	
 def editUsers(request):
+	if not request.user.is_authenticated:
+		return redirect(logoutLimbo)
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request:
 		form = usersForm(request.POST)
@@ -109,6 +111,8 @@ def editUsers(request):
 
 def goToMethod(request):
 	message = ''
+	if not request.user.is_authenticated:
+		return redirect(logoutLimbo)
 	methodID = int(request.POST.get('methodId', None))
 	return redirect(editMethod, methodId=methodID)
 	
@@ -194,6 +198,8 @@ def editMethod(request, methodId):
 	)
 	
 def editMethods(request):
+	if not request.user.is_authenticated:
+		return redirect(logoutLimbo)
 	formSet = modelformset_factory(Method, exclude=('id',), extra=1)
 	helper = MethodFormSetHelper()
 	helper.add_input(Submit("submit", "Save"))
@@ -229,6 +235,8 @@ def editMethods(request):
 		}
 	)
 def editInstrTypes(request):
+	if not request.user.is_authenticated:
+		return redirect(logoutLimbo)
 	message = ''
 	formSet = modelformset_factory(
 			InstrType, 
@@ -261,11 +269,15 @@ def editInstrTypes(request):
 	)
 
 def gotoInstrument(request):
+	if not request.user.is_authenticated:
+		return redirect(logoutLimbo)
 	message = ''
 	instrId = int(request.POST.get('instrument', None))
 	return redirect(editInstrument, pk=instrId)
 	
 def editInstrument(request, pk):
+	if not request.user.is_authenticated:
+		return redirect(logoutLimbo)
 	assetId = pk
 	message = ''
 	try:
@@ -338,6 +350,8 @@ def editInstrument(request, pk):
 	) 
 	
 def editEquipment(request):
+	if not request.user.is_authenticated:
+		return redirect(logoutLimbo)
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 	helper = EquipmentFormSetHelper()
 	helper.add_input(Submit("submit", "Save"))
@@ -395,6 +409,8 @@ def editEquipment(request):
 
 
 def editServer(request):
+	if not request.user.is_authenticated:
+		return redirect(logoutLimbo)
 	result = serverConfig.objects.values()
 	myConfigs = [entry for entry in result]
 	
