@@ -11,8 +11,8 @@ class index (forms.Form):
 	
 class loginForm(ModelForm):
 	class Meta:
-		model = UserProfile
-		fields = ('user.username', 'user.password',)
+		model = UserProfile.user
+		fields = ('username', 'password',)
 		widgets = {'id': forms.HiddenInput()}
 		def __init__(self, *args, **kwargs):
 			super(loginForm, self).__init__(*args, **kwargs)
@@ -20,8 +20,8 @@ class loginForm(ModelForm):
 			self.helper = FormHelper()
 			self.helper.layout = Layout(
 				Div(
-					Div('user.username', css_class='row'),
-					Div('user.password', css_class='row'),
+					Div('username', css_class='row'),
+					Div('password', css_class='row'),
 					css_class='row well well-md',
 				),
 				ButtonHolder(
