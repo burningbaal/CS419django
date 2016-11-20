@@ -85,7 +85,7 @@ def editUsers(request):
 		return redirect(logoutLimbo)
 	message = 'This is just your own profile<br>\nFirst visit'
 	form = UserCreationForm()
-	formset = formset_factory(UserChangeForm, extra = 0)
+	formset = modelformset_factory(UserProfile.user, exclude=('id', 'password',), extra = 0)
 	helper = usersFormSetHelper()
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request:
