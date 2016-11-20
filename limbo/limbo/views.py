@@ -84,7 +84,8 @@ def editUsers(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
 	message = 'This is just your own profile<br>\nFirst visit'
-	form = UserChangeForm()
+	form = UserCreationForm()
+	formset = formset_factory(UserChangeForm, extra = 0)
 	helper = usersFormSetHelper()
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request:
@@ -101,6 +102,7 @@ def editUsers(request):
 				'limboHtml/UserManagement.html', 
 				{
 					'form': form, 
+					'formSet': formset, 
 					'SubmitMessage': message,
 					'helper': helper,
 				}
@@ -114,6 +116,7 @@ def editUsers(request):
 				'limboHtml/UserManagement.html', 
 				{
 					'form': form, 
+					'formSet': formset, 
 					'SubmitMessage': message,
 					'helper': helper,
 				}
@@ -125,6 +128,7 @@ def editUsers(request):
 		'limboHtml/UserManagement.html', 
 		{
 			'form': form, 
+					'formSet': formset, 
 			'SubmitMessage': message,
 			'helper': helper,
 		}

@@ -5,6 +5,7 @@
  <div class="row">
 	<p>This is the user management page</p><br>
 	{{ SubmitMessage }}<br>
+	{% crispy formSet helper %}
 	<form action="/edit/users.html" method="post">
 		{% csrf_token %}
 		{% crispy form helper %}
