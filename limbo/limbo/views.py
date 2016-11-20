@@ -19,16 +19,20 @@ from rest_framework.renderers import JSONRenderer
 
 #####################################
 # TODO:
-# add view for defining instrument types
 # add login/out feature (for now just let any valida account it)
 #	then restrict editing to just permitted users
 # do something with server configs
 # find a way to widen the fields in the forms
+# TEST!!!!
 #####################
 
-def indexLimbo(request, mystery):
+def indexLimbo(request):
 	# request.session.flush()
 	temp = mystery
+	return redirect(
+		django.contrib.auth.views.login, 
+		'template_name' = 'index.html',
+		)
 	return render(request, 'index.html')
 
 
