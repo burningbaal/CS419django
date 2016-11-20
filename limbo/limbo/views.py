@@ -240,7 +240,7 @@ def editInstrument(request, pk):
 		postedVersions = request.POST.getlist('VersionsFromInstrument')
 		message += 'Vers are: ' + ' & '.join(str(x) for x in postedVersions) + '\n'
 		for vers in Instr_Version.objects.all():
-			if vers.FK_version in postedVersions:
+			if vers.FK_version.id in postedVersions:
 				message += 'Checking version #' + str(vers.FK_version) + '\n'
 				if not Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.FK_version).exists():
 					message += 'version #' + vers.FK_version + ' is going to be added to validVersions\n'
