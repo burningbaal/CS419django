@@ -131,38 +131,41 @@ class usersFormSetHelper(FormHelper):
 			Div(
 				Div(
 					Div(
-						Div('username', css_class='col-md-4'),
-						Div('email', css_class='col-md-8'),
-						css_class='row',
+						Div(
+							Div('username', css_class='col-md-4'),
+							Div('email', css_class='col-md-8'),
+							css_class='row',
+						),
+						Div(
+							Div('first_name', css_class='col-md-4'),
+							Div('last_name', css_class='col-md-8'),
+							css_class='row',
+						),
+						Div(
+							Div('is_active', css_class='col-md-12'),
+							css_class='row',
+						),
+						css_class='col-md-4',
+						
 					),
 					Div(
-						Div('first_name', css_class='col-md-4'),
-						Div('last_name', css_class='col-md-8'),
-						css_class='row',
+						Div(
+							Div('user_permissions', css_class='col-md-12'),
+							css_class='row',
+						),
+						Div(
+							Div('groups', css_class='col-md-12'),
+							css_class='row',
+						),
+						css_class='col-md-8',
 					),
-					Div(
-						Div('is_active', css_class='col-md-12'),
-						css_class='row',
-					),
-					css_class='col-md-4',
-					
+					css_class='row',
 				),
 				Div(
-					Div(
-						Div('user_permissions', css_class='col-md-12'),
-						css_class='row',
-					),
-					Div(
-						Div('groups', css_class='col-md-12'),
-						css_class='row',
-					),
-					Div(
-						Field('is_superuser', css_class='col-md-4'),
-						Field('last_login', css_class='col-md-4'),
-						Field('date_joined', css_class='col-md-4'),
-						css_class='row',
-					),
-					css_class='col-md-8',
+					Field('is_superuser', css_class='col-md-4'),
+					Field('last_login', css_class='col-md-4'),
+					Field('date_joined', css_class='col-md-4'),
+					css_class='row',
 				),
 				css_class='row well well-lg',
 			)
