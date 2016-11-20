@@ -16,7 +16,7 @@ from django.shortcuts import get_object_or_404
 from django.forms import inlineformset_factory
 from django.contrib.auth import views as djangoViews
 from django.contrib.auth import authenticate, login, logout
-
+from .forms import *
 from rest_framework.renderers import JSONRenderer
 
 #####################################
@@ -78,13 +78,7 @@ def indexLimbo(request):
 					'message': message,
 				}
 			)
-	#return redirect(
-	#	djangoViews.login, 
-	#	{ 'template_name': 'index.html', },
-	#	)
-
-
-from .forms import *
+	
 def editUsers(request):
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request:
@@ -120,6 +114,8 @@ def goToMethod(request):
 	
 def editMethod(request, methodId):
 	message = ''
+	if not request.user.is_authenticated:
+		redirect(logoutLimbo)
 	method = get_object_or_404(Method, pk=methodId )
 	name = request.POST.get('name', None)
 	formSet = inlineformset_factory(
