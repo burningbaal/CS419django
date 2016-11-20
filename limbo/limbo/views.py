@@ -258,7 +258,7 @@ def editInstrument(request, pk):
 					for entry in toRemove:
 						entry.delete()
 				else:
-					message += 'version #' + str(vers.FK_version) + 'already not listed\n'
+					message += 'version #' + str(vers.FK_version.id) + 'already not listed\n'
 		#for vers in postedVersions:
 		#	curVersion = Version.objects.get(pk=int(vers))
 		#	if not Instr_Version.objects.filter(FK_instrument=asset, FK_version=curVersion).exists():
