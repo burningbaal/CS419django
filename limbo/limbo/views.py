@@ -32,7 +32,7 @@ def indexLimbo(request):
 	
 	return redirect(
 		djangoViews.login, 
-		{ template_name = 'index.html', },
+		{ 'template_name': 'index.html', },
 		)
 	return render(request, 'index.html')
 
