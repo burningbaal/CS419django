@@ -109,7 +109,7 @@ def editUsers(request):
 
 def goToMethod(request):
 	message = ''
-	methodID = int(request.POST.get('method', None))
+	methodID = int(request.POST.get('methodId', None))
 	return redirect(editMethod, methodId=methodID)
 	
 def editMethod(request, methodId):
