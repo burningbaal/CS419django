@@ -15,6 +15,7 @@ from django.core import serializers as coreSerializers
 from django.shortcuts import get_object_or_404
 from django.forms import inlineformset_factory
 from django.contrib.auth import views as djangoViews
+ from django.contrib.auth import authenticate, login
 
 from rest_framework.renderers import JSONRenderer
 
