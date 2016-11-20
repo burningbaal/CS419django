@@ -57,7 +57,7 @@ def indexLimbo(request):
 	if request.user.is_authenticated:
 		form = None
 		message = 'Welcome, ' 
-		if request.user.get_short_name() = '':
+		if request.user.get_short_name() == '':
 			message += request.user.get_username() + ', to the Limbo server interface!'
 		else:
 			message += request.user.get_short_name() + ', to the Limbo server interface!'
