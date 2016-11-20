@@ -237,12 +237,13 @@ def editInstrument(request, pk):
 	if request.method == 'POST' and update:
 		asset = Instrument.objects.get(pk=assetId)
 		time = datetime.now()
-		message += 'Vers are: ' + ' & '.join(str(x) for x in request.POST.getlist('VersionsFromInstrument')) + '\n'
+		postedVersions = request.POST.getlist('VersionsFromInstrument')
+		message += 'Vers are: ' + ' & '.join(str(x) for x in postedVersions) + '\n'
 		for vers in Instr_Version.objects.all():
-			if vers.id in request.POST.getlist('VersionsFromInstrument'):
-				message += 'Checking version #' + str(vers.id) + '\n'
-				if not Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.id).exists():
-					message += 'version #' + vers.id + ' is going to be added to validVersions\n'
+			if vers.FK_version in postedVersions:
+				message += 'Checking version #' + str(vers.FK_version) + '\n'
+				if not Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.FK_version).exists():
+					message += 'version #' + vers.FK_version + ' is going to be added to validVersions\n'
 					#####################THIS NEXT LINE IS TEMPORARY ONLY!!!!!###############################
 					curUser = UserProfile.objects.get(user='1') # CHANGE LATER, THIS IS JUST FOR TESTING/DEV#
 					#####################CHANGE THE LINE ABOVE SOON!!!!######################################
@@ -251,14 +252,14 @@ def editInstrument(request, pk):
 					message += ' version already listed\n'
 			else:
 				# version should be removed if it currently exists
-				if Instr_Version.objects.filter(FK_instrument=asset, FK_version=vers.id).exists():
-					toRemove = Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.id)
+				if Instr_Version.objects.filter(FK_instrument=asset, FK_version=vers.FK_version).exists():
+					toRemove = Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.FK_version)
 					message += 'going to remove: ' + ', '.join(str(x) for x in toRemove) + '\n'
 					for entry in toRemove:
 						entry.delete()
 				else:
-					message += 'version #' + str(vers.id) + 'already not listed\n'
-		#for vers in request.POST.getlist('VersionsFromInstrument'):
+					message += 'version #' + str(vers.FK_version) + 'already not listed\n'
+		#for vers in postedVersions:
 		#	curVersion = Version.objects.get(pk=int(vers))
 		#	if not Instr_Version.objects.filter(FK_instrument=asset, FK_version=curVersion).exists():
 				
