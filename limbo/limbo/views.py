@@ -21,8 +21,8 @@ from rest_framework.renderers import JSONRenderer
 
 #####################################
 # TODO:
-# add login/out feature (for now just let any valida account it)
-#	then restrict editing to just permitted users
+# restrict editing to just permitted users
+#	let others view?
 # do something with server configs
 # find a way to widen the fields in the forms
 # TEST!!!!
@@ -82,6 +82,7 @@ def indexLimbo(request):
 def editUsers(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
+	message = 'First visit'
 	if request.method == 'POST':
 		# create a form instance and populate it with data from the request:
 		form = usersForm(request.POST)
@@ -89,25 +90,20 @@ def editUsers(request):
 		# process the data in form.cleaned_data as required
 		# redirect to a new URL:
 		if form.is_valid():
-			name = form.cleaned_data['user_name']
-			request.session['editUserName'] = name
-			
+			message = 'form would save now'
 			# call out to limboLogic.py to update values, add them to the session
 			
-			return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': 'The user \'' + name + '\' has been updated.'})
+			return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': message})
 		else:
-			message = 'The user has NOT been updated.' + '\n'
+			message = 'The would NOT have been updated.' + '\n'
 			message += ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '\n' 
 			# message += ', '.join("%s=%r" % (key,val) for (key,val) in form.non_field_errors.iteritems()) + '\n' 
 			return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': message})
 		
 	# if a GET (or any other method) we'll create a blank form
-	try:
-		del request.session['editUserName']
-	except KeyError:
-		pass
+	
 	form = usersForm()
-	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': ''})
+	return render(request, 'limboHtml/UserManagement.html', {'form': form, 'SubmitMessage': message})
 
 def goToMethod(request):
 	message = ''
