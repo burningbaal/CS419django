@@ -119,7 +119,7 @@ def getInstrument(request):
 	if request.method == 'POST':
 		assetNum = request.POST.get('asset_number', None)
 	if assetNum is None:
-		return HttpResponse('{"Error":"Must POST or GET \'asset_number\'"}', status=4xx)
+		return HttpResponse('{"Error":"Must POST or GET \'asset_number\'"}', status=406)
 	try:
 		instrumentObj = Instrument.objects.get(asset_number=assetNum)
 	except:
