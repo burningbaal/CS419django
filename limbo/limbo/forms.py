@@ -110,12 +110,13 @@ class EquipmentFormSetHelper(FormHelper):
 	def __init__(self, *args, **kwargs):
 		super(EquipmentFormSetHelper, self).__init__(*args, **kwargs)
 		self.form_method = 'post'
+		# consider setting form_show_labels = False for non-first forms
 		self.layout = Layout(
 			Div(
 				Div('serial_number', css_class='col-md-3'),
 				Div('asset_number', css_class='col-md-3'),
 				Div('name', css_class='col-md-3'),
-				Div('FK_instr_type', css_class='col-md-3'),
+				Div('FK_instr_type', title='Instrument Type', css_class='col-md-3'),
 				css_class='row well well-lg',
 			),
 		)
