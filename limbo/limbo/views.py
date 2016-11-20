@@ -31,7 +31,7 @@ def indexLimbo(request):
 	temp = mystery
 	return redirect(
 		django.contrib.auth.views.login, 
-		'template_name' = 'index.html',
+		template_name = 'index.html',
 		)
 	return render(request, 'index.html')
 
