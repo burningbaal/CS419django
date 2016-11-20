@@ -83,6 +83,7 @@ def indexLimbo(request):
 def editUsers(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
+	return redirect('admin/auth/user/', request)
 	message = 'This is just your own profile<br>\nFirst visit'
 	form = UserCreationForm()
 	formset = modelformset_factory(UserProfile.user, exclude=('id', 'password',), extra = 0)

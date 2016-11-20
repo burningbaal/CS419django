@@ -56,7 +56,7 @@ class Instr_Version(models.Model):
 	FK_version = models.ForeignKey(Version, related_name='versions', on_delete=models.CASCADE)
 	FK_instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
 	validating_user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
-	timestamp = models.DateTimeField(auto_now_add=True)
+	timestamp = models.DateField(auto_now_add=True)
 
 	class Meta:
 		unique_together = ('FK_version', 'FK_instrument')
