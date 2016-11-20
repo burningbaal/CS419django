@@ -156,13 +156,13 @@ class usersFormSetHelper(FormHelper):
 						Div('groups', css_class='col-md-12'),
 						css_class='row',
 					),
+					Div(
+						Field('is_superuser', css_class='col-md-4'),
+						Field('last_login', css_class='col-md-4'),
+						Field('date_joined', css_class='col-md-4'),
+						css_class='row',
+					),
 					css_class='col-md-8',
-				),
-				Div(
-					Field('is_superuser', css_class='col-md-4'),
-					Field('last_login', css_class='col-md-4'),
-					Field('date_joined', css_class='col-md-4'),
-					css_class='row',
 				),
 				css_class='row well well-lg',
 			)
