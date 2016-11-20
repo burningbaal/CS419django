@@ -39,7 +39,7 @@ def indexLimbo(request):
 			login(request, user)
 			form = None
 			message = 'Welcome to the Limbo server interface!'
-			render(
+			return render(
 				request, 
 				'index.html',
 				{
@@ -49,7 +49,7 @@ def indexLimbo(request):
 			)
 		else: 
 			message = 'Username or password incorrect, try again'
-			render(
+			return render(
 				request, 
 				'index.html',
 				{
@@ -58,7 +58,7 @@ def indexLimbo(request):
 				}
 			)
 	else:
-		render(
+		return render(
 				request, 
 				'index.html',
 				{
