@@ -113,17 +113,17 @@ def getInstrument(request):
 	user = None
 	user = authenticate(username=username, password=password)
 	if user is None:
-		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}') 
+		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}' status=401) 
 	serial = UserProfileSerializer(user)
 	userResponse = JSONRenderer().render(serial.data)
 	if request.method == 'POST':
 		assetNum = request.POST.get('asset_number', None)
 	if assetNum is None:
-		return HttpResponse('{"Error":"Must POST or GET \'asset_number\'"}')
+		return HttpResponseNotFound('{"Error":"Must POST or GET \'asset_number\'"}')
 	try:
 		instrumentObj = Instrument.objects.get(asset_number=assetNum)
 	except:
-		return HttpResponse('{"Error":"asset_number \'' + assetNum + '\' does not exist"}')
+		return HttpResponseNotFound('{"Error":"asset_number \'' + assetNum + '\' does not exist"}')
 	asset_number = instrumentObj.asset_number
 	
 	serial = InstrumentSerializer(instrumentObj)#, context={'request': request})
