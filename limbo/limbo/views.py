@@ -190,19 +190,9 @@ def editInstrTypes(request):
 			can_delete=True,
 		)
 	try:
-		#message = request.method + ' ' + request.POST.get('make', 'None') + ' '
 		postFormset = formSet(request.POST, request.FILES)
-		
-		#for obj in postFormset.deleted_objects:
-		#	message += 'deleted object ' + obj.pk + '\n'
-		#	obj.delete()
 		if postFormset.is_valid():
 			postFormset.save()
-			for form in postFormset:
-				#message += 'starting form \n'
-				if form.is_valid():
-					#message += 'about to save form\n'
-					form.save()
 			message += 'The values have been updated'
 		else:
 			message += 'The values could not be updated\n' + postFormset.errors
