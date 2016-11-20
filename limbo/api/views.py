@@ -5,7 +5,6 @@ from django.core.urlresolvers import reverse
 from django.core import serializers as coreSerializers
 import json
 from django.http import QueryDict
-from django.http import HttpResponse
 from django.template import loader
 from django.conf import settings
 from django.contrib.auth import authenticate, login
@@ -40,19 +39,19 @@ def addUsageHistory(request):
 		form = usageHistoryForm(request.POST)
 		if form.is_valid():
 			newUse = form.save()
-			message = HttpResponse('{"Added":{"user":' + \
+			message = ('{"Added":{"user":' + \
 			coreSerializers.serialize('json', [newUse.FK_user.user, ]) +  ',"version":' + \
 			coreSerializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument":' + \
 			coreSerializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
 			'"' + str(newUse.timestamp) + '"' +  \
 			'}}')
-			return HttpResponse(message)
+			return HttpResponse(message, status=201)
 		else:
 			message = '{"Error": ["Message":"The use history has NOT been added.",' + '\n'
 			message += '"Details":"' + ', '.join("%s=%r" % (key,val) for (key,val) in form.errors.iteritems()) + '"]}' 
-			return HttpResponse(message)
+			return HttpResponse(message, status=400)
 	message = '{"Error":"Data must be POSTed},"Method":"' + request.method + '"}'
-	return HttpResponse(message)
+	return HttpResponse(message, status=201)
 
 
 @csrf_exempt
@@ -97,7 +96,7 @@ def getUsageHistory(request):
 		'"' + str(curUse.timestamp) + '"' +  \
 		'}}'
 	message += ']}'
-	return HttpResponse(message)
+	return HttpResponse(message, status=200)
 	
 	
 @csrf_exempt
