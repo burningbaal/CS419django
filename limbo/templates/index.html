@@ -7,7 +7,7 @@
 	{% load crispy_forms_tags %}
 	<form action="{% url 'indexLimbo' %}" method="post">
 		{% csrf_token %}
-		{{ crispy form }}
+		{% crispy form %}
 	</form>
 {% endif %}
 <br>
