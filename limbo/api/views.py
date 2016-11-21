@@ -131,8 +131,8 @@ def getInstrument(request):
 	return HttpResponse(strInstrument)
 	
 	
-@csrf_exempt
 @api_view(['GET', 'POST'])
+@csrf_exempt
 def getMethod(request, method):
 	
 	strMethod = ''
