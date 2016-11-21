@@ -378,7 +378,7 @@ def editEquipment(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
 	if not request.user.has_perm('change_Instrument'):
-		return redirect(indexLimbo, 'Sorry, you do not have permission to edit Equipment.')
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.')
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 	helper = EquipmentFormSetHelper()
 	helper.add_input(Submit("submit", "Save"))
