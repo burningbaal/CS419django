@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<p>{{ message }}</p>
+<p>{{ message|linebreaks }}</p>
 {% if form is not None %}
 	{% load crispy_forms_tags %}
 	<form action="{% url 'indexLimbo' %}" method="post">
