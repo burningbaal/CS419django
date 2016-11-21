@@ -6,13 +6,12 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.indexLimbo, name='indexLimbo'),
-	url(r'^logout/$', views.logoutLimbo, name='logoutLimbo'),
+	url(r'^logoutUser/$', views.logoutLimbo, name='logoutLimbo'),
 	url(r'^index/$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index/?(?P<message>.+)?/?$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index.html$', views.indexLimbo, name='indexLimbo'),
 	url(r'^users.html$', views.editUsers, name='editUsers'),
-	url(r'^index/logout/$', views.logoutLimbo, name='logoutLimbo'),
 	url(r'^methods.html$', views.editMethods, name='editMethods'),
 	url(r'^equipment.html$', views.editEquipment, name='editEqiupment'),
 	url(r'^method$', views.goToMethod, name='goToMethod'),
