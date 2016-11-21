@@ -36,7 +36,7 @@ def logoutLimbo(request):
 		indexLimbo, 
 	)
 
-def indexLimbo(request message='Welcome, please log in'):
+def indexLimbo(request, message='Welcome, please log in'):
 	form = loginForm()
 	if request.method == 'POST':
 		username = request.POST.get('username', None)
