@@ -131,4 +131,36 @@ def getInstrument(request):
 	return HttpResponse(strInstrument)
 	
 	
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def getMethod(request, method):
+	
+	strMethod = ''
+	userResponse = ''
+	response = ''
+	
+	username = request.POST.get('username', None)
+	password = request.POST.get('password', None)
+	user = None
+	user = authenticate(username=username, password=password)
+	if user is None:
+		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}', status=401) 
+		
+	serial = UserProfileSerializer(user)
+	userResponse = JSONRenderer().render(serial.data)
+	
+	if method is None:
+		return HttpResponse('{"Error":"Must POST or GET \'method\'"}', status=406)
+	try:
+		methodObj = Method.objects.get(pk=method)
+	except:
+		return HttpResponse('{"Error":"method \'' + method + '\' does not exist"}', status=204)
+	methodName = methodObj.name
+	
+	serial = MethodVersionSerializer(methodObj)#, context={'request': request})
+	strMethod = strMethod + JSONRenderer().render(serial.data)
+	response = '{ "user":' + userResponse + '},{' + str(strMethod) + '}'
+	return HttpResponse(strMethod)
+	
+	
 	

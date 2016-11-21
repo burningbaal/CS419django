@@ -28,12 +28,23 @@ class InstrTypeSerializer(serializers.ModelSerializer):
 		model = InstrType
 		fields = '__all__'
 
+class MethodVersionSerializer(serializers.ModelSerializer):
+	Versions = VersionOnlySerializer(source='version_set', read_only=True,)
+	class Meta:
+		model = Method
+		fields = ('id', 'name', 'description',)
+		
 class MethodSerializer(serializers.ModelSerializer):
 	description = serializers.ReadOnlyField(source='descripton')
 	class Meta:
 		model = Method
 		fields = ('id', 'name', 'description')
 
+class VersionOnlySerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Version
+		fields = ('id', 'version_number', 'cmd_line_script', 'SOP',)
+		
 class VersionSerializer(serializers.ModelSerializer):
 	method = MethodSerializer(read_only=True)
 	#Instr_Version = Instr_VersionSerializer(source='Instr_Version_set', many=True, read_only=True)

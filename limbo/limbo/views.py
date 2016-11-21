@@ -26,6 +26,7 @@ from rest_framework.renderers import JSONRenderer
 #	let others view?
 # do something with server configs
 # find a way to widen the fields in the forms
+# build checksums and move where it is in the getInstrument response
 # TEST!!!!
 #####################
 
