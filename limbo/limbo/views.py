@@ -45,7 +45,7 @@ def indexLimbo(request, message='Welcome, please log in'):
 		if user is not None:
 			login(request, user)
 		else: 
-			message = 'Username or password incorrect, try again'
+			message += 'Username or password incorrect, try again'
 			return render(
 				request, 
 				'index.html',
@@ -139,7 +139,7 @@ def goToMethod(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
 	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method'):
-		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.\n')
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.  \n')
 	methodID = int(request.POST.get('methodId', None))
 	return redirect(editMethod, methodId=methodID)
 	
@@ -148,7 +148,7 @@ def editMethod(request, methodId):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
 	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method'):
-		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.\n')
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.  \n')
 	method = get_object_or_404(Method, pk=methodId )
 	name = request.POST.get('name', None)
 	formSet = inlineformset_factory(
@@ -230,7 +230,7 @@ def editMethods(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
 	if not request.user.has_perm('change_Method'):
-		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.\n')
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.  \n')
 	formSet = modelformset_factory(Method, exclude=('id',), extra=1)
 	helper = MethodFormSetHelper()
 	helper.add_input(Submit("submit", "Save"))
@@ -270,7 +270,7 @@ def editInstrTypes(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
 	if not request.user.has_perm('change_Instrument'):
-		return redirect(indexLimbo, message='Sorry, you do not have permission to edit equipment.\n')
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit equipment.  \n')
 	message = ''
 	formSet = modelformset_factory(
 			InstrType, 
@@ -306,7 +306,7 @@ def gotoInstrument(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
 	if not request.user.has_perm('change_Instrument'):
-		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.\n')
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.  \n')
 	message = ''
 	instrId = int(request.POST.get('instrument', None))
 	return redirect(editInstrument, pk=instrId)
@@ -315,7 +315,7 @@ def editInstrument(request, pk):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
 	if not request.user.has_perm('change_Instrument'):
-		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.\n')
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.  \n')
 	assetId = pk
 	message = ''
 	try:
@@ -391,7 +391,7 @@ def editEquipment(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
 	if not request.user.has_perm('change_Instrument'):
-		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.\n')
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.  \n')
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 	helper = EquipmentFormSetHelper()
 	helper.add_input(Submit("submit", "Save"))
@@ -451,7 +451,7 @@ def editServer(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
 	if not request.user.has_perm('change_serverConfig'):
-		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Server Configurations.\n')
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Server Configurations.  \n')
 	result = serverConfig.objects.values()
 	myConfigs = [entry for entry in result]
 	
