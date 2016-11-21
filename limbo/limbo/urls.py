@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
 	url(r'^$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index/$', views.indexLimbo, name='indexLimbo'),
-	url(r'^index/?(?P<message>\.+)?/?$', views.indexLimbo, name='indexLimbo'),
+	url(r'^index/?(?P<message>.+)?/?$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index.html$', views.indexLimbo, name='indexLimbo'),
 	url(r'^users.html$', views.editUsers, name='editUsers'),
