@@ -316,6 +316,7 @@ def editInstrument(request, pk):
 		return redirect(logoutLimbo)
 	if not request.user.has_perm('change_Instrument'):
 		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.  \n')
+	curUser = request.user
 	assetId = pk
 	message = ''
 	try:
@@ -332,7 +333,7 @@ def editInstrument(request, pk):
 				message += 'Checking version #' + str(vers.FK_version) + '\n'
 				if not Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.FK_version).exists():
 					message += 'version #' + str(vers.FK_version.id) + ' is going to be added to validVersions\n'
-					curUser = UserProfile.objects.get(user=request.user) 
+					curUser = UserProfile.objects.get(user=curUser.id) 
 					validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=vers.FK_version, timestamp=datetime.now(), validating_user=curUser)
 				else:
 					message += ' version #' + str(vers.FK_version.id) + ' already listed\n'
