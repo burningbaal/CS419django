@@ -162,7 +162,7 @@ def getMethod(request):
 	
 	serial = MethodVersionSerializer(methodObj)#, context={'request': request})
 	strMethod = strMethod + JSONRenderer().render(serial.data)
-	response = '{ "user":' + userResponse + ',"Method":' + str(strMethod) + ''}'
+	response = '{ "user":' + userResponse + ',"Method":' + str(strMethod) + '}'
 	return HttpResponse(response)
 	
 	
