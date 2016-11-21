@@ -138,7 +138,7 @@ def goToMethod(request):
 	message = ''
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
-	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method') or not :
+	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method):
 		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.')
 	methodID = int(request.POST.get('methodId', None))
 	return redirect(editMethod, methodId=methodID)
@@ -147,7 +147,7 @@ def editMethod(request, methodId):
 	message = ''
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
-	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method') or not :
+	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method'):
 		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.')
 	method = get_object_or_404(Method, pk=methodId )
 	name = request.POST.get('name', None)
