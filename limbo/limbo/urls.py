@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.indexLimbo, name='indexLimbo'),
+	url(r'^logout/$', views.logoutLimbo, name='logoutLimbo'),
 	url(r'^index/$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index/?(?P<message>.+)?/?$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index$', views.indexLimbo, name='indexLimbo'),
