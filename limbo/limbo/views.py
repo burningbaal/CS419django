@@ -138,6 +138,8 @@ def goToMethod(request):
 	message = ''
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
+	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method') or not :
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.')
 	methodID = int(request.POST.get('methodId', None))
 	return redirect(editMethod, methodId=methodID)
 	
@@ -145,6 +147,8 @@ def editMethod(request, methodId):
 	message = ''
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
+	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method') or not :
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.')
 	method = get_object_or_404(Method, pk=methodId )
 	name = request.POST.get('name', None)
 	formSet = inlineformset_factory(
@@ -225,6 +229,8 @@ def editMethod(request, methodId):
 def editMethods(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
+	if not request.user.has_perm('change_Method'):
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.')
 	formSet = modelformset_factory(Method, exclude=('id',), extra=1)
 	helper = MethodFormSetHelper()
 	helper.add_input(Submit("submit", "Save"))
@@ -259,9 +265,12 @@ def editMethods(request):
 			'form': form
 		}
 	)
+	
 def editInstrTypes(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
+	if not request.user.has_perm('change_Instrument'):
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit equipment.')
 	message = ''
 	formSet = modelformset_factory(
 			InstrType, 
@@ -296,6 +305,8 @@ def editInstrTypes(request):
 def gotoInstrument(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
+	if not request.user.has_perm('change_Instrument'):
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.')
 	message = ''
 	instrId = int(request.POST.get('instrument', None))
 	return redirect(editInstrument, pk=instrId)
@@ -303,6 +314,8 @@ def gotoInstrument(request):
 def editInstrument(request, pk):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
+	if not request.user.has_perm('change_Instrument'):
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.')
 	assetId = pk
 	message = ''
 	try:
@@ -434,10 +447,11 @@ def editEquipment(request):
 		}
 	)
 
-
 def editServer(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
+	if not request.user.has_perm('change_serverConfig'):
+		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Server Configurations.')
 	result = serverConfig.objects.values()
 	myConfigs = [entry for entry in result]
 	
