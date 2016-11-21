@@ -34,7 +34,7 @@ class VersionOnlySerializer(serializers.ModelSerializer):
 		fields = ('id', 'version_number', 'cmd_line_script', 'SOP',)
 		
 class MethodVersionSerializer(serializers.ModelSerializer):
-	Versions = VersionOnlySerializer(source='version_set', read_only=True,)
+	Versions = VersionOnlySerializer(source='version_set', read_only=True, many=True,)
 	class Meta:
 		model = Method
 		fields = ('id', 'name', 'description', 'Versions',)
