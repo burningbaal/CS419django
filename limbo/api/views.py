@@ -115,6 +115,7 @@ def getInstrument(request):
 		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}', status=401) 
 	serial = UserProfileSerializer(user)
 	userResponse = JSONRenderer().render(serial.data)
+	
 	if request.method == 'POST':
 		assetNum = request.POST.get('asset_number', None)
 	if assetNum is None:
@@ -133,7 +134,7 @@ def getInstrument(request):
 	
 @api_view(['GET', 'POST'])
 @csrf_exempt
-def getMethod(request, method):
+def getMethod(request):
 	
 	strMethod = ''
 	userResponse = ''
@@ -149,6 +150,8 @@ def getMethod(request, method):
 	serial = UserProfileSerializer(user)
 	userResponse = JSONRenderer().render(serial.data)
 	
+	if request.method == 'POST':
+		method = request.POST.get('method', None)
 	if method is None:
 		return HttpResponse('{"Error":"Must POST or GET \'method\'"}', status=406)
 	try:
@@ -160,7 +163,7 @@ def getMethod(request, method):
 	serial = MethodVersionSerializer(methodObj)#, context={'request': request})
 	strMethod = strMethod + JSONRenderer().render(serial.data)
 	response = '{ "user":' + userResponse + '},{' + str(strMethod) + '}'
-	return HttpResponse(strMethod)
+	return HttpResponse(response)
 	
 	
 	

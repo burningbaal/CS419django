@@ -8,6 +8,6 @@ urlpatterns = [
 	url(r'^addUse/', views.addUsageHistory, name='addUsageHistory'),
 	url(r'^getUse/', views.getUsageHistory, name='getUsageHistory'),
 	url(r'^getInstrument/', views.getInstrument, name='getInstrument'),
-	url(r'^getMethod/(?P<method>\d+)/$', views.getMethod, name='getMethod'),
+	url(r'^getMethod/$', views.getMethod, name='getMethod'),
 	url(r'^api-token-auth/', restFwViews.obtain_auth_token),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
