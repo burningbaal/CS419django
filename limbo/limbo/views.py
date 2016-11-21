@@ -138,7 +138,7 @@ def goToMethod(request):
 	message = ''
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
-	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method):
+	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method'):
 		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.')
 	methodID = int(request.POST.get('methodId', None))
 	return redirect(editMethod, methodId=methodID)
