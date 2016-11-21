@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.indexLimbo, name='indexLimbo'),
+	url(r'^logout/$', views.limboLogout, name='limboLogout'),
 	url(r'^index/$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index$', views.indexLimbo, name='indexLimbo'),
 	url(r'^index.html$', views.indexLimbo, name='indexLimbo'),
