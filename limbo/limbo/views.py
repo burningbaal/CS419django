@@ -36,9 +36,7 @@ def logoutLimbo(request):
 		indexLimbo, 
 	)
 
-def indexLimbo(request):
-	# request.session.flush()
-	message = 'Welcome, please log in'
+def indexLimbo(request message='Welcome, please log in'):
 	form = loginForm()
 	if request.method == 'POST':
 		username = request.POST.get('username', None)
@@ -379,6 +377,8 @@ def editInstrument(request, pk):
 def editEquipment(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
+	if not request.user.has_perm('change_Instrument'):
+		return redirect(indexLimbo, 'Sorry, you do not have permission to edit Equipment.')
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 	helper = EquipmentFormSetHelper()
 	helper.add_input(Submit("submit", "Save"))
