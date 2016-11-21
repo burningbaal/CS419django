@@ -20,7 +20,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = UserProfile
 		#fields = ('last_login', 'is_superuser', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'date_joined')
-		fields = ('user',)
+		fields = ('id','user',)
 		#excludes = ('password',)
 	
 class InstrTypeSerializer(serializers.ModelSerializer):
