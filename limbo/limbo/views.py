@@ -334,7 +334,7 @@ def editInstrument(request, pk):
 				if not Instr_Version.objects.filter(FK_instrument=assetId, FK_version=vers.FK_version).exists():
 					message += 'version #' + str(vers.FK_version.id) + ' is going to be added to validVersions\n'
 					curUser = UserProfile.objects.get(user=curUser.id) 
-					validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=vers.FK_version, timestamp=datetime.now(), validating_user=curUser)
+					validation, created = Instr_Version.objects.get_or_create(FK_instrument=asset, FK_version=vers.FK_version, timestamp=datetime.now(), validating_user=curUser.id)
 				else:
 					message += ' version #' + str(vers.FK_version.id) + ' already listed\n'
 			else:
