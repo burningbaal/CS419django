@@ -28,7 +28,9 @@ class Method(models.Model):
 	description = models.TextField(null=False)
 
 	class Meta:
-		permissions = ("view_Method", "Can view methods")
+		permissions = (
+			("view_Method", "Can view methods"),
+		)
 
 class Version(models.Model):
 	def __str__(self):
