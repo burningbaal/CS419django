@@ -11,6 +11,11 @@ class UserProfile(models.Model):
 	def __str__(self):
 		return user.last_name + ', ' + user.first_name
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+	class Meta:
+		permissions = (
+			("view_UserProfile", "Can view user profile"),
+		)
 	
 	
 class InstrType(models.Model):
@@ -21,6 +26,11 @@ class InstrType(models.Model):
 	service_email = models.CharField(max_length=50, null=True)
 	service_website = models.CharField(max_length=50, null=True)
 
+	class Meta:
+		permissions = (
+			("view_InstrType", "Can view instr type"),
+		)
+
 class Method(models.Model):
 	def __str__(self):
 		return self.name
@@ -29,7 +39,7 @@ class Method(models.Model):
 
 	class Meta:
 		permissions = (
-			("view_Method", "Can view methods"),
+			("view_Method", "Can view method"),
 		)
 
 class Version(models.Model):
@@ -56,6 +66,11 @@ class Instrument(models.Model):
 						through='Instr_Version', 
 						related_name = 'InstrumentsFromVersion',
 					)
+	
+	class Meta:
+		permissions = (
+			("view_Instrument", "Can view instrument"),
+		)
 
 class Instr_Version(models.Model):
 	FK_version = models.ForeignKey(Version, related_name='versions', on_delete=models.CASCADE)
@@ -65,6 +80,9 @@ class Instr_Version(models.Model):
 
 	class Meta:
 		unique_together = ('FK_version', 'FK_instrument')
+		permissions = (
+			("view_Instr_Version", "Can view instr_version"),
+		)
 
 class User_Version(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
@@ -74,6 +92,9 @@ class User_Version(models.Model):
 
 	class Meta:
 		unique_together = ('FK_version', 'FK_user')
+		permissions = (
+			("view_User_Version", "Can view user_version"),
+		)
 
 # class Role_Permission(models.Model):
 	# FK_role = ForeignKey(Role, on_delete=models.CASCADE)
@@ -87,4 +108,9 @@ class UsageHistory(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.PROTECT)
 	FK_instrument = models.ForeignKey(Instrument, on_delete=models.PROTECT)
 	timestamp = models.DateTimeField(default=datetime.now, blank=True) 
+
+	class Meta:
+		permissions = (
+			("view_UsageHistory", "Can view usage history"),
+		)
 
