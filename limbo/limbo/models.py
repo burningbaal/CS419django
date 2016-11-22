@@ -52,6 +52,9 @@ class Version(models.Model):
 	
 	class Meta:
 		unique_together = ('version_number', 'FK_method')
+		permissions = (
+			("view_Version", "Can view version"),
+		)
 
 class Instrument(models.Model):
 	def __str__(self):
