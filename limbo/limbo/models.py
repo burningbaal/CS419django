@@ -27,6 +27,9 @@ class Method(models.Model):
 	name = models.CharField(max_length=50, unique=True)
 	description = models.TextField(null=False)
 
+	class Meta:
+		permissions = ("view_Method", "Can view methods")
+
 class Version(models.Model):
 	def __str__(self):
 		return self.FK_method.name + ' ' + self.version_number
