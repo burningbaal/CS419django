@@ -2,8 +2,8 @@
 # on 04Nov2016
 # from django.db.models.signals import post_migrate # post_syncdb replaced at v1.9
 # from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import User
-from limbo.models import UserProfile
+#from django.contrib.auth.models import User
+#from limbo.models import UserProfile
 
 # def add_view_permissions(sender, **kwargs):
     # """
