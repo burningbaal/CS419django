@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from datetime import datetime 
+from django.contrib.auth.models import User
 
 class serverConfig(models.Model):
 	
@@ -10,8 +11,16 @@ class serverConfig(models.Model):
 class UserProfile(models.Model):
 	def __str__(self):
 		return user.last_name + ', ' + user.first_name
-	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
 	
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.UserProfile.save()
 	
 class InstrType(models.Model):
 	def __str__(self):
