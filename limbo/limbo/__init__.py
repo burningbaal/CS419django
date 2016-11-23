@@ -36,4 +36,4 @@ def makeAllUserProfiles(sender, **kwargs):
 		except:
 			prof = UserProfile.objects.create(profile=user)
 
-makeAllUserProfiles() # CALL on init, comment out this line when not needed.
+#post_syncdb.connect(makeAllUserProfiles()) # CALL on init, comment out this line when not needed.
