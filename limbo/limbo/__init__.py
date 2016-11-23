@@ -26,14 +26,14 @@ from limbo.models import UserProfile
 # check for all our view permissions after a syncdb
 #post_syncdb.connect(add_view_permissions)
 
-def makeAllUserProfiles(sender, **kwargs):
-	"""
-	this makes sure each django.contrib.auth.user has a profile
-	"""
-	for  user in User.objects.get.all():
-		try:
-			prof = UserProfile.objects.get.filter(profile=user)
-		except:
-			prof = UserProfile.objects.create(profile=user)
+# def makeAllUserProfiles(sender, **kwargs):
+	# """
+	# this makes sure each django.contrib.auth.user has a profile
+	# """
+	# for  user in User.objects.get.all():
+		# try:
+			# prof = UserProfile.objects.get.filter(profile=user)
+		# except:
+			# prof = UserProfile.objects.create(profile=user)
 
 #post_syncdb.connect(makeAllUserProfiles()) # CALL on init, comment out this line when not needed.
