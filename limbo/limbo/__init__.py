@@ -30,7 +30,7 @@ def makeAllUserProfiles(sender, **kwargs):
 	"""
 	this makes sure each django.contrib.auth.user has a profile
 	"""
-	for each user in User.objects.get.all():
+	for  user in User.objects.get.all():
 		try:
 			prof = UserProfile.objects.get.filter(profile=user)
 		except:
