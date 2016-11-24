@@ -65,7 +65,7 @@ class Version(models.Model):
 	cmd_line_script = models.TextField(null=False)
 	SOP = models.TextField(null=False)
 	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE)
-	authorized_users = models.ManyToManyField(User, through='User_Version', through_field='FK_version')
+	authorized_users = models.ManyToManyField(User, through='User_Version', through_fields=('FK_version', 'FK_user',) )
 	
 	class Meta:
 		unique_together = ('version_number', 'FK_method')
@@ -105,8 +105,8 @@ class Instr_Version(models.Model):
 		)
 
 class User_Version(models.Model):
-	FK_version = models.ForeignKey(Version, related_name='authorized_users', on_delete=models.CASCADE)
-	FK_user = models.ForeignKey(User,  related_name='authorized_verions', on_delete=models.CASCADE)
+	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
+	FK_user = models.ForeignKey(User,  on_delete=models.CASCADE)
 	authorizing_user = models.ForeignKey(User,  related_name='user_versions_granted', on_delete=models.PROTECT)
 	timestamp = models.DateField(auto_now_add=True)
 
