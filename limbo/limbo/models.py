@@ -12,9 +12,11 @@ class serverConfig(models.Model):
 	
 class UserProfile(models.Model):
 	def __str__(self):
-		return user.last_name + ', ' + user.first_name
+		try:
+			return user.last_name + ', ' + user.first_name
+		except:
+			return user.username
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-
 	class Meta:
 		permissions = (
 			("view_UserProfile", "Can view user profile"),
@@ -63,22 +65,13 @@ class Version(models.Model):
 	cmd_line_script = models.TextField(null=False)
 	SOP = models.TextField(null=False)
 	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE)
+	authorized_verions = models.ManyToManyField(User, through='User_Version', related_name='authorized_versions')
 	
 	class Meta:
 		unique_together = ('version_number', 'FK_method')
 		permissions = (
 			("view_Version", "Can view version"),
 		)
-		
-class UserProfile_Version(models.Model):
-	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE, related_name='authorized_users')
-	FK_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='authorized_verions')
-	validating_user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
-	timestamp = models.DateTimeField(auto_now=True)
-
-	class Meta:
-		unique_together = ('FK_version', 'FK_user')
-
 
 class Instrument(models.Model):
 	def __str__(self):
@@ -119,9 +112,6 @@ class User_Version(models.Model):
 
 	class Meta:
 		unique_together = ('FK_version', 'FK_user')
-		permissions = (
-			("view_User_Version", "Can view user_version"),
-		)
 
 # class Role_Permission(models.Model):
 	# FK_role = ForeignKey(Role, on_delete=models.CASCADE)
