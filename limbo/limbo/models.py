@@ -69,6 +69,16 @@ class Version(models.Model):
 		permissions = (
 			("view_Version", "Can view version"),
 		)
+		
+class UserProfile_Version(models.Model):
+	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE, related_name='authorized_users')
+	FK_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='authorized_verions')
+	validating_user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
+	timestamp = models.DateTimeField(auto_now=True)
+
+	class Meta:
+		unique_together = ('FK_version', 'FK_user')
+
 
 class Instrument(models.Model):
 	def __str__(self):
