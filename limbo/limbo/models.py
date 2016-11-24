@@ -27,7 +27,10 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.UserProfile.save()
+    try:
+		instance.UserProfile.save()
+	except:
+		UserProfile.objects.create(user=instance)
 	
 class InstrType(models.Model):
 	def __str__(self):
