@@ -16,18 +16,18 @@ class UserProfile(models.Model):
 			return user.last_name + ', ' + user.first_name
 		except:
 			return user.username
-	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
 	class Meta:
 		permissions = (
 			("view_UserProfile", "Can view user profile"),
 		)
 	
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_profile(sender, instance, created, **kwargs):
 	if created:
 		UserProfile.objects.create(user=instance)
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def save_user_profile(sender, instance, **kwargs):
 	try:
 		instance.UserProfile.save()
@@ -65,7 +65,7 @@ class Version(models.Model):
 	cmd_line_script = models.TextField(null=False)
 	SOP = models.TextField(null=False)
 	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE)
-	authorized_users = models.ManyToManyField(User, through='User_Version', through_fields=('FK_version', 'FK_user',) )
+	authorized_users = models.ManyToManyField(settings.AUTH_USER_MODEL, through='User_Version', through_fields=('FK_version', 'FK_user',) )
 	
 	class Meta:
 		unique_together = ('version_number', 'FK_method')
@@ -106,8 +106,8 @@ class Instr_Version(models.Model):
 
 class User_Version(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
-	FK_user = models.ForeignKey(User,  on_delete=models.CASCADE)
-	authorizing_user = models.ForeignKey(User,  related_name='user_versions_granted', on_delete=models.PROTECT)
+	FK_user = models.ForeignKey(settings.AUTH_USER_MODEL,  on_delete=models.CASCADE)
+	authorizing_user = models.ForeignKey(settings.AUTH_USER_MODEL,  related_name='user_versions_granted', on_delete=models.PROTECT)
 	timestamp = models.DateField(auto_now_add=True)
 
 	class Meta:
