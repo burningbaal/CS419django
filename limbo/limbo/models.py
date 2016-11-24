@@ -65,7 +65,7 @@ class Version(models.Model):
 	cmd_line_script = models.TextField(null=False)
 	SOP = models.TextField(null=False)
 	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE)
-	authorized_users = models.ManyToManyField(User, through='User_Version', related_name='authorized_versions')
+	authorized_users = models.ManyToManyField(User, through='User_Version', through_field='FK_version')
 	
 	class Meta:
 		unique_together = ('version_number', 'FK_method')
