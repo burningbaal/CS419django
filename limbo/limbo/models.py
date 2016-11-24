@@ -30,7 +30,7 @@ def save_user_profile(sender, instance, **kwargs):
 	try:
 		instance.UserProfile.save()
 	except:
-		UserProfile.objects.create(user=instance)
+		pass #UserProfile.objects.create(user=instance)
 
 class InstrType(models.Model):
 	def __str__(self):
