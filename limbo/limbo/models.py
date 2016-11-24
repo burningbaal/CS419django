@@ -65,7 +65,7 @@ class Version(models.Model):
 	cmd_line_script = models.TextField(null=False)
 	SOP = models.TextField(null=False)
 	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE)
-	authorized_verions = models.ManyToManyField(User, through='User_Version', related_name='authorized_versions')
+	authorized_users = models.ManyToManyField(User, through='User_Version', related_name='authorized_versions')
 	
 	class Meta:
 		unique_together = ('version_number', 'FK_method')
@@ -93,9 +93,9 @@ class Instrument(models.Model):
 		)
 
 class Instr_Version(models.Model):
-	FK_version = models.ForeignKey(Version, related_name='authorized_verions', on_delete=models.CASCADE)
+	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
 	FK_instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
-	validating_user = models.ForeignKey(UserProfile, related_name='user_versions_granted', on_delete=models.PROTECT)
+	validating_user = models.ForeignKey(UserProfile, related_name='user_instruments_granted', on_delete=models.PROTECT)
 	timestamp = models.DateField(auto_now_add=True)
 
 	class Meta:
@@ -106,8 +106,8 @@ class Instr_Version(models.Model):
 
 class User_Version(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
-	FK_user = models.ForeignKey(User, on_delete=models.CASCADE)
-	authorizing_user = models.ForeignKey(User, on_delete=models.PROTECT)
+	FK_user = models.ForeignKey(User,  related_name='authorized_verions', on_delete=models.CASCADE)
+	authorizing_user = models.ForeignKey(User,  related_name='user_versions_granted', on_delete=models.PROTECT)
 	timestamp = models.DateField(auto_now_add=True)
 
 	class Meta:
