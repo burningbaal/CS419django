@@ -138,7 +138,7 @@ def goToMethod(request):
 	message = ''
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
-	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method'):
+	if not request.user.has_perm('change_version') or not request.user.has_perm('change_method'):
 		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.  \n')
 	methodID = int(request.POST.get('methodId', None))
 	return redirect(editMethod, methodId=methodID)
@@ -147,7 +147,7 @@ def editMethod(request, methodId):
 	message = ''
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
-	if not request.user.has_perm('change_Version') or not request.user.has_perm('change_Method'):
+	if not request.user.has_perm('change_version') or not request.user.has_perm('change_method'):
 		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.  \n')
 	method = get_object_or_404(Method, pk=methodId )
 	name = request.POST.get('name', None)
@@ -229,7 +229,7 @@ def editMethod(request, methodId):
 def editMethods(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
-	if not request.user.has_perm('change_Method'):
+	if not request.user.has_perm('change_method'):
 		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Methods.  \n')
 	formSet = modelformset_factory(Method, exclude=('id',), extra=1)
 	helper = MethodFormSetHelper()
@@ -269,7 +269,7 @@ def editMethods(request):
 def editInstrTypes(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
-	if not request.user.has_perm('change_Instrument'):
+	if not request.user.has_perm('change_instrument'):
 		return redirect(indexLimbo, message='Sorry, you do not have permission to edit equipment.  \n')
 	message = ''
 	formSet = modelformset_factory(
@@ -305,7 +305,7 @@ def editInstrTypes(request):
 def gotoInstrument(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
-	if not request.user.has_perm('change_Instrument'):
+	if not request.user.has_perm('change_instrument'):
 		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.  \n')
 	message = ''
 	instrId = int(request.POST.get('instrument', None))
@@ -314,7 +314,7 @@ def gotoInstrument(request):
 def editInstrument(request, pk):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
-	if not request.user.has_perm('change_Instrument'):
+	if not request.user.has_perm('change_instrument'):
 		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.  \n')
 	curUser = request.user
 	assetId = pk
@@ -390,7 +390,7 @@ def editInstrument(request, pk):
 def editEquipment(request):
 	if not request.user.is_authenticated:
 		return redirect(logoutLimbo)
-	if not request.user.has_perm('change_Instrument'):
+	if not request.user.has_perm('change_instrument'):
 		return redirect(indexLimbo, message='Sorry, you do not have permission to edit Equipment.  \n')
 	formSet = modelformset_factory(Instrument, exclude=('VersionsFromInstrument', 'checksum_string',), extra=1)
 	helper = EquipmentFormSetHelper()
