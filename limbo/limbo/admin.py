@@ -41,11 +41,17 @@ class InstrumentInline(admin.TabularInline):
 @admin.register(InstrType)
 class InstrTypeAdmin(admin.ModelAdmin):
 	inlines = [InstrumentInline,]
-
+	list_display = ('make', 'model', 'service_email', 'service_website',)
+	
 
 class VersionInline(admin.StackedInline):
 	model = Version
 	
+@admin.register(Instrument)
+class InstrumentAdmin(admin.ModelAdmin):
+	#inlines = ['VersionInline',]
+	list_display = ('FK_instr_type', 'serial_number', 'asset_number', 'name')
+
 @admin.register(Method)
 class MethodAdmin(admin.ModelAdmin):
 	inlines = [VersionInline,]
