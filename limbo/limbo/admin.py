@@ -52,6 +52,9 @@ class InstrumentAdmin(admin.ModelAdmin):
 	inlines = [Instr_VersionInline,]
 	list_display = ('FK_instr_type', 'serial_number', 'asset_number', 'name')
 
+class VersionInline(admin.StackedInline):
+	model = Version
+	
 @admin.register(Method)
 class MethodAdmin(admin.ModelAdmin):
 	inlines = [VersionInline,]
