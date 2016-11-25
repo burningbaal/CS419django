@@ -24,15 +24,23 @@ class ProfileInline(admin.StackedInline):
 
 class CustomUserAdmin(UserAdmin):
 	
-	inlines = (ProfileInline, )
+	inlines = [ProfileInline, ]
 	
 	def get_inline_instances(self, request, obj=None):
 		if not obj:
 			return list()
 		return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
-admin.site.register(UsageHistory)
-admin.site.register(Instrument)
+@admin.register(UsageHistory)
+class UsageHistoryAdmin(amdin.ModelAdmin):
+	verbose_name_plural = 'Usage History Logs'
+
+class InstrumentInline(admin.TabularInline):
+	model = Instrument
+
+@admin.register(InstrType)
+class InstrTypeAdmin(admin.ModelAdmin):
+	inlines = [InstrumentInline,]
 
 
 class VersionInline(admin.StackedInline):
@@ -41,6 +49,7 @@ class VersionInline(admin.StackedInline):
 @admin.register(Method)
 class MethodAdmin(admin.ModelAdmin):
 	inlines = [VersionInline,]
+	list_display = ('name', 'description',)
 
 	
 # @admin.register(UserProfile)
