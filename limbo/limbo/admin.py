@@ -12,4 +12,4 @@ from django.contrib import admin
 @admin.register(UserProfile)
 class UserProfile(admin.ModelAdmin):
 	form = UserProfileForm
-	filter_horizontal = ('authorized_MethodVersions',)
+	filter_horizontal = ('trained',)

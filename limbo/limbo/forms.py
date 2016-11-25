@@ -12,7 +12,7 @@ class index (forms.Form):
 class UserProfileForm(ModelForm):
 	class Meta:
 		model = UserProfile
-		fields = ('authorized_MethodVersions',)
+		fields = ('trained',)
 	def __init__(self, *args, **kwargs):
 		super(UserProfileForm, self).__init__(*args, **kwargs)
 		instance = getattr(self, 'instance', None)

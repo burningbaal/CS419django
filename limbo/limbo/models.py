@@ -17,6 +17,7 @@ class UserProfile(models.Model):
 		except:
 			return self.user.username
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
+	trained = models.ManyToManyField(Versions, through='UserProfile_Version', through_fields=('FK_userProfile', 'FK_version',),)
 	class Meta:
 		permissions = (
 			("view_UserProfile", "Can view user profile"),
@@ -65,7 +66,7 @@ class Version(models.Model):
 	cmd_line_script = models.TextField(null=False)
 	SOP = models.TextField(null=False)
 	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE)
-	authorized_users = models.ManyToManyField(UserProfile, through='UserProfile_Version', through_fields=('FK_version', 'FK_userProfile',), related_name='authorized_MethodVersions', )
+	#authorized_users = models.ManyToManyField(UserProfile, through='UserProfile_Version', through_fields=('FK_version', 'FK_userProfile',), related_name='authorized_MethodVersions', )
 	
 	class Meta:
 		unique_together = ('version_number', 'FK_method')
