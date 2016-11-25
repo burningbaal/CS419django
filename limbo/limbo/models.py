@@ -56,7 +56,7 @@ class UserProfile(models.Model):
 		except:
 			return self.user.username
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
-	title = models.CharField(max_length=100, unique=False)
+	title = models.CharField(max_length=100, unique=False, default="new hire")
 	trained = models.ManyToManyField(Version, through='UserProfile_Version', through_fields=('FK_userProfile', 'FK_version',),)
 	class Meta:
 		permissions = (
