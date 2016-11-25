@@ -14,7 +14,7 @@ from django.contrib.auth.admin import UserAdmin
 """
 Resource: https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-user-profile-to-django-admin.html
 """
-@admin.register(ProfileInline)
+
 class ProfileInline(admin.StackedInline):
 	model = UserProfile
 	filter_horizontal =('trained',)
@@ -31,7 +31,7 @@ class CustomUserAdmin(UserAdmin):
 			return list()
 		return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
-
+admin.site.register(UsageHistory)
 	
 # @admin.register(UserProfile)
 #class UserProfile(admin.ModelAdmin):
