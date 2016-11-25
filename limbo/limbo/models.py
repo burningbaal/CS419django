@@ -10,31 +10,6 @@ class serverConfig(models.Model):
 	config_key = models.CharField(max_length=63)
 	config_value = models.CharField(max_length=63)
 	
-class UserProfile(models.Model):
-	def __str__(self):
-		try:
-			return self.user.last_name + ', ' + self.user.first_name
-		except:
-			return self.user.username
-	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
-	trained = models.ManyToManyField(Version, through='UserProfile_Version', through_fields=('FK_userProfile', 'FK_version',),)
-	class Meta:
-		permissions = (
-			("view_UserProfile", "Can view user profile"),
-		)
-	
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_user_profile(sender, instance, created, **kwargs):
-	if created:
-		UserProfile.objects.create(user=instance)
-
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def save_user_profile(sender, instance, **kwargs):
-	try:
-		instance.UserProfile.save()
-	except:
-		pass #UserProfile.objects.create(user=instance)
-
 class InstrType(models.Model):
 	def __str__(self):
 		return self.make + ' ' + self.model
@@ -73,6 +48,31 @@ class Version(models.Model):
 		permissions = (
 			("view_Version", "Can view version"),
 		)
+
+class UserProfile(models.Model):
+	def __str__(self):
+		try:
+			return self.user.last_name + ', ' + self.user.first_name
+		except:
+			return self.user.username
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
+	trained = models.ManyToManyField(Version, through='UserProfile_Version', through_fields=('FK_userProfile', 'FK_version',),)
+	class Meta:
+		permissions = (
+			("view_UserProfile", "Can view user profile"),
+		)
+	
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_user_profile(sender, instance, created, **kwargs):
+	if created:
+		UserProfile.objects.create(user=instance)
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def save_user_profile(sender, instance, **kwargs):
+	try:
+		instance.UserProfile.save()
+	except:
+		pass #UserProfile.objects.create(user=instance)
 
 class Instrument(models.Model):
 	def __str__(self):
