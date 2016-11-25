@@ -44,12 +44,12 @@ class InstrTypeAdmin(admin.ModelAdmin):
 	list_display = ('make', 'model', 'service_email', 'service_website',)
 	
 
-class VersionInline(admin.StackedInline):
-	model = Version
+class VersionsFromInstrumentInline(admin.StackedInline):
+	model = VersionsFromInstrument
 	
 @admin.register(Instrument)
 class InstrumentAdmin(admin.ModelAdmin):
-	filter_horizontal = ('VersionsFromInstrument',)
+	inlines = [VersionsFromInstrumentInline,]
 	list_display = ('FK_instr_type', 'serial_number', 'asset_number', 'name')
 
 @admin.register(Method)
