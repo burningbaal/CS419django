@@ -49,7 +49,7 @@ class VersionInline(admin.StackedInline):
 	
 @admin.register(Instrument)
 class InstrumentAdmin(admin.ModelAdmin):
-	filter_horizontal = 'VersionsFromInstrument'
+	filter_horizontal = ('VersionsFromInstrument',)
 	list_display = ('FK_instr_type', 'serial_number', 'asset_number', 'name')
 
 @admin.register(Method)
