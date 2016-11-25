@@ -13,9 +13,9 @@ class serverConfig(models.Model):
 class UserProfile(models.Model):
 	def __str__(self):
 		try:
-			return user.last_name + ', ' + user.first_name
+			return self.user.last_name + ', ' + self.user.first_name
 		except:
-			return user.username
+			return self.user.username
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
 	class Meta:
 		permissions = (
