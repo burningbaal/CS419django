@@ -16,7 +16,10 @@ Resource: https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-u
 """
 #@admin.register(UserProfile_Version)
 class UserProfileVersionInline(admin.StackedInline):
+	model = UserProfile_Version
 	fields = ('FK_version',)
+	fk_name = 'FK_userProfile'
+	verbose_name_plural = 'Trained versions'
 	def save_model(self, request, obj, form, change):
 		obj.authorizing_user = request.user.profile
 		obj.save()
@@ -30,7 +33,7 @@ class ProfileInline(admin.StackedInline):
 
 class CustomUserAdmin(UserAdmin):
 	
-	inlines = [ProfileInline, UserProfileVersionInline]
+	inlines = [ProfileInline, UserProfileVersionInline,]
 	
 	def get_inline_instances(self, request, obj=None):
 		if not obj:
