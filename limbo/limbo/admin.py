@@ -35,11 +35,11 @@ admin.site.register(UsageHistory)
 admin.site.register(Instrument)
 
 
-class VersionInline(admin.StackedInline)
+class VersionInline(admin.StackedInline):
 	model = Version
 	
 @admin.register(Method)
-class MethodAdmin(admin.ModelAdmin)
+class MethodAdmin(admin.ModelAdmin):
 	inlines = [VersionInline,]
 
 	
