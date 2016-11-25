@@ -14,7 +14,7 @@ from django.contrib.auth.admin import UserAdmin
 """
 Resource: https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-user-profile-to-django-admin.html
 """
-@admin.register(UserProfile_Version)
+#@admin.register(UserProfile_Version)
 class UserProfileVersionInline(admin.StackedInline):
 	fields = ('FK_version',)
 	def save_model(self, request, obj, form, change):
@@ -23,7 +23,7 @@ class UserProfileVersionInline(admin.StackedInline):
 
 class ProfileInline(admin.StackedInline):
 	model = UserProfile
-	filter_horizontal =('trained',)
+	#filter_horizontal =('trained',)
 	can_delete = False
 	verbose_name_plural ='Profile'
 	fk_name = 'user'
