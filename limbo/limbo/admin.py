@@ -2,7 +2,7 @@ from limbo.models import *
 from django.contrib import admin
 
 @admin.register(UserProfile)
-class UserProfileInline(ModelAdmin.StackedInline):
+class UserProfileInline(admin.ModelAdmin.StackedInline):
 	model = UserProfile
 	can_delete = True
 	verbose_name_plural = 'profiles'
