@@ -49,7 +49,7 @@ class Instr_VersionInline(admin.StackedInline):
 	
 @admin.register(Instrument)
 class InstrumentAdmin(admin.ModelAdmin):
-	inlines = [VersionsFromInstrumentInline,]
+	inlines = [Instr_VersionInline,]
 	list_display = ('FK_instr_type', 'serial_number', 'asset_number', 'name')
 
 @admin.register(Method)
