@@ -32,6 +32,8 @@ class CustomUserAdmin(UserAdmin):
 		return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
 admin.site.register(UsageHistory)
+admin.site.register(Instrument)
+admin.site.register(Method)
 	
 # @admin.register(UserProfile)
 #class UserProfile(admin.ModelAdmin):
