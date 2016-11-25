@@ -52,6 +52,11 @@ class InstrTypeAdmin(admin.ModelAdmin):
 
 class Instr_VersionInline(admin.StackedInline):
 	model = Instr_Version
+	exclude = ('validating_user',)
+	filter_horizontal = ('FK_version',)
+	def save_model(self, request, obj, form, change):
+		obj.validating_user = request.user.profile
+		obj.save()
 	
 @admin.register(Instrument)
 class InstrumentAdmin(admin.ModelAdmin):
