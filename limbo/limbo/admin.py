@@ -44,8 +44,8 @@ class InstrTypeAdmin(admin.ModelAdmin):
 	list_display = ('make', 'model', 'service_email', 'service_website',)
 	
 
-class VersionsFromInstrumentInline(admin.StackedInline):
-	model = VersionsFromInstrument
+class Instr_VersionInline(admin.StackedInline):
+	model = Instr_Version
 	
 @admin.register(Instrument)
 class InstrumentAdmin(admin.ModelAdmin):
