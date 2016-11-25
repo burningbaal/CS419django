@@ -18,7 +18,7 @@ Resource: https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-u
 class UserProfileVersionInline(admin.ModelAdmin):
 	fields = ('FK_version', 'FK_userProfile',)
 	def save_model(self, request, obj, form, change):
-		obj.authorizing_user = request.user
+		obj.authorizing_user = request.user.profile
 		obj.save()
 
 class ProfileInline(admin.StackedInline):
