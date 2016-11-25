@@ -14,6 +14,7 @@ from django.contrib.auth.admin import UserAdmin
 """
 Resource: https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-user-profile-to-django-admin.html
 """
+@admin.register(UserProfile_Version)
 class UserProfileVersionInline(admin.ModelAdmin):
 	pass
 
