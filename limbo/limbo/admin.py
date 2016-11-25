@@ -17,7 +17,8 @@ Resource: https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-u
 #@admin.register(UserProfile_Version)
 class UserProfileVersionInline(admin.StackedInline):
 	model = UserProfile_Version
-	fields = ('FK_version',)
+	#fields = ('FK_version',)
+	exclude = ('authorizing_user', )
 	fk_name = 'FK_userProfile'
 	verbose_name_plural = 'Trained versions'
 	def save_model(self, request, obj, form, change):
