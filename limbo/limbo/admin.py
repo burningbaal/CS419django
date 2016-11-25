@@ -15,8 +15,8 @@ from django.contrib.auth.admin import UserAdmin
 Resource: https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-user-profile-to-django-admin.html
 """
 @admin.register(UserProfile_Version)
-class UserProfileVersionInline(admin.ModelAdmin):
-	fields = ('FK_version', 'FK_userProfile',)
+class UserProfileVersionInline(admin.StackedInline):
+	fields = ('FK_version',)
 	def save_model(self, request, obj, form, change):
 		obj.authorizing_user = request.user.profile
 		obj.save()
@@ -30,7 +30,7 @@ class ProfileInline(admin.StackedInline):
 
 class CustomUserAdmin(UserAdmin):
 	
-	inlines = [ProfileInline, ]
+	inlines = [ProfileInline, UserProfileVersionInline]
 	
 	def get_inline_instances(self, request, obj=None):
 		if not obj:
@@ -60,7 +60,7 @@ class Instr_VersionInline(admin.StackedInline):
 	
 @admin.register(Instrument)
 class InstrumentAdmin(admin.ModelAdmin):
-	inlines = [Instr_VersionInline,]
+	inlines = [FK_version,]
 	list_display = ('FK_instr_type', 'serial_number', 'asset_number', 'name')
 
 class VersionInline(admin.StackedInline):
