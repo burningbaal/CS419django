@@ -1,4 +1,5 @@
 from limbo.models import *
+from limbo.forms import *
 from django.contrib import admin
 
 #admin.site.register(UserProfile)
