@@ -56,14 +56,14 @@ class UserProfile(models.Model):
 		except:
 			return self.user.username
 	
-    NEW_HIRE = 1
-    ASSOCIATE = 2
-    ASSISTANT = 3
-    TITLE_CHOICES = (
-        (NEW_HIRE, 'New Hire'),
-        (ASSOCIATE, 'Associate'),
-        (ASSISTANT, 'Assistant'),
-    )
+	NEW_HIRE = 1
+	ASSOCIATE = 2
+	ASSISTANT = 3
+	TITLE_CHOICES = (
+		(NEW_HIRE, 'New Hire'),
+		(ASSOCIATE, 'Associate'),
+		(ASSISTANT, 'Assistant'),
+	)
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
 	title = models.CharField(max_length=50, choices=TITLE_CHOICES. default=NEW_HIRE, null=False, blank=False)
 	trained = models.ManyToManyField(Version, through='UserProfile_Version', through_fields=('FK_userProfile', 'FK_version',),)
