@@ -112,7 +112,7 @@ class UserProfile_Version(models.Model):
 	timestamp = models.DateField(auto_now_add=True)
 	
 	def __str__(self):
-		return self.FK_userProfile + ' is trained on ' + self.FK_version
+		return str(self.FK_userProfile) + ' is trained on ' + str(self.FK_version)
 
 	class Meta:
 		unique_together = ('FK_version', 'FK_userProfile')
