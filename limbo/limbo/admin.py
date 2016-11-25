@@ -32,7 +32,7 @@ class CustomUserAdmin(UserAdmin):
 		return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
 @admin.register(UsageHistory)
-class UsageHistoryAdmin(amdin.ModelAdmin):
+class UsageHistoryAdmin(admin.ModelAdmin):
 	verbose_name_plural = 'Usage History Logs'
 
 class InstrumentInline(admin.TabularInline):
