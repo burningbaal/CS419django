@@ -11,19 +11,24 @@ from django.contrib.auth.admin import UserAdmin
 	# verbose_name_plural = 'profiles'
 	# filter_horizontal = ('authorized_MethodVersions',)
 	
+"""
+Resource: https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-user-profile-to-django-admin.html
+"""
 class ProfileInline(admin.StackedInline):
 	model = UserProfile
+	filter_horizontal =('trained',)
 	can_delete = False
-	verbose_name_plural ='Profiles'
+	verbose_name_plural ='Profile'
 	fk_name = 'user'
 
 class CustomUserAdmin(UserAdmin):
-    inlines = (ProfileInline, )
-
-    def get_inline_instances(self, request, obj=None):
-        if not obj:
-            return list()
-        return super(CustomUserAdmin, self).get_inline_instances(request, obj)
+	
+	inlines = (ProfileInline, )
+	
+	def get_inline_instances(self, request, obj=None):
+		if not obj:
+			return list()
+		return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
 
 	
