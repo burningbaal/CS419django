@@ -1,7 +1,7 @@
 from limbo.models import *
 from django.contrib import admin
 
-@admin.register(Author)
+@admin.register(UserProfile)
 class UserProfileInline(ModelAdmin.StackedInline):
 	model = UserProfile
 	can_delete = True
