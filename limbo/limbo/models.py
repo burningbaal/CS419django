@@ -110,6 +110,9 @@ class UserProfile_Version(models.Model):
 	FK_userProfile = models.ForeignKey(UserProfile,  on_delete=models.CASCADE)
 	authorizing_user = models.ForeignKey(UserProfile, related_name='userProfile_versions_granted', on_delete=models.PROTECT)
 	timestamp = models.DateField(auto_now_add=True)
+	
+	def __str__(self):
+		return self.FK_userProfile + ' is trained on ' + self.FK_version
 
 	class Meta:
 		unique_together = ('FK_version', 'FK_userProfile')
