@@ -16,7 +16,9 @@ Resource: https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-u
 """
 @admin.register(UserProfile_Version)
 class UserProfileVersionInline(admin.ModelAdmin):
-	pass
+	def save_model(self, request, obj, form, change):
+        obj.authorizing_user = request.user
+        obj.save()
 
 class ProfileInline(admin.StackedInline):
 	model = UserProfile
