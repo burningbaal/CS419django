@@ -33,7 +33,15 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(UsageHistory)
 admin.site.register(Instrument)
-admin.site.register(Method)
+
+
+class VersionInline(admin.StackedInline)
+	model = Version
+	
+@admin.register(Method)
+class MethodAdmin(admin.ModelAdmin)
+	inlines = [VersionInline,]
+
 	
 # @admin.register(UserProfile)
 #class UserProfile(admin.ModelAdmin):
