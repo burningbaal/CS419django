@@ -10,5 +10,5 @@ from django.contrib import admin
 	
 @admin.register(UserProfile)
 class UserProfile(admin.ModelAdmin):
-    form = UserProfileForm
+	form = UserProfileForm
 	filter_horizontal = ('authorized_MethodVersions',)
