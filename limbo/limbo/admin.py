@@ -27,9 +27,8 @@ class UserProfileVersionInline(admin.StackedInline):
 
 class UserInline(admin.TabularInline):
 	model = User
-	fields = '__all__'
 	can_delete = False
-	
+	fk_name = 'profile'
 
 @admin.register(UserProfile)
 class ProfileInline(admin.ModelAdmin):
