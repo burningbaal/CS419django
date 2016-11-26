@@ -1,6 +1,8 @@
 from limbo.models import *
 from limbo.forms import *
 from django.contrib import admin
+from django.contrib.admin import AdminSite
+from django.utils.translation import ugettext_lazy
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
