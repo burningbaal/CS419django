@@ -107,7 +107,7 @@ class Instrument(models.Model):
 	serial_number = models.CharField(max_length=50, unique=True)
 	asset_number = models.CharField(max_length=50, unique=True)
 	name = models.CharField(max_length=50)
-	checksum_string = models.CharField(max_length=128, null=True)
+	checksum_string = models.CharField(max_length=128, null=True, verbose_name='Checksum')
 	FK_instr_type = models.ForeignKey(InstrType, related_name='installations', on_delete=models.PROTECT, verbose_name='Instrument Type')
 	VersionsFromInstrument = models.ManyToManyField(
 						Version, 
