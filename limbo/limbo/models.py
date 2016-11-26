@@ -154,7 +154,7 @@ class Instr_Version(models.Model):
 
 class UserProfile_Version(models.Model):
 	version = models.ForeignKey(Version, on_delete=models.CASCADE, verbose_name='Version')
-	userProfile = models.ForeignKey(UserProfile,  on_delete=models.CASCADE, , verbose_name='User Profile')
+	userProfile = models.ForeignKey(UserProfile,  on_delete=models.CASCADE, verbose_name='User Profile')
 	authorizing_user = models.ForeignKey(UserProfile, related_name='userProfile_versions_granted', on_delete=models.PROTECT, verbose_name='Authorizing User')
 	timestamp = models.DateField(auto_now_add=True, verbose_name='Time authorized')
 	
