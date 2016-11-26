@@ -19,7 +19,7 @@ class UserProfileVersionInline(admin.StackedInline):
 	model = UserProfile_Version
 	#fields = ('FK_version',)
 	exclude = ('authorizing_user', )
-	fk_name = 'FK_userProfile'
+	fk_name = 'userProfile'
 	verbose_name_plural = 'Trained versions'
 	def save_model(self, request, obj, form, change):
 		obj.authorizing_user = request.user.profile

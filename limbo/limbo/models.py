@@ -136,7 +136,7 @@ class UserProfile_Version(models.Model):
 		return str(self.FK_userProfile) + ' is trained on ' + str(self.FK_version)
 
 	class Meta:
-		unique_together = ('FK_version', 'FK_userProfile')
+		unique_together = ('version', 'userProfile')
 
 # class Role_Permission(models.Model):
 	# FK_role = ForeignKey(Role, on_delete=models.CASCADE)
