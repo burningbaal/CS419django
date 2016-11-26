@@ -144,7 +144,7 @@ class Instr_Version(models.Model):
 		verbose_name = 'Validated Version'
 		verbose_name_plural = 'Validated Versions'
 		
-	def save():self, *args, **kwargs):
+	def save(self, *args, **kwargs):
 		from limbo import checksum
 		super(Instr_Version, self).save(*args, **kwargs) 
 		instrumentObj = Instrument.objects.get(pk=self.FK_instrument)
