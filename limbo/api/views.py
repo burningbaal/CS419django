@@ -128,7 +128,7 @@ def getInstrument(request):
 	
 	serial = InstrumentSerializer(instrumentObj)#, context={'request': request})
 	strInstrument = strInstrument + JSONRenderer().render(serial.data)
-	strInstrument = '{"checksum":"' + instrumentObj.checksum_string + '",' + strInstrument + '}'
+	strInstrument = '{"checksum":"' + instrumentObj.checksum_string + '",instrument":' + strInstrument + '}'
 	response = '{ "user":' + userResponse + '},{' + str(strInstrument) + '}'
 	return HttpResponse(strInstrument)
 	
