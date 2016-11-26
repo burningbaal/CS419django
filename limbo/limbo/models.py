@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.defaultfilters import escape
 from django.core.urlresolvers import reverse
+import multiprocessing
 
 class serverConfig(models.Model):
 	
@@ -142,6 +143,14 @@ class Instr_Version(models.Model):
 		)
 		verbose_name = 'Validated Version'
 		verbose_name_plural = 'Validated Versions'
+		
+	def save():self, *args, **kwargs):
+		from limbo import checksum
+		super(Instr_Version, self).save(*args, **kwargs) 
+		instrumentObj = Instrument.objects.get(pk=self.FK_instrument)
+		if __name__ == '__main__':
+			p = Process(target=checksum.setChecksumAsync, args=(instrumentObj,))
+			p.start()
 		
 
 class UserProfile_Version(models.Model):

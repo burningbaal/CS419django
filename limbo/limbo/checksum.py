@@ -10,3 +10,10 @@ def setChecksum(instrumentObj):
 	instrumentObj.save()
 	return checksum
 	
+def setChecksumAsync(instrumentObj):
+	serial = InstrumentSerializer(instrumentObj)#, context={'request': request})
+	strInstrument = JSONRenderer().render(serial.data)
+	checksum = hashlib.sha1(strInstrument).hexdigest()
+	instrumentObj.checksum_string = checksum
+	instrumentObj.save()
+	
