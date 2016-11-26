@@ -28,8 +28,9 @@ class UserProfileVersionInline(admin.StackedInline):
 @admin.register(UserProfile)
 class ProfileAdmin(admin.ModelAdmin):
 	inlines = [UserProfileVersionInline,]
-	list_display = ('Last_name', 'First_name', 'title', 'user_link')
-	
+	list_display  = ('Last_name', 'First_name', 'title', 'user_link')
+	search_fields = ('Last_name', 'First_name', 'title', 'user_link')
+		
 	def Last_name(self, obj):
 		return obj.user.last_name
 	def First_name(self, obj):
@@ -51,6 +52,7 @@ class CustomUserAdmin(UserAdmin):
 class UsageHistoryAdmin(admin.ModelAdmin):
 	verbose_name_plural = 'Usage History Logs'
 	list_display = ('User', 'Instrument','Method', 'Time',)
+	search_fields = ('User', 'Instrument','Method',)
 	
 	def Time(self, obj):
 		return obj.timestamp
@@ -67,7 +69,8 @@ class InstrumentInline(admin.TabularInline):
 @admin.register(InstrType)
 class InstrTypeAdmin(admin.ModelAdmin):
 	inlines = [InstrumentInline,]
-	list_display = ('make', 'model', 'service_email', 'service_website',)
+	list_display  = ('make', 'model', 'service_email', 'service_website',)
+	search_fields = ('make', 'model', 'service_email', 'service_website',)
 	
 
 class Instr_VersionInline(admin.TabularInline):
@@ -81,7 +84,8 @@ class Instr_VersionInline(admin.TabularInline):
 @admin.register(Instrument)
 class InstrumentAdmin(admin.ModelAdmin):
 	inlines = [Instr_VersionInline,]
-	list_display = ( 'name', 'asset_number', 'Instrument_type', 'serial_number', )
+	list_display  = ('name', 'asset_number', 'Instrument_type', 'serial_number', )
+	search_fields = ('name', 'asset_number', 'Instrument_type', 'serial_number', )
 	
 	def Instrument_type(self, obj):
 		return obj.FK_instr_type
@@ -92,7 +96,9 @@ class VersionInline(admin.TabularInline):
 @admin.register(Method)
 class MethodAdmin(admin.ModelAdmin):
 	inlines = [VersionInline,]
-	list_display = ('name', 'description',)
+	list_display  = ('name', 'description',)
+	search_fields = ('name', 'description',)
+	
 
 	
 # @admin.register(UserProfile)
