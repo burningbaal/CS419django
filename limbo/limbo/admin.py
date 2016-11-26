@@ -97,6 +97,14 @@ class InstrumentAdmin(admin.ModelAdmin):
 
 class VersionInline(admin.TabularInline):
 	model = Version
+	formfield_overrides = {
+		models.TextField: {
+							'widget': Textarea(
+							attrs={'rows': 1,
+							'cols': 40,
+							'style': 'height: 1em;'})
+							},
+	}
 	
 @admin.register(Method)
 class MethodAdmin(admin.ModelAdmin):

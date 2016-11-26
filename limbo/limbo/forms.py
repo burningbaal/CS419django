@@ -111,7 +111,7 @@ class MethodVersionFormSetHelper(FormHelper):
         self.layout = Layout(
             Div(
 				Row( 
-					Div('version_number', css_class='col-md-13'),
+					Div('version_number', css_class='col-md-1'),
 					Field('DELETE', css_class='col-md-9 input-small'),
 				),
 				Row( 
