@@ -4,17 +4,19 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
-#admin.site.register(UserProfile)
-#class UserProfileInline(admin.ModelAdmin):
-	# model = UserProfile
-	# can_delete = True
-	# verbose_name_plural = 'profiles'
-	# filter_horizontal = ('authorized_MethodVersions',)
-	
-"""
-Resource: https://simpleisbetterthancomplex.com/tutorial/2016/11/23/how-to-add-user-profile-to-django-admin.html
-"""
-#@admin.register(UserProfile_Version)
+
+class MyAdminSite(AdminSite):
+    # Text to put at the end of each page's <title>.
+    site_title = ugettext_lazy('Limbo')
+
+    # Text to put in each page's <h1> (and above login form).
+    site_header = ugettext_lazy('Limbo Equipment Management')
+
+    # Text to put at the top of the admin index page.
+    index_title = ugettext_lazy('Limbo Login')
+
+admin_site = MyAdminSite()
+
 class UserProfileVersionInline(admin.StackedInline):
 	model = UserProfile_Version
 	#fields = ('FK_version',)
