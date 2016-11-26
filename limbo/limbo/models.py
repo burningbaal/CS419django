@@ -124,10 +124,11 @@ class Instr_Version(models.Model):
 		permissions = (
 			("view_Instr_Version", "Can view instr_version"),
 		)
+		
 
 class UserProfile_Version(models.Model):
-	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
-	FK_userProfile = models.ForeignKey(UserProfile,  on_delete=models.CASCADE)
+	version = models.ForeignKey(Version, on_delete=models.CASCADE)
+	userProfile = models.ForeignKey(UserProfile,  on_delete=models.CASCADE)
 	authorizing_user = models.ForeignKey(UserProfile, related_name='userProfile_versions_granted', on_delete=models.PROTECT)
 	timestamp = models.DateField(auto_now_add=True)
 	
