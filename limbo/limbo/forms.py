@@ -4,6 +4,8 @@ from .models import *
 from django.views.generic import CreateView
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div, Row, Button, Field
+from django.forms import Textarea
+from django.db import models
 
 
 class index (forms.Form):
