@@ -52,7 +52,7 @@ class CustomUserAdmin(UserAdmin):
 class UsageHistoryAdmin(admin.ModelAdmin):
 	verbose_name_plural = 'Usage History Logs'
 	list_display = ('User', 'Instrument','Method', 'Time',)
-	search_fields = ('FK_user__username', 'FK_user_lastname', 'FK_user__first_name', 'FK_instrument__name','FK_instrument__asset_number','FK_version__version_number',)
+	search_fields = ('FK_instrument__name','FK_instrument__asset_number','FK_version__version_number',)
 	
 	def Time(self, obj):
 		return obj.timestamp
