@@ -25,16 +25,16 @@ class UserProfileVersionInline(admin.StackedInline):
 		obj.authorizing_user = request.user.profile
 		obj.save()
 
-class ProfileInline(admin.StackedInline):
-	model = UserProfile
+@admin.register(UserProfile)
+class ProfileInline(admin.UserAdmin):
+	inlines = [UserProfileVersionInline, ]
+	
 	#filter_horizontal =('trained',)
-	can_delete = False
-	verbose_name_plural ='Profile'
-	fk_name = 'user'
+	
 
 class CustomUserAdmin(UserAdmin):
 	
-	inlines = [ProfileInline, UserProfileVersionInline,]
+	#inlines = [ProfileInline, UserProfileVersionInline,]
 	
 	def get_inline_instances(self, request, obj=None):
 		if not obj:
