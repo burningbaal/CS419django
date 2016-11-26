@@ -116,7 +116,7 @@ class Instrument(models.Model):
 						related_name = 'InstrumentsFromVersion',
 					)
 	
-	def save(self, force_insert=False, force_update=False):
+	def save(self, *args, **kwargs):
 		super(Instrument, self).save(*args, **kwargs) 
 		try:
 			checksum = setChecksum(self)
