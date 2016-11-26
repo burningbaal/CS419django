@@ -25,9 +25,15 @@ class UserProfileVersionInline(admin.StackedInline):
 		obj.authorizing_user = request.user.profile
 		obj.save()
 
+class UserInline(admin.TabularInline):
+	model = User
+	fields = '__all__'
+	can_delete = False
+	
+
 @admin.register(UserProfile)
 class ProfileInline(admin.ModelAdmin):
-	inlines = [UserProfileVersionInline, ]
+	inlines = [UserProfileVersionInline, UserInline]
 	list_display = ('get_last_name', 'get_first_name', 'title', 'get_username', 'get_email', )
 	
 	def get_email(self, obj):
@@ -63,7 +69,7 @@ class InstrTypeAdmin(admin.ModelAdmin):
 	list_display = ('make', 'model', 'service_email', 'service_website',)
 	
 
-class Instr_VersionInline(admin.StackedInline):
+class Instr_VersionInline(admin.TabularInline):
 	model = Instr_Version
 	exclude = ('validating_user',)
 	#filter_horizontal = ('FK_version',)
@@ -76,7 +82,7 @@ class InstrumentAdmin(admin.ModelAdmin):
 	inlines = [Instr_VersionInline,]
 	list_display = ( 'name', 'asset_number', 'FK_instr_type', 'serial_number', )
 
-class VersionInline(admin.StackedInline):
+class VersionInline(admin.TabularInline):
 	model = Version
 	
 @admin.register(Method)
