@@ -54,6 +54,7 @@ class UsageHistoryAdmin(admin.ModelAdmin):
 	verbose_name_plural = 'Usage History Logs'
 	list_display = ('User', 'Instrument','Method', 'Time',)
 	search_fields = ('instrument__name','instrument__asset_number','version__version_number',)
+	list_filter = ('instrument__name','instrument__asset_number','version__version_number', 'version')
 	
 	def Time(self, obj):
 		return obj.timestamp
@@ -72,6 +73,7 @@ class InstrTypeAdmin(admin.ModelAdmin):
 	inlines = [InstrumentInline,]
 	list_display  = ('make', 'model', 'service_email', 'service_website',)
 	search_fields = ('make', 'model', 'service_email', 'service_website',)
+	list_filter = ('make', 'model',)
 	
 
 class Instr_VersionInline(admin.TabularInline):
@@ -88,6 +90,7 @@ class InstrumentAdmin(admin.ModelAdmin):
 	list_display  = ('name', 'asset_number', 'Instrument_type', 'serial_number', )
 	search_fields = ('name', 'asset_number', 'FK_instr_type__make', 'FK_instr_type__model', 'serial_number', )
 	readonly_fields = ('checksum_string',)
+	list_filter = ('name', 'asset_number','FK_instr_type__Make', 'FK_instr_type__model',)
 	
 	def Instrument_type(self, obj):
 		return obj.FK_instr_type
