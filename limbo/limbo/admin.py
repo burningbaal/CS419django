@@ -1,23 +1,9 @@
 from limbo.models import *
 from limbo.forms import *
 from django.contrib import admin
-from django.contrib.admin import AdminSite
-from django.utils.translation import ugettext_lazy
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 
-
-class MyAdminSite(AdminSite):
-    # Text to put at the end of each page's <title>.
-    site_title = ugettext_lazy('Limbo')
-
-    # Text to put in each page's <h1> (and above login form).
-    site_header = ugettext_lazy('Limbo Equipment Management')
-
-    # Text to put at the top of the admin index page.
-    index_title = ugettext_lazy('Limbo Login')
-
-admin_site = MyAdminSite()
 
 class UserProfileVersionInline(admin.StackedInline):
 	model = UserProfile_Version
