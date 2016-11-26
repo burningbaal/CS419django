@@ -28,7 +28,16 @@ class UserProfileVersionInline(admin.StackedInline):
 @admin.register(UserProfile)
 class ProfileInline(admin.ModelAdmin):
 	inlines = [UserProfileVersionInline, ]
+	list_display = ('get_last_name', 'get_first_name', 'title', 'get_username', 'get_email', )
 	
+	def get_email(self, obj):
+		return obj.user.email
+	def get_last_name(self, obj):
+		return obj.user.last_name
+	def get_first_name(self, obj):
+		return obj.user.first_name
+	def get_username(self, obj):
+		return obj.user.username
 	#filter_horizontal =('trained',)
 	
 
@@ -65,7 +74,7 @@ class Instr_VersionInline(admin.StackedInline):
 @admin.register(Instrument)
 class InstrumentAdmin(admin.ModelAdmin):
 	inlines = [Instr_VersionInline,]
-	list_display = ('FK_instr_type', 'serial_number', 'asset_number', 'name')
+	list_display = ( 'name', 'asset_number', 'FK_instr_type', 'serial_number', )
 
 class VersionInline(admin.StackedInline):
 	model = Version
