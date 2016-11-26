@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.shortcuts import redirect
 
+admin.site.site_header = settings.ADMIN_SITE_HEADER
 
 urlpatterns = [
 	url(r'^admin/', admin.site.urls),
