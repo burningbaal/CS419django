@@ -85,7 +85,7 @@ class Instr_VersionInline(admin.TabularInline):
 class InstrumentAdmin(admin.ModelAdmin):
 	inlines = [Instr_VersionInline,]
 	list_display  = ('name', 'asset_number', 'Instrument_type', 'serial_number', )
-	search_fields = ('name', 'asset_number', 'FK_instr_type__InstrType', 'serial_number', )
+	search_fields = ('name', 'asset_number', 'FK_instr_type__make', 'FK_instr_type__model', 'serial_number', )
 	
 	def Instrument_type(self, obj):
 		return obj.FK_instr_type
