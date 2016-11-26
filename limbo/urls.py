@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from django.shortcuts import redirect
-from myproject.admin import admin_site
+from limbo.admin import admin_site
 
 
 urlpatterns = [
