@@ -28,8 +28,9 @@ class UserProfileVersionInline(admin.StackedInline):
 @admin.register(UserProfile)
 class ProfileAdmin(admin.ModelAdmin):
 	inlines = [UserProfileVersionInline,]
-	list_display  = ('Last_name', 'First_name', 'title', 'user_link')
+	list_display  = ('Last_name', 'First_name', 'title', 'user_link',)
 	search_fields = ('user__last_name', 'user__first_name', 'title',)
+	readonly_fields = ('user',)
 		
 	def Last_name(self, obj):
 		return obj.user.last_name
