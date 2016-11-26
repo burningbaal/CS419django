@@ -101,7 +101,7 @@ def save_user_profile(sender, instance, **kwargs):
 	except:
 		pass #UserProfile.objects.create(user=instance)
 
-from limbo import checksum
+
 class Instrument(models.Model):
 	def __str__(self):
 		return self.asset_number + ': ' + self.name
@@ -117,6 +117,7 @@ class Instrument(models.Model):
 					)
 	
 	def save(self, *args, **kwargs):
+		from limbo import checksum
 		super(Instrument, self).save(*args, **kwargs) 
 		try:
 			checksum = checksum.setChecksum(self)
