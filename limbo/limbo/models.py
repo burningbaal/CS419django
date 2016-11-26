@@ -147,9 +147,8 @@ class Instr_Version(models.Model):
 	def save(self, *args, **kwargs):
 		from limbo import checksum
 		super(Instr_Version, self).save(*args, **kwargs) 
-		instrumentObj = Instrument.objects.get(pk=self.FK_instrument)
 		if __name__ == '__main__':
-			p = Process(target=checksum.setChecksumAsync, args=(instrumentObj,))
+			p = Process(target=checksum.setChecksumAsync, args=(self.FK_instrument,))
 			p.start()
 		
 
