@@ -22,6 +22,7 @@ class InstrType(models.Model):
 		permissions = (
 			("view_InstrType", "Can view instr type"),
 		)
+		verbose_name_plural = 'Instrument Types'
 
 class Method(models.Model):
 	def __str__(self):
@@ -144,4 +145,5 @@ class UsageHistory(models.Model):
 		permissions = (
 			("view_UsageHistory", "Can view usage history"),
 		)
+		verbose_name_plural = 'Usage History Logs'
 
