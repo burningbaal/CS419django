@@ -26,7 +26,7 @@ class UserProfileVersionInline(admin.StackedInline):
 		obj.save()
 
 @admin.register(UserProfile)
-class ProfileInline(admin.UserAdmin):
+class ProfileInline(admin.ModelAdmin):
 	inlines = [UserProfileVersionInline, ]
 	
 	#filter_horizontal =('trained',)
