@@ -131,6 +131,8 @@ class Instr_Version(models.Model):
 		permissions = (
 			("view_Instr_Version", "Can view instr_version"),
 		)
+		verbose_name = 'Validated Version'
+		verbose_name_plural = 'Validated Versions'
 		
 
 class UserProfile_Version(models.Model):
@@ -144,6 +146,8 @@ class UserProfile_Version(models.Model):
 
 	class Meta:
 		unique_together = ('version', 'userProfile')
+		verbose_name ='Authorized version'
+		verbose_name_plural ='Authorized versions'
 
 # class Role_Permission(models.Model):
 	# FK_role = ForeignKey(Role, on_delete=models.CASCADE)
