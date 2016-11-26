@@ -100,9 +100,9 @@ class VersionInline(admin.TabularInline):
 	formfield_overrides = {
 		models.TextField: {
 							'widget': Textarea(
-							attrs={'rows': 1,
+							attrs={'rows': 10,
 							'cols': 40,
-							'style': 'height: 1em;'})
+							'style': 'height: 10em;'})
 							},
 	}
 	
