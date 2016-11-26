@@ -101,6 +101,7 @@ def save_user_profile(sender, instance, **kwargs):
 	except:
 		pass #UserProfile.objects.create(user=instance)
 
+from limbo import checksum
 class Instrument(models.Model):
 	def __str__(self):
 		return self.asset_number + ': ' + self.name
@@ -115,23 +116,17 @@ class Instrument(models.Model):
 						related_name = 'InstrumentsFromVersion',
 					)
 	
+	def save(self, force_insert=False, force_update=False):
+		super(Instrument, self).save(*args, **kwargs) 
+		try:
+			checksum = setChecksum(self)
+		except:
+			pass
+		
 	class Meta:
 		permissions = (
 			("view_Instrument", "Can view instrument"),
 		)
-from limbo import checksum
-@receiver(post_save, sender=Instrument)
-def create_Instrument(sender, instance, created, **kwargs):
-	if created:
-		checksum = setChecksum(instance)
-
-@receiver(post_save, sender=Instrument)
-def save_Instrument(sender, instance, **kwargs):
-	try:
-		checksum = setChecksum(instance)
-	except:
-		pass #Instrument.objects.create(user=instance)
-
 
 class Instr_Version(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE, verbose_name='Version')

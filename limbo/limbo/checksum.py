@@ -6,4 +6,5 @@ def setChecksum(instrumentObj):
 	checksum = hashlib.sha1(strInstrument).hexdigest()
 	instrumentObj.checksum_string = checksum
 	instrumentObj.Instrument.save()
+	return checksum
 	
