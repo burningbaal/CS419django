@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 from django.shortcuts import redirect
+from django.utils.translation import ugettext_lazy
 
 # Text to put at the end of each page's <title>.
 admin.site.site_title = ugettext_lazy('Limbo')
