@@ -41,7 +41,7 @@ class Method(models.Model):
 class Version(models.Model):
 	def __str__(self):
 		return self.FK_method.name + ' ' + self.version_number
-	version_number = models.CharField(max_length=50)
+	version_number = models.CharField(max_length=50, verbose_name='Version Number')
 	cmd_line_script = models.TextField(null=False, verbose_name='Command Line Script')
 	SOP = models.TextField(null=False, verbose_name='Standard Operating Procedure')
 	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE, verbose_name='Method')
