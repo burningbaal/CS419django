@@ -153,9 +153,9 @@ class UserProfile_Version(models.Model):
 		# unique_together = ('FK_role', 'FK_permission')
 
 class UsageHistory(models.Model):
-	FK_user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
-	FK_version = models.ForeignKey(Version, on_delete=models.PROTECT)
-	FK_instrument = models.ForeignKey(Instrument, on_delete=models.PROTECT)
+	user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
+	version = models.ForeignKey(Version, on_delete=models.PROTECT)
+	instrument = models.ForeignKey(Instrument, on_delete=models.PROTECT)
 	timestamp = models.DateTimeField(default=datetime.now, blank=True) 
 
 	class Meta:

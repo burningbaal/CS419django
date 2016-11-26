@@ -52,16 +52,16 @@ class CustomUserAdmin(UserAdmin):
 class UsageHistoryAdmin(admin.ModelAdmin):
 	verbose_name_plural = 'Usage History Logs'
 	list_display = ('User', 'Instrument','Method', 'Time',)
-	search_fields = ('FK_instrument__name','FK_instrument__asset_number','FK_version__version_number',)
+	search_fields = ('instrument__name','instrument__asset_number','version__version_number',)
 	
 	def Time(self, obj):
 		return obj.timestamp
 	def User(self, obj):
-		return obj.FK_user
+		return obj.user
 	def Instrument(self, obj):
-		return obj.FK_instrument
+		return obj.instrument
 	def Method(self, obj):
-		return obj.FK_version
+		return obj.version
 
 class InstrumentInline(admin.TabularInline):
 	model = Instrument
