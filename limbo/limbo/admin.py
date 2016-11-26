@@ -29,7 +29,7 @@ class UserProfileVersionInline(admin.StackedInline):
 class ProfileAdmin(admin.ModelAdmin):
 	inlines = [UserProfileVersionInline,]
 	list_display  = ('Last_name', 'First_name', 'title', 'user_link')
-	search_fields = ('Last_name', 'First_name', 'title', 'user_link')
+	search_fields = ('user__Last_name', 'user__First_name', 'title',)
 		
 	def Last_name(self, obj):
 		return obj.user.last_name
@@ -52,7 +52,7 @@ class CustomUserAdmin(UserAdmin):
 class UsageHistoryAdmin(admin.ModelAdmin):
 	verbose_name_plural = 'Usage History Logs'
 	list_display = ('User', 'Instrument','Method', 'Time',)
-	search_fields = ('User', 'Instrument','Method',)
+	search_fields = ('User__FK_user', 'Instrument__instrument','version__FK_version',)
 	
 	def Time(self, obj):
 		return obj.timestamp
@@ -85,7 +85,7 @@ class Instr_VersionInline(admin.TabularInline):
 class InstrumentAdmin(admin.ModelAdmin):
 	inlines = [Instr_VersionInline,]
 	list_display  = ('name', 'asset_number', 'Instrument_type', 'serial_number', )
-	search_fields = ('name', 'asset_number', 'Instrument_type', 'serial_number', )
+	search_fields = ('name', 'asset_number', 'InstrType__FK_instr_type', 'serial_number', )
 	
 	def Instrument_type(self, obj):
 		return obj.FK_instr_type
