@@ -25,15 +25,10 @@ class UserProfileVersionInline(admin.StackedInline):
 		obj.authorizing_user = request.user.profile
 		obj.save()
 
-class UserInline(admin.TabularInline):
-	model = User
-	can_delete = False
-	fk_name = 'profile'
-
 @admin.register(UserProfile)
 class ProfileInline(admin.ModelAdmin):
-	inlines = [UserProfileVersionInline, UserInline]
-	list_display = ('get_last_name', 'get_first_name', 'title', 'get_username', 'get_email', )
+	inlines = [UserProfileVersionInline,]
+	list_display = ('get_last_name', 'get_first_name', 'title', 'get_username', 'get_email', 'user_link')
 	
 	def get_email(self, obj):
 		return obj.user.email

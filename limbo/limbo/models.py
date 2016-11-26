@@ -4,6 +4,8 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.template.defaultfilters import escape
+from django.core.urlresolvers import reverse
 
 class serverConfig(models.Model):
 	
@@ -68,6 +70,12 @@ class UserProfile(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
 	title = models.CharField(max_length=50, choices=TITLE_CHOICES, default=NEW_HIRE, null=False, blank=False)
 	trained = models.ManyToManyField(Version, through='UserProfile_Version', through_fields=('FK_userProfile', 'FK_version',),)
+	
+	def user_link(self):
+		return '<a href="%s">%s</a>' % (reverse("admin:auth_user_change", args=(self.user.id,)) , escape(self.user))
+	user_link.allow_tags = True
+	user_link.short_description = "Edit User"
+	
 	class Meta:
 		permissions = (
 			("view_UserProfile", "Can view user profile"),
