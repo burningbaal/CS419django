@@ -76,6 +76,13 @@ class UserProfile(models.Model):
 	user_link.allow_tags = True
 	user_link.short_description = "Edit User"
 	
+	def username(self):
+		return self.user.username
+	def first_name(self):
+		return self.user.first_name
+	def last_name(self):
+		return self.user.last_name
+	
 	class Meta:
 		permissions = (
 			("view_UserProfile", "Can view user profile"),
