@@ -1,4 +1,6 @@
 import hashlib
+from rest_framework.renderers import JSONRenderer
+from limbo.serializers import InstrumentSerializer
 
 def setChecksum(instrumentObj):
 	serial = InstrumentSerializer(instrumentObj)#, context={'request': request})

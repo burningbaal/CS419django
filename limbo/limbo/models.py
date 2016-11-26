@@ -119,7 +119,7 @@ class Instrument(models.Model):
 	def save(self, *args, **kwargs):
 		super(Instrument, self).save(*args, **kwargs) 
 		try:
-			checksum = setChecksum(self)
+			checksum = checksum.setChecksum(self)
 		except:
 			pass
 		
