@@ -80,6 +80,7 @@ class UserProfile(models.Model):
 		permissions = (
 			("view_UserProfile", "Can view user profile"),
 		)
+		verbose_name_plural = 'User Profiles'
 	
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_profile(sender, instance, created, **kwargs):

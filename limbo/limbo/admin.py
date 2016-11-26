@@ -28,7 +28,7 @@ class UserProfileVersionInline(admin.StackedInline):
 @admin.register(UserProfile)
 class ProfileInline(admin.ModelAdmin):
 	inlines = [UserProfileVersionInline,]
-	list_display = ('get_last_name', 'get_first_name', 'title', 'get_username', 'get_email', 'user_link')
+	list_display = ('get_last_name', 'get_first_name', 'title', 'get_username', 'user_link')
 	
 	def get_email(self, obj):
 		return obj.user.email
@@ -53,6 +53,16 @@ class CustomUserAdmin(UserAdmin):
 @admin.register(UsageHistory)
 class UsageHistoryAdmin(admin.ModelAdmin):
 	verbose_name_plural = 'Usage History Logs'
+	list_display = ('User', 'Instrument','Method', 'Time',)
+	
+	def Time(self, obj):
+		return obj.timestamp
+	def User(self, obj):
+		return obj.FK_user
+	def Instrument(self, obj):
+		return obj.FK_instrument
+	def Method(self, obj):
+		return obj.FK_version
 
 class InstrumentInline(admin.TabularInline):
 	model = Instrument
