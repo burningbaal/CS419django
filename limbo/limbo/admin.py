@@ -54,7 +54,7 @@ class UsageHistoryAdmin(admin.ModelAdmin):
 	verbose_name_plural = 'Usage History Logs'
 	list_display = ('User', 'Instrument','Method', 'Time',)
 	search_fields = ('instrument__name','instrument__asset_number','version__version_number',)
-	list_filter = ('instrument__name','instrument__asset_number','version__version_number', 'version')
+	list_filter = ('User','instrument__name','instrument__asset_number','version__version_number', 'version')
 	
 	def Time(self, obj):
 		return obj.timestamp
