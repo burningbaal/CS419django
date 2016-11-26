@@ -7,6 +7,6 @@ def setChecksum(instrumentObj):
 	strInstrument = JSONRenderer().render(serial.data)
 	checksum = hashlib.sha1(strInstrument).hexdigest()
 	instrumentObj.checksum_string = checksum
-	instrumentObj.Instrument.save()
+	instrumentObj.save()
 	return checksum
 	
