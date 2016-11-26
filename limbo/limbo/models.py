@@ -41,8 +41,8 @@ class Version(models.Model):
 	def __str__(self):
 		return self.FK_method.name + ' ' + self.version_number
 	version_number = models.CharField(max_length=50)
-	cmd_line_script = models.TextField(null=False)
-	SOP = models.TextField(null=False)
+	cmd_line_script = models.TextField(null=False, verbose_name='Command Line Script')
+	SOP = models.TextField(null=False, verbose_name='Standard Operating Procedure')
 	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE)
 	#authorized_users = models.ManyToManyField(UserProfile, through='UserProfile_Version', through_fields=('FK_version', 'FK_userProfile',), related_name='authorized_MethodVersions', )
 	
@@ -121,8 +121,8 @@ class Instrument(models.Model):
 		)
 
 class Instr_Version(models.Model):
-	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
-	FK_instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
+	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE, verbose_name='Version')
+	FK_instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE, verbose_name='Instrument')
 	validating_user = models.ForeignKey(UserProfile, related_name='user_instruments_granted', on_delete=models.PROTECT)
 	timestamp = models.DateField(auto_now_add=True)
 
