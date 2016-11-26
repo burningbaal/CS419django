@@ -69,7 +69,7 @@ class UserProfile(models.Model):
 	)
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
 	title = models.CharField(max_length=50, choices=TITLE_CHOICES, default=NEW_HIRE, null=False, blank=False)
-	trained = models.ManyToManyField(Version, through='UserProfile_Version', through_fields=('FK_userProfile', 'FK_version',),)
+	trained = models.ManyToManyField(Version, through='UserProfile_Version', through_fields=('userProfile', 'version',),)
 	
 	def user_link(self):
 		return '<a href="%s">%s</a>' % (reverse("admin:auth_user_change", args=(self.user.id,)) , escape(self.user))

@@ -26,15 +26,16 @@ class UserProfileVersionInline(admin.StackedInline):
 		obj.save()
 
 @admin.register(UserProfile)
-class ProfileInline(admin.ModelAdmin):
+class ProfileAdmin(admin.ModelAdmin):
 	inlines = [UserProfileVersionInline,]
-	list_display = ('Last_name', 'First_name', 'Title', 'user_link')
+	list_display = ('Last_name', 'First_name', 'title', 'user_link')
 	
 	def Last_name(self, obj):
 		return obj.user.last_name
 	def First_name(self, obj):
 		return obj.user.first_name
-	#filter_horizontal =('trained',)
+	
+#class ProfileInline(admin.TabularInline):
 	
 
 class CustomUserAdmin(UserAdmin):
