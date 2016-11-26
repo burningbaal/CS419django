@@ -119,6 +119,19 @@ class Instrument(models.Model):
 		permissions = (
 			("view_Instrument", "Can view instrument"),
 		)
+from limbo import checksum
+@receiver(post_save, sender=Instrument)
+def create_Instrument(sender, instance, created, **kwargs):
+	if created:
+		checksum = setChecksum(instance)
+
+@receiver(post_save, sender=Instrument)
+def save_Instrument(sender, instance, **kwargs):
+	try:
+		checksum = setChecksum(instance)
+	except:
+		pass #Instrument.objects.create(user=instance)
+
 
 class Instr_Version(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE, verbose_name='Version')

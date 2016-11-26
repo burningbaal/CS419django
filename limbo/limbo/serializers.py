@@ -73,7 +73,7 @@ class InstrumentSerializer(serializers.ModelSerializer):
 	
 	class Meta:
 		model = Instrument
-		fields = ('id', 'asset_number', 'serial_number', 'name', 'checksum_string', 'instr_type', 'Validated_Versions')
+		fields = ('id', 'asset_number', 'serial_number', 'name', 'instr_type', 'Validated_Versions')
 		
 #class User_VersionSerializer(serializers.ModelSerializer):
 	# FK_version = models.ForeignKey(Version, on_delete=models.CASCADE)
