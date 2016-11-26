@@ -44,7 +44,7 @@ class Version(models.Model):
 	version_number = models.CharField(max_length=50)
 	cmd_line_script = models.TextField(null=False, verbose_name='Command Line Script')
 	SOP = models.TextField(null=False, verbose_name='Standard Operating Procedure')
-	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE)
+	FK_method = models.ForeignKey(Method, on_delete=models.CASCADE, verbose_name='Method')
 	#authorized_users = models.ManyToManyField(UserProfile, through='UserProfile_Version', through_fields=('FK_version', 'FK_userProfile',), related_name='authorized_MethodVersions', )
 	
 	class Meta:
@@ -106,9 +106,9 @@ def save_user_profile(sender, instance, **kwargs):
 class Instrument(models.Model):
 	def __str__(self):
 		return self.asset_number + ': ' + self.name
-	serial_number = models.CharField(max_length=50, unique=True)
-	asset_number = models.CharField(max_length=50, unique=True)
-	name = models.CharField(max_length=50)
+	serial_number = models.CharField(max_length=50, unique=True, verbose_name='Instrument SN')
+	asset_number = models.CharField(max_length=50, unique=True, verbose_name='Asset number')
+	name = models.CharField(max_length=50, verbose_name='Instrument Name')
 	checksum_string = models.CharField(max_length=128, null=True, verbose_name='Checksum')
 	FK_instr_type = models.ForeignKey(InstrType, related_name='installations', on_delete=models.PROTECT, verbose_name='Instrument Type')
 	VersionsFromInstrument = models.ManyToManyField(
@@ -133,8 +133,8 @@ class Instrument(models.Model):
 class Instr_Version(models.Model):
 	FK_version = models.ForeignKey(Version, on_delete=models.CASCADE, verbose_name='Version')
 	FK_instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE, verbose_name='Instrument')
-	validating_user = models.ForeignKey(UserProfile, related_name='user_instruments_granted', on_delete=models.PROTECT)
-	timestamp = models.DateField(auto_now_add=True)
+	validating_user = models.ForeignKey(UserProfile, related_name='user_instruments_granted', on_delete=models.PROTECT, verbose_name='Validating User')
+	timestamp = models.DateField(auto_now_add=True, verbose_name='Validation timestamp')
 
 	class Meta:
 		unique_together = ('FK_version', 'FK_instrument')
@@ -153,10 +153,10 @@ class Instr_Version(models.Model):
 		
 
 class UserProfile_Version(models.Model):
-	version = models.ForeignKey(Version, on_delete=models.CASCADE)
-	userProfile = models.ForeignKey(UserProfile,  on_delete=models.CASCADE)
-	authorizing_user = models.ForeignKey(UserProfile, related_name='userProfile_versions_granted', on_delete=models.PROTECT)
-	timestamp = models.DateField(auto_now_add=True)
+	version = models.ForeignKey(Version, on_delete=models.CASCADE, verbose_name='Version')
+	userProfile = models.ForeignKey(UserProfile,  on_delete=models.CASCADE, , verbose_name='User Profile')
+	authorizing_user = models.ForeignKey(UserProfile, related_name='userProfile_versions_granted', on_delete=models.PROTECT, verbose_name='Authorizing User')
+	timestamp = models.DateField(auto_now_add=True, verbose_name='Time authorized')
 	
 	def __str__(self):
 		return str(self.userProfile) + ' is trained on ' + str(self.version)
@@ -174,10 +174,10 @@ class UserProfile_Version(models.Model):
 		# unique_together = ('FK_role', 'FK_permission')
 
 class UsageHistory(models.Model):
-	user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
-	version = models.ForeignKey(Version, on_delete=models.PROTECT)
-	instrument = models.ForeignKey(Instrument, on_delete=models.PROTECT)
-	timestamp = models.DateTimeField(default=datetime.now, blank=True) 
+	user = models.ForeignKey(UserProfile, on_delete=models.PROTECT, verbose_name='User for run')
+	version = models.ForeignKey(Version, on_delete=models.PROTECT, verbose_name='Version ran')
+	instrument = models.ForeignKey(Instrument, on_delete=models.PROTECT, verbose_name='Instrument used')
+	timestamp = models.DateTimeField(default=datetime.now, blank=True, verbose_name='Time of run') 
 
 	class Meta:
 		permissions = (
