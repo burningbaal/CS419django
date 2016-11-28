@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 		#fields = '__all__'
 		exclude = ('password',)
 
-class UserProfilePermissionSerializer(serializers.modelSerializer):
+class UserProfilePermissionSerializer(serializers.ModelSerializer):
 	user = UserSerializer(read_only=True)
 	Authorized_Versions = ProfileToVersionSerializer(source='trained', many=True, read_only=True)
 	
