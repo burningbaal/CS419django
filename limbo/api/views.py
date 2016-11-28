@@ -130,7 +130,7 @@ def getInstrument(request):
 	strInstrument = strInstrument + JSONRenderer().render(serial.data)
 	from limbo import checksum
 	cs = checksum.setChecksum(instrumentObj)
-	strInstrument = '"checksum":"' + instrumentObj.checksum_string + '",instrument":' + strInstrument
+	strInstrument = '"checksum":"' + instrumentObj.checksum_string + '","instrument":' + strInstrument
 	response = '{ "user":' + userResponse + ',' + strInstrument + '}'
 	return HttpResponse(response)
 	
