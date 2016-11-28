@@ -13,6 +13,14 @@ class UserSerializer(serializers.ModelSerializer):
 		model = auth.get_user_model()
 		#fields = '__all__'
 		exclude = ('password',)
+
+class UserProfilePermissionSerializer(serializers.modelSerializer):
+	user = UserSerializer(read_only=True)
+	Authorized_Versions = ProfileToVersionSerializer(source='trained', many=True, read_only=True)
+	
+	class Meta:
+		model = UserProfile
+		fields = ('id','user', 'Authorized_Versions',)
 		
 class UserProfileSerializer(serializers.ModelSerializer):
 	user = UserSerializer(read_only=True)
@@ -50,6 +58,21 @@ class VersionSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Version
 		fields = ('id', 'method')#, 'version_number', 'cmd_line_script', 'SOP')
+
+class ProfileToVersionSerializer(serializers.ModelSerializer):
+	# try moving the checksum_string at a level above the instrument data
+	version = VersionSerializer(source='FK_version', read_only=True, many=True)
+	authorizer = UserProfileSerializer(source='authorizing_user.user', read_only=True)
+	Time_Authorized = serializers.ReadOnlyField(source= 'timestamp')
+	version_name = serializers.ReadOnlyField(source='version_number')
+	cmd_line_script = serializers.ReadOnlyField()
+	SOP = serializers.ReadOnlyField()
+	method = MethodSerializer(source='FK_method', read_only=True)
+	
+	class Meta:
+		model = Instr_Version
+		fields = ('id', 'version', 'authorizer', 'Time_Authorized', 'method', 'version_name', 'cmd_line_script', 'SOP')
+		
 
 class Instr_to_VersionSerializer(serializers.ModelSerializer):
 	# try moving the checksum_string at a level above the instrument data

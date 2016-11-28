@@ -113,7 +113,7 @@ def getInstrument(request):
 	user = authenticate(username=username, password=password)
 	if user is None:
 		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}', status=401) 
-	serial = UserProfileSerializer(user)
+	serial = UserProfilePermissionSerializer(user.profile)
 	userResponse = JSONRenderer().render(serial.data)
 	
 	if request.method == 'POST':
@@ -131,7 +131,7 @@ def getInstrument(request):
 	from limbo import checksum
 	cs = checksum.setChecksum(instrumentObj)
 	strInstrument = '{"checksum":"' + instrumentObj.checksum_string + '",instrument":' + strInstrument + '}'
-	response = '{ "user":' + userResponse + '},{' + str(strInstrument) + '}'
+	response = '{ "user":' + userResponse + ',{' + strInstrument + '}'
 	return HttpResponse(strInstrument)
 	
 	
@@ -152,6 +152,40 @@ def getMethod(request):
 		
 	serial = UserSerializer(user)
 	userResponse = JSONRenderer().render(serial.data)
+	
+	if request.method == 'POST':
+		method = request.POST.get('method', None)
+	if method is None:
+		return HttpResponse('{"Error":"Must POST or GET \'method\'"}', status=406)
+	try:
+		methodObj = Method.objects.get(pk=method)
+	except:
+		return HttpResponse('{"Error":"method \'' + method + '\' does not exist"}', status=204)
+	methodName = methodObj.name
+	
+	serial = MethodVersionSerializer(methodObj)#, context={'request': request})
+	strMethod = strMethod + JSONRenderer().render(serial.data)
+	response = '{ "user":' + userResponse + ',"Method":' + str(strMethod) + '}'
+	return HttpResponse(response)
+	
+	
+
+@api_view(['GET', 'POST'])
+@csrf_exempt
+def getUserProfile(request):
+	
+	strMethod = ''
+	userResponse = ''
+	response = ''
+	
+	username = request.POST.get('username', None)
+	password = request.POST.get('password', None)
+	user = None
+	user = authenticate(username=username, password=password)
+	if user is None:
+		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}', status=401) 
+		
+	
 	
 	if request.method == 'POST':
 		method = request.POST.get('method', None)

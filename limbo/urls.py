@@ -12,7 +12,7 @@ admin.site.site_title = ugettext_lazy('Limbo')
 admin.site.site_header = ugettext_lazy('Limbo Equipment Management')
 
 # Text to put at the top of the admin index page.
-admin.site.index_title = ugettext_lazy('Limbo Login')
+admin.site.index_title = ugettext_lazy('Limbo Home')
 	
 urlpatterns = [
 	url(r'^admin/', admin.site.urls),

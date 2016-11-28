@@ -102,13 +102,16 @@ class MethodAdmin(admin.ModelAdmin):
 	list_display  = ('name', 'description',)
 	search_fields = ('name', 'description',)
 	
+	
+class ReadOnlyModelAdmin(admin.ModelAdmin):
+    actions = None
+    list_display_links = None
+    # more stuff here
 
-	
-# @admin.register(UserProfile)
-#class UserProfile(admin.ModelAdmin):
-#	form = UserProfileForm
-#	filter_horizontal = ('trained',)
-	
+    def has_add_permission(self, request):
+        return False
+	def has_delete_permission(self, request):
+        return False
 	
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
