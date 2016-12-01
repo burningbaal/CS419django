@@ -69,7 +69,7 @@ class UserProfile(models.Model):
 		(ASSISTANT, 'Assistant'),
 	)
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
-	title = models.CharField(max_length=50, choices=TITLE_CHOICES, default=NEW_HIRE, null=False, blank=False)
+	title = models.IntegerField(max_length=50, choices=TITLE_CHOICES, default=NEW_HIRE, null=False, blank=False)
 	trained = models.ManyToManyField(Version, through='UserProfile_Version', through_fields=('userProfile', 'version',),)
 	
 	def user_link(self):
