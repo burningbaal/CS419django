@@ -29,7 +29,7 @@ class ProfileAdmin(admin.ModelAdmin):
 	def save_formset(self, request, form, formset, change):
 		instances = formset.save(commit=False)
 		for instance in instances:
-			instance.authorizing_user = request.user
+			instance.authorizing_user = request.user.profile
 			instance.save()
 
 
