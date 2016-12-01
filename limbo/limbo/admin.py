@@ -11,9 +11,9 @@ class UserProfileVersionInline(admin.StackedInline):
 	exclude = ('authorizing_user', )
 	fk_name = 'userProfile'
 	verbose_name_plural = 'Trained versions'
-	def save_model(self, request, obj, form, change):
-		obj.authorizing_user = request.user.profile
-		obj.save()
+	# def save_model(self, request, obj, form, change):
+		# obj.authorizing_user = request.user.profile
+		# obj.save()
 
 @admin.register(UserProfile)
 class ProfileAdmin(admin.ModelAdmin):
@@ -26,9 +26,12 @@ class ProfileAdmin(admin.ModelAdmin):
 		return obj.user.last_name
 	def First_name(self, obj):
 		return obj.user.first_name
-	
-#class ProfileInline(admin.TabularInline):
-	
+    def save_formset(self, request, form, formset, change):
+        instances = formset.save(commit=False)
+		for instance in instances:
+			instance.authorizing_user = request.user
+			instance.save()
+
 
 class CustomUserAdmin(UserAdmin):
 	
