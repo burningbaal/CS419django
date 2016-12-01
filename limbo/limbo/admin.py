@@ -73,9 +73,9 @@ class Instr_VersionInline(admin.TabularInline):
 	model = Instr_Version
 	exclude = ('validating_user',)
 	#filter_horizontal = ('FK_version',)
-	def save_model(self, request, obj, form, change):
-		obj.validating_user = request.user.profile
-		obj.save()
+	# def save_model(self, request, obj, form, change):
+		# obj.validating_user = request.user.profile
+		# obj.save()
 	
 @admin.register(Instrument)
 class InstrumentAdmin(admin.ModelAdmin):
@@ -87,6 +87,11 @@ class InstrumentAdmin(admin.ModelAdmin):
 	
 	def Instrument_type(self, obj):
 		return obj.FK_instr_type
+	def save_formset(self, request, form, formset, change):
+		instances = formset.save(commit=False)
+		for instance in instances:
+			instance.validating_user = request.user.profile
+			instance.save()
 
 class VersionInline(admin.TabularInline):
 	model = Version
