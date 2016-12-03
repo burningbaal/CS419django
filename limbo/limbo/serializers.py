@@ -125,7 +125,8 @@ class InstrumentSerializer(serializers.ModelSerializer):
 	# class Meta:
 		# unique_together = ('FK_version', 'FK_user')
 
-class UsageHistorySerializer(serializers.ModelSerializer):class Meta:
+class UsageHistorySerializer(serializers.ModelSerializer):
+	class Meta:
 		model = Instrument
 		fields = ('id', 'user', 'version', 'instrument',)
 
