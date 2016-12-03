@@ -189,7 +189,7 @@ def getUser(request):
 	serial = UserSerializer(user)
 	userResponse = JSONRenderer().render(serial.data)
 	
-	response = '{ "user":' + userResponse + ',"Method":' + str(strMethod) + '}'
+	response = '{ "user":' + userResponse + '}'
 	logout(request)
 	return HttpResponse(response)
 	
