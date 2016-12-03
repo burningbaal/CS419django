@@ -40,9 +40,9 @@ def addUsageHistory(request):
 		if form.is_valid():
 			newUse = form.save()
 			message = ('{"Added":{"user":' + \
-			coreSerializers.serialize('json', [newUse.FK_user.user, ]) +  ',"version":' + \
-			coreSerializers.serialize('json', [newUse.FK_version, ]) +  ',"instrument":' + \
-			coreSerializers.serialize('json', [newUse.FK_instrument, ]) +  ',"timestamp":' + \
+			coreSerializers.serialize('json', [newUse.user.user, ]) +  ',"version":' + \
+			coreSerializers.serialize('json', [newUse.version, ]) +  ',"instrument":' + \
+			coreSerializers.serialize('json', [newUse.instrument, ]) +  ',"timestamp":' + \
 			'"' + str(newUse.timestamp) + '"' +  \
 			'}}')
 			return HttpResponse(message, status=201)
