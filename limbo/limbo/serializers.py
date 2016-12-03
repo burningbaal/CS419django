@@ -14,7 +14,7 @@ class UserGroupSerializer(serializers.ModelSerializer):
 		fields = ('id', 'name',)
 	
 class UserSerializer(serializers.ModelSerializer):
-	groups = UserGroupSerializer(read_only=True)
+	groups = UserGroupSerializer(read_only=True, many=True)
 	class Meta:
 		model = auth.get_user_model()
 		#fields = '__all__'
