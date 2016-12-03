@@ -77,7 +77,13 @@ class ProfileToVersionSerializer(serializers.ModelSerializer):
 		model = Instr_Version
 		fields = ('id', 'version', 'authorizer', 'Time_Authorized', 'method', 'version_name', 'cmd_line_script', 'SOP')
 		
-
+class UserProfileSerializer(serializers.ModelSerializer):
+	user = UserSerializer(read_only=True)
+	Authorized_Versions = ProfileToVersionSerializer(source='trained', many=True, read_only=True)
+	class Meta:
+		model = UserProfile
+		fields = ('id','user', 'Authorized_Versions',)
+		
 class UserProfilePermissionSerializer(serializers.ModelSerializer):
 	user = UserSerializer(read_only=True)
 	Authorized_Versions = ProfileToVersionSerializer(source='trained', many=True, read_only=True)
