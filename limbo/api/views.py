@@ -39,12 +39,10 @@ def addUsageHistory(request):
 		form = usageHistoryForm(request.POST)
 		if form.is_valid():
 			newUse = form.save()
-			message = ('{"Added":{"user":' + \
-			coreSerializers.serialize('json', [newUse.user.user, ]) +  ',"version":' + \
-			coreSerializers.serialize('json', [newUse.version, ]) +  ',"instrument":' + \
-			coreSerializers.serialize('json', [newUse.instrument, ]) +  ',"timestamp":' + \
-			'"' + str(newUse.timestamp) + '"' +  \
-			'}}')
+			serial = UsageHistorySerializer(newUse);
+			usage = JSONRenderer().render(serial.data)
+	
+			message = ('{"Added":{"user":' + usage + '}')
 			return HttpResponse(message, status=201)
 		else:
 			message = '{"Error": ["Message":"The use history has NOT been added.",' + '\n'

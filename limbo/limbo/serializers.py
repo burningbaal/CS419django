@@ -125,9 +125,7 @@ class InstrumentSerializer(serializers.ModelSerializer):
 	# class Meta:
 		# unique_together = ('FK_version', 'FK_user')
 
-#class UsageHistorySerializer(serializers.ModelSerializer):
-	# FK_user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
-	# FK_version = models.ForeignKey(Version, on_delete=models.PROTECT)
-	# FK_instrument = models.ForeignKey(Instrument, on_delete=models.PROTECT)
-	# timestamp = models.DateTimeField(default=datetime.now, blank=True) 
+class UsageHistorySerializer(serializers.ModelSerializer):class Meta:
+		model = Instrument
+		fields = ('id', 'user', 'version', 'instrument',)
 
