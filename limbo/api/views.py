@@ -170,3 +170,26 @@ def getMethod(request):
 	logout(request)
 	return HttpResponse(response)
 	
+
+@api_view(['GET', 'POST'])
+@csrf_exempt
+def getUser(request):
+	
+	strMethod = ''
+	userResponse = ''
+	response = ''
+	
+	username = request.POST.get('username', None)
+	password = request.POST.get('password', None)
+	user = None
+	user = authenticate(username=username, password=password)
+	if user is None:
+		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}', status=401) 
+		
+	serial = UserSerializer(user)
+	userResponse = JSONRenderer().render(serial.data)
+	
+	response = '{ "user":' + userResponse + ',"Method":' + str(strMethod) + '}'
+	logout(request)
+	return HttpResponse(response)
+	
