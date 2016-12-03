@@ -127,6 +127,6 @@ class InstrumentSerializer(serializers.ModelSerializer):
 
 class UsageHistorySerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Instrument
+		model = UsageHistory
 		fields = ('id', 'user', 'version', 'instrument',)
 
