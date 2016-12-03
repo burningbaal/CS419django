@@ -20,7 +20,7 @@ class UserGroupSerializer(serializers.ModelSerializer):
 	
 class UserSerializer(serializers.ModelSerializer):
 	groups = UserGroupSerializer(read_only=True, many=True)
-	user_permissions = UserPermSerialiaer(read_only=True, many=True)
+	user_permissions = UserPermSerializer(read_only=True, many=True)
 	class Meta:
 		model = auth.get_user_model()
 		#fields = '__all__'
