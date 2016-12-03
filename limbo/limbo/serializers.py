@@ -8,6 +8,11 @@ class serverConfigSerializer(serializers.ModelSerializer):
 		model = serverConfig
 		fields = '__all__'
 	
+class UserPermSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = auth.models.Permission
+		fields = '__all__'
+	
 class UserGroupSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = auth.models.Group
@@ -15,6 +20,7 @@ class UserGroupSerializer(serializers.ModelSerializer):
 	
 class UserSerializer(serializers.ModelSerializer):
 	groups = UserGroupSerializer(read_only=True, many=True)
+	user_permissions = UserPermSerialiaer(read_only=True, many=True)
 	class Meta:
 		model = auth.get_user_model()
 		#fields = '__all__'
