@@ -8,7 +8,13 @@ class serverConfigSerializer(serializers.ModelSerializer):
 		model = serverConfig
 		fields = '__all__'
 	
+class UserGroupSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = auth.models.group
+		fields = '__all__'
+	
 class UserSerializer(serializers.ModelSerializer):
+	groups = UserGroupSerializer(read_only=True)
 	class Meta:
 		model = auth.get_user_model()
 		#fields = '__all__'
