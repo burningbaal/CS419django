@@ -186,7 +186,7 @@ def getUser(request):
 	if user is None:
 		return HttpResponse('{"Error":"Must log in with valid \'username\' and \'password\'"}', status=401) 
 		
-	serial = UserProfilePermissionSerializer(user.profile)
+	serial = UserSerializer(user)
 	userResponse = JSONRenderer().render(serial.data)
 	
 	response = '{ "user":' + userResponse + '}'
